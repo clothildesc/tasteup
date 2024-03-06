@@ -25,6 +25,7 @@ end
 recipes_raw = [
   {
     title: 'Cookies maison',
+    image_name: 'cookies_maison.webp',
     category_name: 'Dessert',
     user_email: 'bob@gmail.com',
     difficulty: 'Facile',
@@ -52,6 +53,7 @@ recipes_raw = [
   },
   {
     title: 'Quiche lorraine',
+    image_name: 'quiche_lorraine.jpg',
     category_name: 'Plat principal',
     user_email: 'bob@gmail.com',
     difficulty: 'Moyen',
@@ -79,6 +81,7 @@ recipes_raw = [
   },
   {
     title: 'Salade César',
+    image_name: 'salade_cesar.jpeg',
     category_name: 'Entrée',
     user_email: 'bob@gmail.com',
     difficulty: 'Facile',
@@ -104,6 +107,7 @@ recipes_raw = [
   },
   {
     title: 'Ratatouille',
+    image_name: 'ratatouille.jpg',
     category_name: 'Accompagnement',
     user_email: 'seb@gmail.com',
     difficulty: 'Facile',
@@ -133,6 +137,7 @@ recipes_raw = [
   },
   {
     title: 'Crème brûlée',
+    image_name: 'creme_brulee.webp',
     category_name: 'Dessert',
     user_email: 'seb@gmail.com',
     difficulty: 'Difficile',
@@ -157,6 +162,7 @@ recipes_raw = [
   },
   {
     title: 'Risotto aux champignons',
+    image_name: 'risotto_champignons.jpg',
     category_name: 'Plat principal',
     user_email: 'seb@gmail.com',
     difficulty: 'Moyen',
@@ -185,6 +191,7 @@ recipes_raw = [
   },
   {
     title: 'Tarte aux épinards et chèvre',
+    image_name: 'tarte_aux_epinards_et_chevre.webp',
     category_name: ['Plat principal', 'Végétarien'],
     user_email: 'alice@gmail.com',
     difficulty: 'Facile',
@@ -212,6 +219,7 @@ recipes_raw = [
   },
   {
     title: 'Tarte aux pommes',
+    image_name: 'tarte_aux_pommes.avif',
     category_name: 'Dessert',
     user_email: 'alice@gmail.com',
     difficulty: 'facile',
@@ -235,6 +243,7 @@ recipes_raw = [
   },
   {
     title: 'Soupe à l’oignon',
+    image_name: 'soupe_a_lognon.jpg',
     category_name: 'Entrée',
     user_email: 'alice@gmail.com',
     difficulty: 'Facile',
@@ -261,6 +270,7 @@ recipes_raw = [
   },
   {
     title: 'Curry de légumes',
+    image_name: 'curry_de_legumes.jpg',
     category_name: ['Plat principal', 'Vegan', 'Sans gluten', 'Sans lactose'],
     user_email: 'alice@gmail.com',
     difficulty: 'Facile',
@@ -302,6 +312,14 @@ recipes_raw.each do |recipe_raw|
     number_of_servings: recipe_raw[:number_of_servings],
     note: recipe_raw[:note]
   )
+
+  recipe.photo.attach(
+    io: File.open("public/images/#{recipe_raw[:image_name]}"),
+    filename: recipe_raw[:image_name], # use the extension of the attached file here
+    content_type: 'image/jpg' # use the mime type of the attached file here
+  )
+
+  recipe.save!
 
   recipe_raw[:ingredients].each do |ingredient_raw|
     ingredient = Ingredient.find_by(name: ingredient_raw[:name])
