@@ -1,0 +1,32 @@
+.navbar {
+  width: 100%; /* Largeur de l'iPhone 12 Pro */
+  height: 6em; /* Hauteur de la navbarre */
+  background-color: $grey; /* Couleur de fond */
+  /* Autres styles de la navbarre */
+  a {
+    width: 1%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+}
+
+.navbar .navbar-brand img {
+  width: 25px;
+}
+
+.navbar-add{
+  background-color: #5EB58E;
+  border-radius: 50%;
+  height: 55px;
+  width: 55px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 55px;
+  flex-grow: 0 !important;
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+}
