@@ -19,3 +19,24 @@
 <%# save_button %>
 <div class="save-button">
 </div>
+
+<div data-controller="tab" class="tabs" >
+  <div class="button-container mx-4">
+    <ul class="nav nav-pills flex-fill d-flex align-items-center justify-content-evenly px-2">
+      <li class="nav-item">
+        <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="1" type="button" class="tab-button on">Détails</button>
+      </li>
+      <li class="nav-item">
+        <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="2" type="button" class="tab-button">Ingrédients</button>
+      </li>
+      <li class="nav-item">
+        <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="3" type="button" class="tab-button">Préparations</button>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <div class="tab on" data-tab-target="tab" data-id="1">1</div>
+    <div class="tab" data-tab-target="tab" data-id="2">2</div>
+    <div class="tab" data-tab-target="tab" data-id="3">3</div>
+  </div>
+</div>
