@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       post :duplicate
     end
   end
-  # get :my_recipes, to: "recipes#my_recipes"
+  get :my_recipes, to: "recipes#my_recipes"
   get :design, to: "pages#design"
   resources :favorites, only: :destroy
 
