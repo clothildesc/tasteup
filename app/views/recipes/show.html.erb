@@ -1,5 +1,84 @@
-<%= @recipe.attributes %>
-<br>
-<%= @recipe.categories.pluck(:name) %>
-<br>
-<%= @recipe.preparation_steps.map(&:attributes) %>
+<div class="container-fluid px-0">
+  <div class="row">
+    <div class="col-12 px-0">
+      <%= cl_image_tag @recipe.photo.key, { class: "img-fluid", style: "height: 200px; width: 100%; object-fit: cover;" } %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row text-center mt-3">
+    <div class="col-12">
+      <h3><%= @recipe.title %></h3>
+    </div>
+  </div>
+  <div class="row text-center justify-content-between">
+    <div class="col-12">
+      <% @recipe.categories.each do |categorie|%>
+        <span class="badge text-bg-success text-white"><%= categorie.name %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="detail">
+    <h3>Détails :</h3>
+    <!-- Temps de préparation -->
+    <div class="justify-content-start align-items-center bg-white border-salmon rounded-pill p-2 d-flex mb-3">
+      <div class="me-3">
+        <div class="tiny-square">
+          <i class="fa-solid fa-clock" style="color: #000000;"></i>
+        </div>
+      </div>
+      <span>Temps de préparation : <strong><%= @recipe.preparation_time %>min</strong></span>
+    </div>
+    <!-- Temps de cuisson -->
+    <div class="justify-content-start align-items-center bg-white border-salmon rounded-pill p-2 d-flex mb-3">
+      <div class="me-3">
+        <div class="tiny-square">
+          <i class="fa-solid fa-stopwatch" style="color: #000000;"></i>
+        </div>
+      </div>
+      <span>Temps de cuisson : <strong><%= @recipe.cooking_time %>min</strong></span>
+    </div>
+    <!-- Difficulté -->
+    <div class="justify-content-start align-items-center bg-white border-salmon rounded-pill p-2 d-flex mb-3">
+      <div class="me-3">
+        <div class="tiny-square">
+          <i class="fa-solid fa-utensils" style="color: #000000;"></i>
+        </div>
+      </div>
+      <span>Difficulté : <strong><%= @recipe.difficulty %></strong></span>
+    </div>
+  </div>
+
+  <div id="ingredients">
+    <h3>Ingredients :</h3>
+    <div class="d-flex justify-content-around text-center mt-3">
+      <span>-</span>
+      <span>Nombre de personnes : <strong><%= @recipe.number_of_servings %></strong></span>
+      <span>+</span>
+    </div>
+    <% @recipe.recipe_ingredients.each do |recipe_ingredient|%>
+    <div class="d-flex justify-content-between bg-white border-salmon rounded-pill py-2 px-3 mt-3">
+      <%= recipe_ingredient.ingredient.name.capitalize %>
+      <strong><%= recipe_ingredient.quantity_value.to_s.chomp('.0') %> <%= recipe_ingredient.quantity_unit %></strong>
+    </div>
+    <% end %>
+  </div>
+
+  <div id="preparation" class="mt-3">
+    <h3>Préparation :</h3>
+    <div class="row">
+      <% @recipe.preparation_steps.each do |preparation_step|%>
+      <div class="col-12 d-flex justify-content-center my-3">
+        <div class="tiny-square">
+          <p><%= preparation_step.step_number %></p>
+        </div>
+      </div>
+      <div class="col-12 mb-3">
+        <%= preparation_step.instruction %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
