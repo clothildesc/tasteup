@@ -2,5 +2,13 @@
   width: 2em;
   height: 2em;
   border-radius: 0.5em;
-  background-color: salmon;
+  background-color: $salmon;
+  position: relative;
+
+  i, p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
