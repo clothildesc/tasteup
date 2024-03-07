@@ -1,0 +1,8 @@
+<%= f.association :ingredient, input_html: { class: "form-input"} %>
+<%= f.input :quantity_value, input_html: { class: "form-input"} %>
+<%= f.input :quantity_unit, input_html: { class: "form-input"} %>
+<%= f.hidden_field :_destroy %>
+
+<%= remove_associated_record(tag: :div) do %>
+  <i class="fa-solid fa-xmark"></i>
+<% end %>
