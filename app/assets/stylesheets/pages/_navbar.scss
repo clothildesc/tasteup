@@ -1,7 +1,7 @@
 .navbar {
   width: 100%; /* Largeur de l'iPhone 12 Pro */
   height: 6em; /* Hauteur de la navbarre */
-  background-color: $grey; /* Couleur de fond */
+  background-color: $gray; /* Couleur de fond */
   /* Autres styles de la navbarre */
   a {
     width: 1%;
@@ -18,7 +18,7 @@
 }
 
 .navbar-add{
-  background-color: #5EB58E;
+  background-color: $green;
   border-radius: 50%;
   height: 55px;
   width: 55px !important;
