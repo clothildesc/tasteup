@@ -3,47 +3,59 @@
     <div class="col-12 col-md-6 offset-lg-3">
       <h2 class="mb-3 text-center" >Ajouter une recette</h2>
       <div>
-        <%= simple_form_for :recipe do |f| %>
-          <%#= f.input :url, label: 'Renseigner une URL', placeholder: 'https://www.exemple.com' %>
+        <%= simple_form_for recipe do |f| %>
+          <%= f.input :url,
+            required: false,
+            label: 'Renseigner une URL',
+            input_html: { class: "form-input"},
+            placeholder: 'https://www.exemple.com'%>
           <h3>Ou ajouter manuellement</h3>
-          <%= f.input :title, input_html: { class: "form-input"}, label: 'Titre de la recette', placeholder: 'Ex : Cookies maison' %>
+          <%= f.input :title,
+            required: false,
+            input_html: { class: "form-input"},
+            label: 'Titre de la recette',
+            placeholder: 'Ex : Cookies maison' %>
           <div class="input-grid">
-            <%= f.input :number_of_servings, label: 'Nombre de portions', placeholder: 'XX personnes', input_html: { class: "form-input"} %>
-            <%= f.input :difficulty, label: 'Difficulté', input_html: { class: "form-input"}, collection: ['Facile', 'Moyenne', 'Difficile'], as: :select, wrapper_html: { class: 'input-wrapper' }, include_blank: 'Menu déroulant' %>
-            <%= f.input :preparation_time, label: 'Temps de préparation', placeholder: 'XX minutes', input_html: { class: "form-input"} %>
-            <%= f.input :cooking_time, label: 'Temps de cuisson', input_html: { class: "form-input"}, placeholder: 'XX minutes' %>
+            <%= f.input :number_of_servings,
+              required: false,
+              label: 'Nombre de portions',
+              placeholder: 'XX',
+              input_html: { class: "form-input-square"} %>
+            <%= f.input :difficulty,
+              required: false,
+              label: 'Difficulté',
+              input_html: { class: "form-input"},
+              collection: ['Facile', 'Moyenne', 'Difficile'],
+              as: :select,
+              include_blank: 'choisir' %>
+            <%= f.input :preparation_time,
+              required: false,
+              label: 'Temps de préparation',
+              placeholder: 'XX',
+              input_html: { class: "form-input-square"} %>
+            <%= f.input :cooking_time,
+              required: false,
+              label: 'Temps de cuisson',
+              input_html: { class: "form-input-square"},
+              placeholder: 'XX minutes' %>
           </div>
-          <%= f.simple_fields_for :ingredients do |ingredient| %>
-            <fieldset>
-              <legend>Ingrédients</legend>
-              <%= ingredient.input :quantity, label: false, placeholder: 'Ex : 100', input_html: { class: 'input-small' } %>
-              <%= ingredient.input :unit, label: false, placeholder: 'Ex : g', input_html: { class: 'input-mini' } %>
-              <%= ingredient.input :name, label: false, placeholder: 'Ex : farine', input_html: { class: 'input-medium' } %>
-            </fieldset>
-            <%= link_to 'x', '#', class: 'remove_fields' %>
+          <legend>Ingrédients</legend>
+          <%= f.abyme_for(:recipe_ingredients) do |abyme| %>
+            <%= abyme.records %>
+            <%= abyme.new_records %>
+            <%= add_associated_record %>
           <% end %>
+          <legend>Étapes</legend>
+          <%= f.abyme_for(:preparation_steps) do |abyme| %>
+            <%= abyme.records %>
+            <%= abyme.new_records %>
+            <%= add_associated_record %>
+          <% end %>
+          <legend>Tags</legend>
+          <%= f.association :categories %>
+          <%= f.submit %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-<%##= link_to '+ Ajouter un ingrédient', '#', class: 'add_fields', data: { field: f.fields_for(:ingredients, Ingredient.new, child_index: "new_ingredients") { |ing| render('ingredient_fields', f: ing) }, time: Time.now.to_i } %>
-<%##= f.simple_fields_for :steps do |step| %>
-  <%# <fieldset>
-              <legend>Étapes</legend> %>
-  <%#= step.input :description, label: false, placeholder: 'Ex : Mélanger le sucre et les oeufs', as: :text, input_html: { rows: 3 } %>
-  <%#= link_to 'x', '#', class: 'remove_fields' %>
-  <%# </fieldset> %>
-  <%# end %>
-  <%##= link_to '+ Ajouter une étape', '#', class: 'add_fields', data: { field: f.fields_for(:steps, Step.new, child_index: "new_steps") { |stp| render('step_fields', f: stp) }, time: Time.now.to_i } %>
-  <%# <fieldset>
-            <legend>Tags</legend> %>
-  <%##= f.input :tags, as: :string, label: false, placeholder: '+ Ajouter un tag' %>
-  <!-- Preset tags here, adjust to your model -->
-  <%##= f.button :submit, 'Dessert', class: 'tag-button' %>
-  <%##= f.button :submit, 'Facile', class: 'tag-button' %>
-  <%# </fieldset> %>
-  <%##= f.button :submit, 'Enregistrer' %>
-  <%# end %>
-  <%# <script> %>
-  <%# </script> %>
