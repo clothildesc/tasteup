@@ -1,0 +1,24 @@
+
+
+<%= @recipe.photo %>
+
+<%= @recipe.title %>
+
+<%= @recipe.categories %>
+
+<div>
+<%= @recipe.cooking_time %>
+<%= @recipe.preparation_time %>
+<%= @recipe.number_of_servings %>
+</div>
+
+<div>
+<%= @recipe.ingredients %>
+<%= @recipe.recipe_ingredients.quantity_value %>
+<%= @recipe.recipe_ingredients.quantity_unit %>
+</div>
+
+<div>
+<%= @recipe.preparation_steps.step_number %>
+<%= @recipe.preparation_steps.instruction %>
+</div>
