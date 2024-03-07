@@ -1,24 +1,50 @@
 
 
-<%= @recipe.photo %>
-
-<%= @recipe.title %>
-
-<%= @recipe.categories %>
-
-<div>
-<%= @recipe.cooking_time %>
-<%= @recipe.preparation_time %>
-<%= @recipe.number_of_servings %>
+<div class="row">
+  <div class="col-12">
+    <%= cl_image_tag @recipe.photo.key, { class: "img-fluid", style: "height: 200px; width: 100%; object-fit: cover;" } %>
+  </div>
 </div>
 
-<div>
-<%= @recipe.ingredients %>
-<%= @recipe.recipe_ingredients.quantity_value %>
-<%= @recipe.recipe_ingredients.quantity_unit %>
-</div>
+<div class="container">
+  <div class="row text-center mt-3">
+    <div class="col-12">
+      <h3><%= @recipe.title %></h3>
+    </div>
+  </div>
+  <div class="row text-center justify-content-between">
+    <div class="col-12">
+       <% @recipe.categories.each do |categorie|%>
+      <p><%= categorie.name %></p>
+      <% end %>
+    </div>
+  </div>
 
-<div>
-<%= @recipe.preparation_steps.step_number %>
-<%= @recipe.preparation_steps.instruction %>
+  <div id="detail">
+    <h3>Détails :</h3>
+    <div class="row">
+      <div class="col-12 bg-white border-">
+        <p>Temps de préparation : <%= @recipe.preparation_time %>min</p>
+      </div>
+      <p>Temps de cuisson : <%= @recipe.cooking_time %>min</p>
+      <p>Difficulté : <%= @recipe.difficulty %></p>
+    </div>
+  </div>
+
+  <div id="ingredients">
+    <h3>Ingredients :</h3>
+    <p>Nombre de portions : <%= @recipe.number_of_servings %> personnes</p>
+    <% @recipe.recipe_ingredients.each do |recipe_ingredient|%>
+    <p><%= recipe_ingredient.ingredient.name %></p>
+    <p><%= recipe_ingredient.quantity_value.to_s.chomp('.0') %> <%= recipe_ingredient.quantity_unit %></p>
+    <% end %>
+  </div>
+
+  <div id="preparation">
+    <h3>Préparation :</h3>
+    <% @recipe.preparation_steps.each do |preparation_step|%>
+    <p><%= preparation_step.step_number %></p>
+    <p><%= preparation_step.instruction %></p>
+    <% end %>
+  </div>
 </div>
