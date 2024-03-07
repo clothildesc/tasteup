@@ -11,6 +11,9 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @ingredients = Ingredient.all
+    @categories = Category.all
+    @preparation_step = PreparationStep.new
   end
 
   def create
