@@ -84,12 +84,10 @@ class ScrapMarmiton
       title: title,
       image_name: image_name,
       category_name: category_name,
-      user_email: "current_user.email",
       difficulty: difficulty,
       cooking_time: cooking_time,
       preparation_time: preparation_time,
       number_of_servings: number_of_servings,
-      note: '',
       ingredients: ingredients_hashes,
       steps: steps_hashes,
     }
