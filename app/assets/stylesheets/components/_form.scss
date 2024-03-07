@@ -1,6 +1,6 @@
 .form-input {
-  color: #FFBE98;
-  background-color: #FFF4EB;
+  color: #FFBE98 !important;
+  background-color: #FFF4EB !important;
   border-radius: 8px;
   font-size: 14px;
   padding: 10px 15px;
@@ -8,6 +8,10 @@
   width: 100%;
   height: 55px;
   box-sizing: border-box;
+
+  &::placeholder {
+    color: #FFBE98;
+  }
 }
 
 .form-input-square {
@@ -29,8 +33,7 @@
 .input-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  // gap: 20px;
-  // margin-bottom: 20px;
+  gap: 20px;
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -77,3 +80,14 @@ input[type='number'] {
 //   border: none;
 //   cursor: pointer;
 // }
+
+.recipe_categories {
+  input {
+    display: none;
+  }
+
+  input:checked + label {
+    background-color: #FFBE98;
+    color: #FFF4EB;
+  }
+}
