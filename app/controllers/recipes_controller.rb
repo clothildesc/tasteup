@@ -3,10 +3,8 @@ class RecipesController < ApplicationController
 
   def my_recipes
     @favorite_recipes = current_user.favorite_recipes
-  end
-
-  def following_recipes
-    @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
+    # @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
+    @my_recipes = current_user.recipes
   end
 
   def index
@@ -20,6 +18,9 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @ingredients = Ingredient.all
+    @categories = Category.all
+    @preparation_step = PreparationStep.new
   end
 
   def create
@@ -54,11 +55,13 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :difficulty, :cooking_time, :preparation_time, :number_of_servings, :note, category_ids: [])
+    params.require(:recipe).permit(:title, :difficulty, :cooking_time,
+      :preparation_time, :number_of_servings, :note, category_ids: [],
+      :preparation_steps_attributes => [:id, :instruction, :_destroy],
+      :recipe_ingredients_attributes => [:id, :quantity_unit, :quantity_value, :ingredient_id, :_destroy])
   end
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
   end
-
 end

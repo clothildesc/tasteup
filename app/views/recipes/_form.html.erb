@@ -1,0 +1,62 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <h2 class="mb-3 text-center" >Ajouter une recette</h2>
+      <div>
+        <%= simple_form_for recipe do |f| %>
+          <%= f.input :url,
+            required: false,
+            label: 'Renseigner une URL',
+            input_html: { class: "form-input"},
+            placeholder: 'https://www.exemple.com'%>
+          <h3>Ou ajouter manuellement</h3>
+          <%= f.input :title,
+            required: false,
+            input_html: { class: "form-input"},
+            label: 'Titre de la recette',
+            placeholder: 'Ex : Cookies maison' %>
+          <div class="input-grid">
+            <%= f.input :number_of_servings,
+              required: false,
+              label: 'Nombre de portions',
+              input_html: { class: "form-input", style: "margin-bottom: 0 !important;" },
+              wrapper_html: { style: "margin-bottom: 0 !important;" } %>
+            <%= f.input :difficulty,
+              required: false,
+              label: 'Difficulté',
+              input_html: { class: "form-input", style: "margin-bottom: 0 !important;" },
+              wrapper_html: { style: "margin-bottom: 0 !important;" },
+              collection: ['Facile', 'Moyenne', 'Difficile'],
+              as: :select,
+              include_blank: 'choisir' %>
+            <%= f.input :preparation_time,
+              required: false,
+              label: 'Temps de préparation',
+              input_html: { class: "form-input-square"} %>
+            <%= f.input :cooking_time,
+              required: false,
+              label: 'Temps de cuisson',
+              input_html: { class: "form-input-square"} %>
+          </div>
+          <legend>Ingrédients</legend>
+          <%= f.abyme_for(:recipe_ingredients) do |abyme| %>
+            <%= abyme.records %>
+            <%= abyme.new_records %>
+            <%= add_associated_record(tag: :div, html: { class: "flex" }) do %>
+              <i class="fas fa-plus"></i>
+            <% end %>
+          <% end %>
+          <legend>Étapes</legend>
+          <%= f.abyme_for(:preparation_steps) do |abyme| %>
+            <%= abyme.records %>
+            <%= abyme.new_records %>
+            <%= add_associated_record %>
+          <% end %>
+          <legend>Tags</legend>
+          <%= f.association :categories, as: :check_boxes, label_method: lambda { |item| render "recipes/category_label", item: item } %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
