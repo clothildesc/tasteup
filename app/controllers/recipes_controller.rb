@@ -1,6 +1,14 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
 
+  def my_recipes
+    @favorite_recipes = current_user.favorite_recipes
+  end
+
+  def following_recipes
+    @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
+  end
+
   def index
     @recipes = Recipe.all
   end
