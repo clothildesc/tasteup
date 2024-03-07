@@ -1,0 +1,5 @@
+<%= @recipe.attributes %>
+<br>
+<%= @recipe.categories.pluck(:name) %>
+<br>
+<%= @recipe.preparation_steps.map(&:attributes) %>
