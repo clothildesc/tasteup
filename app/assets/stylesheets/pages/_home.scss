@@ -7,10 +7,17 @@
     font-weight: bold;
   }
 
-  .title{
+}
+
+  .title {
     font-size: 18px;
     font-weight: bold;
     padding: 12px;
     margin: 3px;
   }
-}
+
+  .input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    // gap: 20px;
+  }
