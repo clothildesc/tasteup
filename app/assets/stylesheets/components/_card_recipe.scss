@@ -1,6 +1,5 @@
 .card-recipe {
   width: 153px;
-  height: 191px;
   border: 1px;
   background-color: white;
   font-size: 14px;
@@ -17,8 +16,13 @@
 .recipe-name {
   font-size: 14px;
   margin-bottom: 0px;
+  font-weight: bold;
+  height: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 
 .time-recipe {
   font-size: 11px;
+  font-weight: bold;
 }

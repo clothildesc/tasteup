@@ -6,6 +6,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :recipe_categories, dependent: :destroy
   has_many :categories, through: :recipe_categories
+  has_many :favorites, dependent: :destroy
 
   # Validations
   validates :title, presence: true

@@ -3,10 +3,8 @@ class RecipesController < ApplicationController
 
   def my_recipes
     @favorite_recipes = current_user.favorite_recipes
-  end
-
-  def following_recipes
-    @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
+    # @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
+    @my_recipes = current_user.recipes
   end
 
   def index
@@ -59,5 +57,4 @@ class RecipesController < ApplicationController
   def set_recipe
     @recipe = Recipe.find(params[:id])
   end
-
 end
