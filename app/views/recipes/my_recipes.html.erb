@@ -1,0 +1,42 @@
+<div class="container landing-header px-4 py-5">
+  <div class="d-flex">
+    <h3> Bonjour Julia !</h3>
+    <img src="image.png" alt="">
+  </div>
+  <h3 class="mb-4"> On cuisine quoi aujourd'hui ?</h3>
+  <%= form_with url: my_recipes_path, method: :get, class: "d-flex"  do %>
+    <%= text_field_tag :query,
+              params[:query],
+              class: "form-control form-control-sm", id: "input_field",
+              placeholder: "Envie de... ?" %>
+    <button type="submit" class="btn form-control-sm", id="btn_search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  <% end %>
+
+  <div class="mt-5 bg-white rounded-2">
+    <h3 class="title"> Mes recettes préférées 😍 </h3>
+    <div class= "d-flex overflow-x-auto">
+      <% @favorite_recipes.each do |recipe| %>
+        <div class="card-recipe m-3">
+          <div class="square">
+          </div>
+          <h2 class="recipe-name mt-2"><%=recipe.title%></h2>
+        </div>
+      <% end %>
+    </div>
+   </div>
+
+  <div class="mt-5 bg-white rounded-2">
+    <h3 class="title"> ... et celles qui me font de l'oeil 👀 </h3>
+    <div class= "d-flex overflow-x-auto">
+      <% @favorite_recipes.each do |recipe| %>
+        <div class="card-recipe m-3">
+          <div class="square">
+          </div>
+          <h2 class="recipe-name mt-2"><%=recipe.title%></h2>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

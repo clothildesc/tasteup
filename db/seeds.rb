@@ -340,3 +340,7 @@ recipes_raw.each do |recipe_raw|
   end
   puts "Created recipe: #{recipe.title}"
 end
+
+Recipe.where.not(user_id: user1.id).shuffle.first(3).each do |recipe|
+  Favorite.create!(user: user1, recipe: recipe)
+end

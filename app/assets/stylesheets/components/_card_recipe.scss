@@ -1,0 +1,24 @@
+.card-recipe {
+  width: 153px;
+  height: 191px;
+  border: 1px;
+  background-color: white;
+  font-size: 14px;
+}
+
+.square {
+  width: 153px;
+  height: 153px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  background-color: #D1D1D1;
+}
+
+.recipe-name {
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+.time-recipe {
+  font-size: 11px;
+}
