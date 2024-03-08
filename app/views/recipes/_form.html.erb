@@ -3,8 +3,20 @@
     <div class="col-12 col-md-6 offset-lg-3">
       <h2 class="mb-3 text-center" >Ajouter une recette</h2>
       <div>
-        <%= simple_form_for recipe do |f| %>
+        <%= simple_form_for :scrap, url: scrap_recipes_path, method: :get do |f| %>
           <%= f.input :url,
+            required: false,
+            label: 'Renseigner une URL',
+            input_html: { class: "form-input"},
+            placeholder: 'https://www.exemple.com'%>
+            <div class="text-center">
+          <%= f.submit "Sauvegarder",
+            class: "save-button",
+            style: "display: none;" %>
+            </div>
+        <% end %>
+        <%= simple_form_for recipe do |f| %>
+          <%#= f.input :url,
             required: false,
             label: 'Renseigner une URL',
             input_html: { class: "form-input"},

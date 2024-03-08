@@ -14,15 +14,15 @@ class ScrapMarmiton
     title = html_doc.search(".main-title h1").text.strip
 
     # Extracting the image name
-    image_data_srcset = html_doc.search(".recipe-media-viewer-thumbnail-container img").first['data-srcset']
-    srcset_urls = image_data_srcset.split(',').map(&:strip)
+    image_data_srcset = html_doc.search(".recipe-media-viewer-thumbnail-container img").first&.dig('data-srcset')
+    srcset_urls = image_data_srcset&.split(',')&.map(&:strip)
     image_name = srcset_urls
-                     .select { |url| url.include?('w314h314') }
-                     .first
-                     .split(' ').first
+                     &.select { |url| url.include?('w314h314') }
+                     &.first
+                     &.split(' ')&.first
 
     # Extracting the category name
-    category_name = html_doc.search("#af-bread-crumb a")[2].text.strip.capitalize
+    category_name = html_doc.search("#af-bread-crumb a")[2]&.text&.strip&.capitalize
 
     # Extracting the difficulty
     difficulty = html_doc.search(".recipe-primary__item i.icon-difficulty + span").text.capitalize
@@ -79,7 +79,6 @@ class ScrapMarmiton
       }
     end
 
-    puts desired_format =
     {
       title: title,
       image_name: image_name,

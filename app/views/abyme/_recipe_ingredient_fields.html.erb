@@ -4,14 +4,14 @@
   </div>
 <% end %>
 <div class="d-flex justify-content-between">
-<%= f.association :ingredient,
-  input_html: { class: "form-input-big-rectangle"},
-  label: "ingédient" %>
-<%= f.input :quantity_value,
-  input_html: { class: "form-input-square"},
+  <%= f.input :quantity_value,
+  input_html: { class: "form-input-square", style: "margin-bottom: 0 !important;"},
   label: "quantité" %>
-<%= f.input :quantity_unit,
-  input_html: { class: "form-input-rectangle"},
+  <%= f.input :quantity_unit,
+  input_html: { class: "form-input-rectangle", style: "margin-bottom: 0 !important;"},
   label: "unité" %>
-<%= f.hidden_field :_destroy %>
+  <%= f.association :ingredient,
+  input_html: { class: "form-input-big-rectangle", style: "margin-bottom: 0 !important;"},
+  label: "ingrédient" %>
+  <%= f.hidden_field :_destroy %>
 </div>
