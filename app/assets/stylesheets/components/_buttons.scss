@@ -1,9 +1,28 @@
+// .save-button {
+//   height: 2.3125em;
+//   width: 7em;
+//   border-radius: 0.5em;
+//   background-color:$orange;
+// }
+
 .save-button {
-  height: 2.3125em;
-  width: 5.875em;
-  border-radius: 0.5em;
-  background-color:$orange;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: $orange-bts;
+  border: none;
+  border-radius: 50px; /* This creates the pill shape */
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
 
 .white-button {
   width:3em;

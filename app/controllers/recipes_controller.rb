@@ -1,3 +1,5 @@
+# require_relative '../models/recipe' # Add this line
+
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
 
@@ -5,10 +7,38 @@ class RecipesController < ApplicationController
     @favorite_recipes = current_user.favorite_recipes
     # @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
     @my_recipes = current_user.recipes
+    @recipes_user2 = Recipe.joins(:user).where(users: { email: "alice@gmail.com" })
+    @recipes_user2 = @recipes_user2.where.not(id: @favorite_recipes.map(&:id))
+    # @recipes_user2 à remplacer par les nouvelles recettes qu'on de nos follows
+
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        recipes.title ILIKE :query
+        OR ingredients.name ILIKE :query
+        OR categories.name ILIKE :query
+      SQL
+
+      @favorite_recipes = @favorite_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @my_recipes       = @my_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @recipes_user2    = @recipes_user2.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @recipes_user2 = @recipes_user2.where.not(id: @favorite_recipes.map(&:id))
+      # @recipes_user2 à remplacer par les nouvelles recettes qu'on de nos follows
+
+    end
   end
 
   def index
     @recipes = Recipe.all
+  end
+
+  def scrap
+    url = params[:scrap][:url]
+    recipe_data = ScrapMarmiton.new(url).call
+    @recipe = Recipe.new(recipe_data.slice(:title, :difficulty, :cooking_time, :preparation_time, :number_of_servings))
+    @ingredients = Ingredient.all
+    @categories = Category.all
+    @preparation_step = PreparationStep.new
+    render :new
   end
 
   def show
