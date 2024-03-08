@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     member do
       post :duplicate
     end
+    collection do
+      get :scrap
+    end
   end
   get :my_recipes, to: "recipes#my_recipes"
 

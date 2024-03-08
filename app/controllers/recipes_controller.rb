@@ -31,6 +31,16 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  def scrap
+    url = params[:scrap][:url]
+    recipe_data = ScrapMarmiton.new(url).call
+    @recipe = Recipe.new(recipe_data.slice(:title, :difficulty, :cooking_time, :preparation_time, :number_of_servings))
+    @ingredients = Ingredient.all
+    @categories = Category.all
+    @preparation_step = PreparationStep.new
+    render :new
+  end
+
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_ingredients = @recipe.recipe_ingredients.includes(:ingredient)
@@ -44,6 +54,11 @@ class RecipesController < ApplicationController
   end
 
   def create
+    if params[:recipe_url].present?
+      @recipe_data = ScrapWithOpenai.new(params[:recipe_url]).call
+      @recipe = CreateRecipeFromScrappingData.new(@recipe_data).call
+    else
+    end
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     if @recipe.save
