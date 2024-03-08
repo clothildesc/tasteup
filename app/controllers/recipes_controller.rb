@@ -24,6 +24,11 @@ class RecipesController < ApplicationController
   end
 
   def create
+    if params[:recipe_url].present?
+      @recipe_data = ScrapWithOpenai.new(params[:recipe_url]).call
+      @recipe = CreateRecipeFromScrappingData.new(@recipe_data).call
+    else
+    end
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     if @recipe.save
