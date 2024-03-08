@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     if @recipe.save
-      redirect_to recipe_path(@recipe), notice: "Your recipe was successfully created."
+      redirect_to recipe_path(@recipe), notice: "Votre recette a été ajoutée."
     else
       render :new, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-      redirect_to recipe_path(@recipe), notice: "Your recipe was successfully updated."
+      redirect_to recipe_path(@recipe), notice: "Votre recette a été modifiée."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -49,7 +49,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_to recipes_path, notice: "Your recipe was successfully deleted."
+    redirect_to my_recipes_path, notice: "Votre recette a été supprimée."
   end
 
   private
