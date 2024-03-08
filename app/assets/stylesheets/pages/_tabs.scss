@@ -9,8 +9,7 @@
     > ul {
       flex-wrap: nowrap;
     }
-    li {
-    }
+
     .tab-button {
       background-color: transparent;
       border-radius: 30px;
@@ -23,7 +22,7 @@
       // padding-left: 15%;
       // padding-right: 15%;
       &.on {
-        background-color: $orange;
+        background-color: $red;
         color: black ;
       }
     }
