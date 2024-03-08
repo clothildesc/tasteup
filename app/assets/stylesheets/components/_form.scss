@@ -30,6 +30,38 @@
   color: #FFBE98;
 }
 
+.form-input-rectangle {
+  color: #FFBE98;
+  background-color: #FFF4EB;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  width: 100px;
+  height: 55px;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: #FFBE98;
+}
+
+.form-input-big-rectangle {
+  color: #FFBE98;
+  background-color: #FFF4EB;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  width: 150px;
+  height: 55px;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: #FFBE98;
+}
+
 .input-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -49,11 +81,13 @@ input[type='number'] {
 .input-with-text {
   display: flex;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .input-text {
   margin-left: 10px;
 }
+
 // .input-wrapper {
 //   background-color: #ffe3d3;
 //   border-radius: 10px;

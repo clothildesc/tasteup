@@ -1,8 +1,17 @@
-<%= f.association :ingredient, input_html: { class: "form-input"} %>
-<%= f.input :quantity_value, input_html: { class: "form-input"} %>
-<%= f.input :quantity_unit, input_html: { class: "form-input"} %>
-<%= f.hidden_field :_destroy %>
-
 <%= remove_associated_record(tag: :div) do %>
-  <i class="fa-solid fa-xmark"></i>
+  <div class="w-100 d-flex justify-content-end">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
 <% end %>
+<div class="d-flex justify-content-between">
+<%= f.association :ingredient,
+  input_html: { class: "form-input-big-rectangle"},
+  label: "ingédient" %>
+<%= f.input :quantity_value,
+  input_html: { class: "form-input-square"},
+  label: "quantité" %>
+<%= f.input :quantity_unit,
+  input_html: { class: "form-input-rectangle"},
+  label: "unité" %>
+<%= f.hidden_field :_destroy %>
+</div>

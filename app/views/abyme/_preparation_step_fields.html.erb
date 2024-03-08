@@ -1,6 +1,11 @@
-<%= f.input :instruction, input_html: { class: "form-input"} %>
-<%= f.hidden_field :_destroy%>
-
 <%= remove_associated_record(tag: :div) do %>
-  <i class="fas fa-trash"></i>
+  <div class="w-100 d-flex justify-content-end">
+    <i class="fas fa-xmark"></i>
+  </div>
 <% end %>
+<%= f.input :instruction,
+  required: false,
+  label: "Ajouter une étape",
+  placeholder: "Ex : Mélanger les oeufs et le sucre",
+  input_html: { class: "form-input my-auto"} %>
+<%= f.hidden_field :_destroy %>
