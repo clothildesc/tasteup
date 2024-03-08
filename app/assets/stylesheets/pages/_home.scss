@@ -24,5 +24,8 @@
 
 .container {
   background-color: F5F7F8;
-  overflow-x: hidden;
+}
+
+.d-flex.overflow-x-auto {
+  overflow-x: auto;
 }

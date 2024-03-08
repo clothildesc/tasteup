@@ -5,6 +5,8 @@
   font-size: 14px;
   flex-grow: 0;
   flex-shrink: 0;
+  text-decoration: none;
+  color: black;
 }
 
 .input-grid .card-recipe {
@@ -25,7 +27,7 @@
   font-weight: bold;
   height: 35px;
   overflow: hidden;
-  text-overflow: ellipsis
+  text-overflow: ellipsis;
 }
 
 .time-recipe {
