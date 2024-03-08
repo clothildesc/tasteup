@@ -1,16 +1,16 @@
 
 <!-- Image de la recette -->
-<div class="container-fluid px-0">
+<div class="container-fluid">
   <div class="row">
     <div class="col-12 px-0" id="img-banner">
-      <%= cl_image_tag @recipe.photo.key, { class: "img-fluid", style: "height: 250px; width: 100%; object-fit: cover;" } %>
+      <%= cl_image_tag @recipe.photo.key, { class: "img-fluid", style: "height: 250px; width: 100vw; object-fit: cover;" } %>
       <div id="back" class="white-button rounded-circle">
         <!-- Modifier le lien avec javascript:history.back() à la place de my_recipes_path si on veut renvoyer vers la page précédente -->
         <%= link_to my_recipes_path do %>
           <i class="fa-solid fa-arrow-left" style="color: #000000;"></i>
         <% end %>
       </div>
-      <div id="edit" class="orange-button rounded-circle">
+      <div id="edit" class="red-button rounded-circle">
         <%= link_to edit_recipe_path(@recipe) do %>
           <i class="fa-solid fa-pen" style="color: #000000;"></i>
         <% end %>
@@ -25,7 +25,7 @@
 </div>
 
 <!-- Contenu de la recette -->
-<div class="container m-3">
+<div class="container">
   <div class="row text-center mt-3">
     <div class="col-12">
       <h3><%= @recipe.title %></h3>
@@ -34,7 +34,7 @@
   <div class="row text-center justify-content-between mb-3">
     <div class="col-12">
       <% @recipe.categories.each do |categorie|%>
-        <span class="badge text-bg-success text-white p-1.5"><%= categorie.name %></span>
+        <span class="badge text-bg-warning p-2 fw-normal"><%= categorie.name %></span>
       <% end %>
     </div>
   </div>
@@ -57,7 +57,7 @@
       <!-- Onglet détail -->
       <div class="tab on" data-tab-target="tab" data-id="1">
         <!-- Temps de préparation -->
-        <div class="justify-content-start align-items-center bg-white border-salmon rounded-pill p-2 d-flex mb-3">
+        <div class="justify-content-start align-items-center bg-white border rounded-pill p-2 d-flex mb-3">
           <div class="me-3">
             <div class="tiny-square">
               <i class="fa-solid fa-clock" style="color: #000000;"></i>
@@ -66,7 +66,7 @@
           <span>Temps de préparation : <strong><%= @recipe.preparation_time %>min</strong></span>
         </div>
         <!-- Temps de cuisson -->
-        <div class="justify-content-start align-items-center bg-white border-salmon rounded-pill p-2 d-flex mb-3">
+        <div class="justify-content-start align-items-center bg-white border rounded-pill p-2 d-flex mb-3">
           <div class="me-3">
             <div class="tiny-square">
               <i class="fa-solid fa-stopwatch" style="color: #000000;"></i>
@@ -75,7 +75,7 @@
           <span>Temps de cuisson : <strong><%= @recipe.cooking_time %>min</strong></span>
         </div>
         <!-- Difficulté -->
-        <div class="justify-content-start align-items-center bg-white border-salmon rounded-pill p-2 d-flex mb-3">
+        <div class="justify-content-start align-items-center bg-white border rounded-pill p-2 d-flex mb-3">
           <div class="me-3">
             <div class="tiny-square">
               <i class="fa-solid fa-utensils" style="color: #000000;"></i>
@@ -92,7 +92,7 @@
           <span>+</span>
         </div>
         <% @recipe.recipe_ingredients.each do |recipe_ingredient|%>
-        <div class="d-flex justify-content-between bg-white border-salmon rounded-pill py-2 px-3 mt-3">
+        <div class="d-flex justify-content-between bg-white border rounded-pill py-2 px-3 mt-3">
           <%= recipe_ingredient.ingredient.name.capitalize %>
           <strong><%= recipe_ingredient.quantity_value.to_s.chomp('.0') %> <%= recipe_ingredient.quantity_unit %></strong>
         </div>
@@ -100,17 +100,19 @@
       </div>
       <!-- Onglet préparation -->
       <div class="tab" data-tab-target="tab" data-id="3">
-        <div class="row">
-        <% @recipe.preparation_steps.each do |preparation_step|%>
-        <div class="col-12 d-flex justify-content-center my-3">
-          <div class="tiny-square">
-            <p><%= preparation_step.step_number %></p>
+        <div class="container-fluid">
+          <div class="row">
+          <% @recipe.preparation_steps.each do |preparation_step|%>
+          <div class="col-12 d-flex justify-content-center my-3">
+            <div class="tiny-square border">
+              <p><%= preparation_step.step_number %></p>
+            </div>
           </div>
-        </div>
-        <div class="col-12 mb-2">
-          <%= preparation_step.instruction %>
-        </div>
-        <% end %>
+          <div class="col-12 bg-white border rounded-3 py-3 mb-2">
+            <%= preparation_step.instruction %>
+          </div>
+          <% end %>
+          </div>
         </div>
       </div>
     </div>
