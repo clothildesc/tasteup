@@ -35,23 +35,22 @@
 
 <!-- Contenu de la recette -->
 <div class="container">
-  <div class="row text-center mt-3 mb-2">
+  <div class="row text-center mt-3">
     <div class="col-12">
-      <h3><%= @recipe.title %></h3>
+      <h3 class="mb-0"><%= @recipe.title %></h3>
     </div>
   </div>
-  <div class="d-flex justify-content-evenly align-items-center text-center mb-3">
+  <!-- Test sans badge -->
+  <div class="d-flex justify-content-center align-items-center text-center mb-3 mt-0">
     <!-- Difficulté -->
-    <div class="badge difficulty rounded-3 fw-normal px-3 py-3 me-3">
-      <span><%= @recipe.difficulty.capitalize %></span>
+    <div class="d-flex px-3 py-3">
+      <small><i class="fa-solid fa-spoon" style="color: #000000;"></i></small>
+      <span class="ms-2"><%= @recipe.difficulty.capitalize %></span>
     </div>
-    <!-- Temps de préparation -->
-    <div class="badge preparation rounded-3 fw-normal px-3 py-2 me-3">
-      <span><small>Préparation</small> <br> <%= @recipe.preparation_time %>min</span>
-    </div>
-    <!-- Temps de cuisson -->
-    <div class="badge cooking rounded-3 fw-normal px-3 py-2 me-3">
-      <span><small>Cuisson</small> <br> <%= @recipe.cooking_time %>min</span>
+    <!-- Temps total -->
+    <div class="d-flex px-3 py-2 me-3">
+      <small><i class="fa-solid fa-clock" style="color: #000000;"></i></small>
+      <span class="ms-2"><%= @recipe.preparation_time + @recipe.cooking_time %>min</span>
     </div>
   </div>
   <div data-controller="tab" class="tabs">
