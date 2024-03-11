@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resources :favorites, only: :create
-    member do
-      post :duplicate
-    end
+    # member do
+    #   post :duplicate
+    # end
     collection do
       get :scrap
     end

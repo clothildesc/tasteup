@@ -4,26 +4,20 @@
     border: 1px solid transparent; /* Bordure transparente de 1px */
     background-color: $white;
     border-radius: 30px;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding-top: 2%;
+    padding-bottom: 2%;
     > ul {
       flex-wrap: nowrap;
     }
-    li {
-    }
+
     .tab-button {
       background-color: transparent;
       border-radius: 30px;
       border: none;
-      width: fit-content;
-      height: fit-content;
-      margin: auto;
       transition: background-color 0.35s ease;
       color: grey;
-      // padding-left: 15%;
-      // padding-right: 15%;
       &.on {
-        background-color: $orange;
+        background-color: $red;
         color: black ;
       }
     }

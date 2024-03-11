@@ -1,3 +1,5 @@
+# require_relative '../models/recipe' # Add this line
+
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
 
@@ -5,6 +7,24 @@ class RecipesController < ApplicationController
     @favorite_recipes = current_user.favorite_recipes
     # @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
     @my_recipes = current_user.recipes
+    @recipes_user2 = Recipe.joins(:user).where(users: { email: "alice@gmail.com" })
+    @recipes_user2 = @recipes_user2.where.not(id: @favorite_recipes.map(&:id))
+    # @recipes_user2 à remplacer par les nouvelles recettes qu'on de nos follows
+
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        recipes.title ILIKE :query
+        OR ingredients.name ILIKE :query
+        OR categories.name ILIKE :query
+      SQL
+
+      @favorite_recipes = @favorite_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @my_recipes       = @my_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @recipes_user2    = @recipes_user2.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @recipes_user2 = @recipes_user2.where.not(id: @favorite_recipes.map(&:id))
+      # @recipes_user2 à remplacer par les nouvelles recettes qu'on de nos follows
+
+    end
   end
 
   def index
@@ -14,7 +34,9 @@ class RecipesController < ApplicationController
   def scrap
     url = params[:scrap][:url]
     recipe_data = ScrapMarmiton.new(url).call
-    @recipe = Recipe.new(recipe_data.slice(:title, :difficulty, :cooking_time, :preparation_time, :number_of_servings))
+    @recipe = CreateRecipeFromScrapData.new(recipe_data, user: current_user).call
+
+
     @ingredients = Ingredient.all
     @categories = Category.all
     @preparation_step = PreparationStep.new
@@ -42,7 +64,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     if @recipe.save
-      redirect_to recipe_path(@recipe), notice: "Your recipe was successfully created."
+      redirect_to recipe_path(@recipe), notice: "Votre recette a été ajoutée."
     else
       render :new, status: :unprocessable_entity
     end
@@ -55,7 +77,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-      redirect_to recipe_path(@recipe), notice: "Your recipe was successfully updated."
+      redirect_to recipe_path(@recipe), notice: "Votre recette a été modifiée."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -64,7 +86,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_to recipes_path, notice: "Your recipe was successfully deleted."
+    redirect_to my_recipes_path, notice: "Votre recette a été supprimée."
   end
 
   private
