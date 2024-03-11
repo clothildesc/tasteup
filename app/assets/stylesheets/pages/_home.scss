@@ -21,3 +21,12 @@
     grid-template-columns: repeat(2, 1fr);
     // gap: 20px;
   }
+
+.full-page-transparent-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // z-index: 100;
+}
