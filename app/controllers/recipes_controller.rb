@@ -53,6 +53,7 @@ class RecipesController < ApplicationController
     @ingredients = Ingredient.all
     @categories = Category.all
     @preparation_step = PreparationStep.new
+    @step = params[:step]
   end
 
   def create
