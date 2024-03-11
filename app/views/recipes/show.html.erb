@@ -6,42 +6,47 @@
       background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), url('<%= cl_image_path(@recipe.photo.key) %>');
     <% else %>
       background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), url('https://placehold.co/600x400');
-    <% end %>
+    <% end %>">
       <div class="categories-overlay">
-      <% @recipe.categories.each do |category|%>
-        <span class="category-tag">#<%= category.name %></span>
+        <% @recipe.categories.each do |category|%>
+          <span class="category-tag">#<%= category.name %></span>
+        <% end %>
+      </div>
+      <div id="back" class="white-button rounded-circle">
+        <!-- Modifier le lien avec javascript:history.back() à la place de my_recipes_path si on veut renvoyer vers la page précédente -->
+        <%= link_to my_recipes_path do %>
+          <i class="fa-solid fa-arrow-left" style="color: #000000;"></i>
+        <% end %>
+      </div>
+      <% if user_signed_in? && @recipe.user_id != current_user.id %>
+        <div id="like" class="red-button rounded-circle">
+          <%= link_to edit_recipe_path(@recipe) do %>
+            <i class="fa-solid fa-heart" style="color: #000000;"></i>
+          <% end %>
+        </div>
+      <% else %>
+        <div id="edit" class="red-button rounded-circle">
+          <%= link_to edit_recipe_path(@recipe) do %>
+            <i class="fa-solid fa-pen" style="color: #000000;"></i>
+          <% end %>
+        </div>
+        <div id="delete" class="white-button rounded-circle">
+          <%= link_to recipe_path(@recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+            <i class="fa-solid fa-trash" style="color: #000000;"></i>
+          <% end %>
+        </div>
       <% end %>
     </div>
-    <div id="back" class="white-button rounded-circle">
-      <!-- Modifier le lien avec javascript:history.back() à la place de my_recipes_path si on veut renvoyer vers la page précédente -->
-      <%= link_to my_recipes_path do %>
-        <i class="fa-solid fa-arrow-left" style="color: #000000;"></i>
-      <% end %>
-    </div>
-    <% if user_signed_in? && @recipe.user_id != current_user.id %>
-      <div id="like" class="red-button rounded-circle">
-        <%= link_to edit_recipe_path(@recipe) do %>
-          <i class="fa-solid fa-heart" style="color: #000000;"></i>
-        <% end %>
-      </div>
-    <% else %>
-      <div id="edit" class="red-button rounded-circle">
-        <%= link_to edit_recipe_path(@recipe) do %>
-          <i class="fa-solid fa-pen" style="color: #000000;"></i>
-        <% end %>
-      </div>
-      <div id="delete" class="white-button rounded-circle">
-        <%= link_to recipe_path(@recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-          <i class="fa-solid fa-trash" style="color: #000000;"></i>
-        <% end %>
-      </div>
-    <% end %>
   </div>
-</div>
 </div>
 <!-- Contenu de la recette -->
 <div class="container">
   <div class="row text-center mt-3">
+    <% if user_signed_in? && @recipe.user_id != current_user.id %>
+      <div>
+        <p class="col-3">Pierre</p>
+      </div>
+    <% end %>
     <div class="col-12">
       <h3 class="mb-0"><%= @recipe.title %></h3>
     </div>
