@@ -1,10 +1,10 @@
 # require_relative '../models/recipe' # Add this line
 
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :set_recipe, only: %i[show edit update destroy favorite]
 
   def my_recipes
-    @favorite_recipes = current_user.favorite_recipes
+    @favorite_recipes = current_user.all_favorited
     # @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
     @my_recipes = current_user.recipes
     @recipes_user2 = Recipe.joins(:user).where(users: { email: "alice@gmail.com" })
@@ -36,12 +36,21 @@ class RecipesController < ApplicationController
     @preview_recipes = Recipe.all.sample(10)
   end
 
+  def favorite
+    if current_user.favorited?(@recipe)
+      current_user.unfavorite(@recipe)
+      redirect_to recipe_path(@recipe), notice: "Recette retirée des favoris."
+    else
+      current_user.favorite(@recipe)
+      redirect_to recipe_path(@recipe), notice: "Recette ajoutée aux favoris."
+    end
+  end
+
+
   def scrap
     url = params[:scrap][:url]
     recipe_data = ScrapMarmiton.new(url).call
     @recipe = CreateRecipeFromScrapData.new(recipe_data, user: current_user).call
-
-
     @ingredients = Ingredient.all
     @categories = Category.all
     @preparation_step = PreparationStep.new

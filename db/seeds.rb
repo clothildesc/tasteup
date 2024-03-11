@@ -345,9 +345,9 @@ end
   # Favorite.create!(user: user1, recipe: recipe)
 # end
 
-Recipe.where.not(user_id: [user1.id, user2.id]).order("RANDOM()").limit(3).each do |recipe|
-  Favorite.create!(user: user1, recipe: recipe)
-end
+# Recipe.where.not(user_id: [user1.id, user2.id]).order("RANDOM()").limit(3).each do |recipe|
+#   Favorite.create!(user: user1, recipe: recipe)
+# end
 
 # Recipe.where.not(user_id: user2.id).shuffle.last(3).each do |recipe|
 #   Favorite.create!(user: user2, recipe: recipe)
