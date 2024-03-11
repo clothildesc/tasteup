@@ -39,7 +39,9 @@ class RecipesController < ApplicationController
   def scrap
     url = params[:scrap][:url]
     recipe_data = ScrapMarmiton.new(url).call
-    @recipe = Recipe.new(recipe_data.slice(:title, :difficulty, :cooking_time, :preparation_time, :number_of_servings))
+    @recipe = CreateRecipeFromScrapData.new(recipe_data, user: current_user).call
+
+
     @ingredients = Ingredient.all
     @categories = Category.all
     @preparation_step = PreparationStep.new
