@@ -1,9 +1,9 @@
-<div class="container landing-header px-4 py-5">
+<div class="container landing-header px-4 pt-5 pb-3">
   <div class="d-flex">
     <h3 class="flex-grow-1"> Bonjour Julia !</h3>
     <%= image_tag "image.png", class: "avatar" %>
   </div>
-  <h3 class="mb-5"> On cuisine quoi aujourd'hui ?</h3>
+  <h3 class="mb-4"> On cuisine quoi aujourd'hui ?</h3>
   <%= form_with url: my_recipes_path, method: :get, class: "d-flex"  do %>
     <%= text_field_tag :query,
               params[:query],
@@ -15,9 +15,9 @@
   <% end %>
 </div>
 
-  <div class="mt-2 bg-white rounded-2 py-3">
+<div class="mt-4 pt-1 bg-white rounded-2">
   <div class="container">
-    <h3 class="title"> Mes recettes préférées 😍 </h3>
+    <h3 class="title"> Recettes favorites 😍</h3>
     <div class= "d-flex overflow-x-auto">
       <% @favorite_recipes.each do |recipe| %>
         <div class="card-recipe m-3">
@@ -35,9 +35,9 @@
   </div>
 </div>
 
-<div class="mt-4 bg-white rounded-2">
+<div class="mt-4 pt-1 bg-white rounded-2">
   <div class="container">
-    <h3 class="title"> ... et celles qui me font de l'oeil 👀 </h3>
+    <h3 class="title"> Recettes de mes amis 🤗</h3>
     <div class= "d-flex overflow-x-auto">
       <% @recipes_user2.each do |recipe| %>
         <div class="card-recipe m-3">
@@ -55,9 +55,10 @@
   </div>
 </div>
 
-<div class="mt-4 bg-white rounded-2">
+<div class="mt-4 pt-1 bg-white rounded-2">
   <div class="container">
-    <h3 class="title">Toutes mes oeuvres d'art 🎨 </h3>
+    <h3 class="title">Mes recettes 🧑‍🍳</h3>
+    <%= link_to "Voir tout", recipes_user_path(current_user.id) %>
     <div class= "input-grid">
       <% @my_recipes.each do |recipe| %>
         <div class="card-recipe m-3">

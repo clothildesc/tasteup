@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post :duplicate
     end
     collection do
+      get :inspiration
       get :scrap
     end
   end
@@ -20,5 +21,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     resources :follows, only: :create
+    member do
+      get :recipes
+    end
   end
 end

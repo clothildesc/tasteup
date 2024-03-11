@@ -5,12 +5,12 @@
 .card-recipe {
   width: 153px;
   border: 1px;
-  background-color: #FFF8E6;
+  background-color: $white;
   font-size: 14px;
   flex-grow: 0;
   flex-shrink: 0;
   text-decoration: none;
-  color: black;
+  color: $gray-bts;
 }
 
 .input-grid .card-recipe {

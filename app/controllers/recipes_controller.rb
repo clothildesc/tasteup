@@ -31,6 +31,11 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  def inspiration
+    @popular_recipes = Recipe.all.sample(3)
+    @preview_recipes = Recipe.all.sample(10)
+  end
+
   def scrap
     url = params[:scrap][:url]
     recipe_data = ScrapMarmiton.new(url).call
