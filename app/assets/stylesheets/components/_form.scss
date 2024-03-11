@@ -1,13 +1,18 @@
 .form-input {
   color: black !important;
-  background-color: white !important;
-  border-radius: 8px;
+  // background-color: white !important;
+  border-radius: 0;
   font-size: 14px;
   padding: 10px 15px;
   margin-bottom: 15px;
   width: 100%;
   height: 55px;
-  box-sizing: border-box;
+  // box-sizing: border-box;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  box-shadow: none;
+
 
   &::placeholder {
     color: $salmon;
@@ -16,14 +21,18 @@
 
 .form-input-square {
   color: black !important;
-  background-color: white !important;
-  border-radius: 8px;
+  // background-color: white !important;
+  border-radius: 0;
   font-size: 14px;
   padding: 10px 15px;
   margin-bottom: 15px;
   width: 55px;
   height: 55px;
   box-sizing: border-box;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  box-shadow: none;
 }
 
 .form-input::placeholder {
@@ -32,14 +41,18 @@
 
 .form-input-rectangle {
   color: black !important;
-  background-color: white !important;
-  border-radius: 8px;
+  // background-color: white !important;
+  border-radius: 0;
   font-size: 14px;
   padding: 10px 15px;
   margin-bottom: 15px;
   width: 100px;
   height: 55px;
   box-sizing: border-box;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  box-shadow: none;
 }
 
 .form-input::placeholder {
@@ -48,14 +61,18 @@
 
 .form-input-big-rectangle {
   color: salmon !important;
-  background-color: white !important ;
-  border-radius: 8px;
+  // background-color: white !important ;
+  border-radius: 0;
   font-size: 14px;
   padding: 10px 15px;
   margin-bottom: 15px;
   width: 150px;
   height: 55px;
   box-sizing: border-box;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  box-shadow: none;
 }
 
 .form-input::placeholder {
@@ -87,6 +104,7 @@ input[type='number'] {
 .input-text {
   margin-left: 10px;
 }
+
 
 // .input-wrapper {
 //   background-color: #ffe3d3;

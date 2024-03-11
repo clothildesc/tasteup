@@ -9,11 +9,11 @@
             label: 'Renseigner une URL',
             input_html: { class: "form-input"},
             placeholder: 'https://www.exemple.com'%>
-            <div class="text-center">
-          <%= f.submit "Sauvegarder",
+          <div class="text-center">
+            <%= f.submit "Sauvegarder",
             class: "save-button",
             style: "display: none;" %>
-            </div>
+          </div>
         <% end %>
         <%= simple_form_for recipe do |f| %>
           <%#= f.input :url,
@@ -27,29 +27,25 @@
             input_html: { class: "form-input"},
             label: 'Titre de la recette',
             placeholder: 'Ex : Cookies maison' %>
-          <div class="input-grid">
-            <p>Nombre de portions</p>
-            <p>Difficulté</p>
-          </div>
-          <div class="input-grid">
-            <div class="input-with-text">
-              <%= f.input :number_of_servings,
+          <p>Nombre de portions</p>
+          <div class="input-with-text">
+            <%= f.input :number_of_servings,
               required: false,
               label: false,
               input_html: { class: "form-input-square", style: "margin-bottom: 0 !important;" },
               style: "margin-bottom: 0 !important;",
               wrapper_html: { style: "margin-bottom: 0 !important;" } %>
-              <span class="input-text">personnes</span>
-            </div>
-            <%= f.input :difficulty,
+            <span class="input-text">personnes</span>
+          </div>
+          <p>Difficulté</p>
+          <%= f.input :difficulty,
               required: false,
               label: false,
-              input_html: { class: "form-input", style: "margin-bottom: 0 !important;"},
+              input_html: { class: "form-input-rectangle", style: "margin-bottom: 0 !important;"},
               wrapper_html: { style: "margin-bottom: 0 !important;" },
-              collection: ['Facile', 'Moyenne', 'Difficile'],
-              as: :select %>
-              <%# include_blank: 'choisir' %>
-          </div>
+              collection: ['Très facile', 'Facile', 'Moyenne', 'Difficile'],
+              as: :select,
+              include_blank: 'choisir' %>
           <div class="input-grid">
             <p>Temps de préparation</p>
             <p>Temps de cuisson</p>
@@ -77,39 +73,40 @@
             <%= abyme.records %>
             <%= abyme.new_records %>
             <div class="d-flex">
-            <%= add_associated_record(tag: :div, html: { class: "flex" }) do %>
-              <div class="tiny-square">
-                <i class="fa-solid fa-circle-plus"></i>
-              </div>
+              <%= add_associated_record(tag: :div, html: { class: "flex" }) do %>
+                <div class="tiny-square">
+                  <i class="fa-solid fa-circle-plus"></i>
+                </div>
+              <% end %>
+              <span class="ms-2">Ajouter un ingrédient</span>
             <% end %>
-            <span class="ms-2">Ajouter un ingrédient</span>
-          <% end %>
           </div>
           <legend class="mt-3">Étapes</legend>
           <%= f.abyme_for(:preparation_steps) do |abyme| %>
             <%= abyme.records %>
             <%= abyme.new_records %>
             <div class="d-flex">
-            <%= add_associated_record(tag: :div, html: { class: "flex" }) do %>
-              <div class="tiny-square">
-                <i class="fa-solid fa-circle-plus"></i>
-              </div>
+              <%= add_associated_record(tag: :div, html: { class: "flex" }) do %>
+                <div class="tiny-square">
+                  <i class="fa-solid fa-circle-plus"></i>
+                </div>
+              <% end %>
+              <span class="ms-2">Ajouter une étape</span>
             <% end %>
-            <span class="ms-2">Ajouter une étape</span>
-          <% end %>
           </div>
           <legend class="mt-3">Tags</legend>
           <div data-controller="toggle-form">
             <div class="d-flex">
-            <div class="tiny-square" data-toggle-form-target="button" data-action="click->toggle-form#fire">
-              <i class="fa-solid fa-circle-plus" ></i>
-            </div>
+              <div class="tiny-square" data-toggle-form-target="button" data-action="click->toggle-form#fire">
+                <i class="fa-solid fa-circle-plus" ></i>
+              </div>
               <span class="ms-2">Ajouter un tag</span>
             </div>
             <div class="d-none" data-toggle-form-target="category">
               <%= f.association :categories, as: :check_boxes, label_method: lambda { |item| render "recipes/category_label", item: item } %>
             </div>
           </div>
+          <%= f.input :photo, as: :file, label: 'Ajouter une photo' %>
           <div class="text-center mt-3">
             <%= f.submit "Sauvegarder",
           class: "save-button" %>
