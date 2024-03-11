@@ -83,3 +83,4 @@ end
 
 gem "ruby-openai"
 gem 'nokogiri'
+gem 'acts_as_favoritor', github: 'jonhue/acts_as_favoritor'
