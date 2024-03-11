@@ -1,0 +1,50 @@
+#img-banner {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 200px;
+}
+
+.categories-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.category-tag {
+  color: white;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.badge {
+  color: $badge-text-color !important;
+
+  &.difficulty {
+    background-color: $pink;
+  }
+
+  &.preparation {
+    background-color: $yellow;
+  }
+
+  &.cooking {
+    background-color: $orange;
+  }
+}
+
+.list-ingredients {
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $gray;
+  }
+}
+
+.row {
+  .list-instructions {
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $gray;
+    }
+  }
+}
