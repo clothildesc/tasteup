@@ -17,61 +17,29 @@
 
 <div class="mt-4 pt-1 bg-white rounded-2">
   <div class="container">
-    <h3 class="title"> Recettes favorites 😍</h3>
+    <h3 class="title"> Mes recettes favorites 😍</h3>
     <div class= "d-flex overflow-x-auto">
-      <% @favorite_recipes.each do |recipe| %>
-        <div class="card-recipe m-3">
-          <%= link_to recipe_path(recipe), class:"card-recipe" do %>
-            <div class="square">
-              <%= image_tag (recipe.photo.attached? ? cl_image_path(recipe.photo.key) : "https://placehold.co/600x400"), class: "rounded", style: "width: 100%; height: 100%; object-fit: cover;" %>
-            </div>
-            <h2 class="recipe-name mt-2"><%= recipe.title %></h2>
-            <i class="fa-regular fa-clock"></i>
-            <span class="time-recipe"><%= recipe.cooking_time %> min</span>
-          <% end %>
-        </div>
-      <% end %>
+       <%= render "recipes/recipes", recipes: @favorite_recipes %>
     </div>
   </div>
 </div>
 
 <div class="mt-4 pt-1 bg-white rounded-2">
   <div class="container">
-    <h3 class="title"> Recettes de mes amis 🤗</h3>
+    <h3 class="title"> Les recettes de mes amis 🤗</h3>
     <div class= "d-flex overflow-x-auto">
-      <% @recipes_user2.each do |recipe| %>
-        <div class="card-recipe m-3">
-          <%= link_to recipe_path(recipe), class:"card-recipe" do %>
-            <div class="square">
-             <%= image_tag (recipe.photo.attached? ? cl_image_path(recipe.photo.key) : "https://placehold.co/600x400"), class: "rounded", style: "width: 100%; height: 100%; object-fit: cover;" %>
-            </div>
-            <h2 class="recipe-name mt-2"><%= recipe.title %></h2>
-            <i class="fa-regular fa-clock"></i>
-            <span class="time-recipe"><%= recipe.cooking_time %> min</span>
-          <% end %>
-        </div>
-      <% end %>
+      <%= render "recipes/recipes", recipes: @recipes_user2 %>
     </div>
   </div>
 </div>
 
 <div class="mt-4 pt-1 bg-white rounded-2">
   <div class="container">
-    <h3 class="title">Mes recettes 🧑‍🍳</h3>
-    <%= link_to "Voir tout", recipes_user_path(current_user.id) %>
-    <div class= "input-grid">
-      <% @my_recipes.each do |recipe| %>
-        <div class="card-recipe m-3">
-          <%= link_to recipe_path(recipe), class:"card-recipe" do %>
-            <div class="square">
-              <%= image_tag (recipe.photo.attached? ? cl_image_path(recipe.photo.key) : "https://placehold.co/600x400"), class: "rounded", style: "width: 100%; height: 100%; object-fit: cover;" %>
-            </div>
-            <h2 class="recipe-name mt-2"><%= recipe.title %></h2>
-            <i class="fa-regular fa-clock"></i>
-            <span class="time-recipe"><%=recipe.cooking_time%> min</span>
-          <% end %>
-        </div>
-      <% end %>
+    <div class="d-flex justify-content-between align-items-center">
+      <h3 class="title">Toutes mes recettes 🧑‍🍳</h3>
+      <%= link_to "Voir tout", recipes_user_path(current_user.id), class:"see-all" %>
     </div>
+    <div class= "d-flex overflow-x-auto">
+      <%= render "recipes/recipes", recipes: @my_recipes %>
   </div>
 </div>

@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy favorite]
 
   def my_recipes
-    @favorite_recipes = current_user.all_favorited
+    @favorite_recipes = current_user.favorited_by_type('Recipe')
     # @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
     @my_recipes = current_user.recipes
     @recipes_user2 = Recipe.joins(:user).where(users: { email: "alice@gmail.com" })
@@ -59,6 +59,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @user = @recipe.user
     @recipe_ingredients = @recipe.recipe_ingredients.includes(:ingredient)
   end
 

@@ -17,13 +17,12 @@ Rails.application.routes.draw do
     end
   end
   get :my_recipes, to: "recipes#my_recipes"
-
   get :design, to: "pages#design"
 
   resources :users, only: [] do
-    resources :follows, only: :create
     member do
       get :recipes
+      post :follow
     end
   end
 end
