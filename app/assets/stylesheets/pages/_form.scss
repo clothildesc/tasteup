@@ -15,7 +15,7 @@
 
 
   &::placeholder {
-    color: $salmon;
+    color: $red !important;
   }
 }
 
@@ -105,34 +105,6 @@ input[type='number'] {
   margin-left: 10px;
 }
 
-
-// .input-wrapper {
-//   background-color: #ffe3d3;
-//   border-radius: 10px;
-// }
-
-// .form-group {/* Remove default margin-bottom */
-// }
-
-// label {
-//   display: block;
-//   text-align: center;
-//   margin-bottom: 5px;
-// }
-
-// input, select {
-//   width: calc(100% - 20px);
-//   margin: 0 auto;
-//   display: block;
-// }
-
-// .select-dropdown {
-//   appearance: none;
-//   background-color: transparent;
-//   border: none;
-//   cursor: pointer;
-// }
-
 .recipe_categories {
   input {
     display: none;
@@ -142,4 +114,29 @@ input[type='number'] {
     background-color: #FFBE98;
     color: #FFF4EB;
   }
+}
+
+.choice-card {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+  background-color: $green;
+
+  &:hover {
+    background-color: #FFBE98;
+  }
+}
+
+.form-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 }

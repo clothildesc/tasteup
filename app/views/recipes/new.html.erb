@@ -1,143 +1,22 @@
-<div class="container py-5 col-11" data-controller="url-or-form">
-  <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3" >
-      <h2 class="mb-3 text-center" >Ajouter une recette</h2>
-      <ul>
-        <li><%= link_to "Ajouter manuellement", "", data: { action: "click->url-or-form#show", aim: "form" }%></li>
-        <li><%= link_to "Ajouter une URL", "", data: { action: "click->url-or-form#show", aim: "url" } %></li>
-      </ul>
-      <%= simple_form_for @recipe, html: { class: "d-none", data: { url_or_form_target: "nextStep", aim: "form", controller: "step-form" }} do |f| %>
-        <%#= f.input :url,
-          required: false,
-          label: 'Renseigner une URL',
-          input_html: { class: "form-input"},
-          placeholder: 'https://www.exemple.com'%>
-        <h3 class="mt-4 mb-3">Ou ajouter manuellement</h3>
-        <section class="d-none" data-step="0" data-step-form-target="step">
-          <%= f.input :title,
-            required: false,
-            input_html: { class: "form-input"},
-            label: 'Titre de la recette',
-            placeholder: 'Ex : Cookies maison' %>
-          <button class="btn btn-success"  data-action="click->step-form#next">Next</button>
-        </section>
-        <section class="d-none" data-step="1" data-step-form-target="step">
-          <p>Nombre de portions</p>
-          <div class="input-with-text">
-            <%= f.input :number_of_servings,
-              required: false,
-              label: false,
-              input_html: { class: "form-input-square", style: "margin-bottom: 0 !important;" },
-              style: "margin-bottom: 0 !important;",
-              wrapper_html: { style: "margin-bottom: 0 !important;" } %>
-            <span class="input-text">personnes</span>
-          </div>
-          <button class="btn btn-success"  data-action="click->step-form#next">Next</button>
-        </section>
-        <section class="d-none" data-step="2" data-step-form-target="step">
-          <p>Difficulté</p>
-          <%= f.input :difficulty,
-              required: false,
-              label: false,
-              input_html: { class: "form-input-rectangle", style: "margin-bottom: 0 !important;"},
-              wrapper_html: { style: "margin-bottom: 0 !important;" },
-              collection: ['Très facile', 'Facile', 'Moyenne', 'Difficile'],
-              as: :select,
-              include_blank: 'choisir' %>
-          <button class="btn btn-success"  data-action="click->step-form#next">Next</button>
-        </section>
-        <section class="d-none" data-step="3" data-step-form-target="step">
-          <div class="input-grid">
-            <p>Temps de préparation</p>
-            <p>Temps de cuisson</p>
-          </div>
-          <div class="input-grid">
-            <div class="input-with-text">
-              <%= f.input :preparation_time,
-              required: false,
-              label: false,
-              input_html: { class: "form-input-square", style: "margin-bottom: 0 !important;" },
-              wrapper_html: { style: "margin-bottom: 0 !important;" } %>
-              <span class="input-text">minutes</span>
-            </div>
-            <div class="input-with-text">
-              <%= f.input :cooking_time,
-              required: false,
-              label: false,
-              input_html: { class: "form-input-square", style: "margin-bottom: 0 !important;" },
-              wrapper_html: { style: "margin-bottom: 0 !important;" } %>
-              <span class="input-text">minutes</span>
-            </div>
-          </div>
-          <button class="btn btn-success"  data-action="click->step-form#next">Next</button>
-        </section>
-        <section class="d-none" data-step="4" data-step-form-target="step">
-          <legend>Ingrédients</legend>
-          <%= f.abyme_for(:recipe_ingredients) do |abyme| %>
-            <%= abyme.records %>
-            <%= abyme.new_records %>
-            <div class="d-flex">
-              <%= add_associated_record(tag: :div, html: { class: "flex" }) do %>
-                <div class="tiny-square">
-                  <i class="fa-solid fa-circle-plus"></i>
-                </div>
-              <% end %>
-              <span class="ms-2">Ajouter un ingrédient</span>
-            <% end %>
-          </div>
-          <button class="btn btn-success"  data-action="click->step-form#next">Next</button>
-        </section>
-        <section class="d-none" data-step="5" data-step-form-target="step">
-          <legend class="mt-3">Étapes</legend>
-          <%= f.abyme_for(:preparation_steps) do |abyme| %>
-            <%= abyme.records %>
-            <%= abyme.new_records %>
-            <div class="d-flex">
-              <%= add_associated_record(tag: :div, html: { class: "flex" }) do %>
-                <div class="tiny-square">
-                  <i class="fa-solid fa-circle-plus"></i>
-                </div>
-              <% end %>
-              <span class="ms-2">Ajouter une étape</span>
-            <% end %>
-          </div>
-          <button class="btn btn-success"  data-action="click->step-form#next">Next</button>
-        </section>
-        <section class="d-none" data-step="6" data-step-form-target="step">
-          <legend class="mt-3">Tags</legend>
-          <div data-controller="toggle-form">
-            <div class="d-flex">
-              <div class="tiny-square" data-toggle-form-target="button" data-action="click->toggle-form#fire">
-                <i class="fa-solid fa-circle-plus" ></i>
-              </div>
-              <span class="ms-2">Ajouter un tag</span>
-            </div>
-            <div class="d-none" data-toggle-form-target="category">
-              <%= f.association :categories, as: :check_boxes, label_method: lambda { |item| render "recipes/category_label", item: item } %>
-            </div>
-          </div>
-          <button class="btn btn-success"  data-action="click->step-form#next">Next</button>
-        </section>
-        <section class="d-none" data-step="7" data-step-form-target="step">
-          <%= f.input :photo, as: :file, label: 'Ajouter une photo' %>
-          <div class="text-center mt-3">
-            <%= f.submit "Sauvegarder",
-          class: "save-button" %>
-          </div>
-        </section>
-      <% end %>
-      <%= simple_form_for :scrap, url: scrap_recipes_path, method: :get, html: { class: "d-none", data: { url_or_form_target: "nextStep", aim: "url" }} do |f| %>
-        <%= f.input :url,
-          required: false,
-          label: 'Renseigner une URL',
-          input_html: { class: "form-input"},
-          placeholder: 'https://www.exemple.com'%>
-        <div class="text-center">
-          <%= f.submit "Sauvegarder",
-          class: "save-button",
-          style: "display: none;" %>
-        </div>
-      <% end %>
-    </div>
+<div class="container form-container" data-controller="url-or-form">
+  <div data-url-or-form-target="choices">
+    <h2 class="mb-3 text-center" >Ajouter une recette</h2>
+    <%= link_to "Ajouter manuellement", "", data: { action: "click->url-or-form#show", aim: "form" }, class: "choice-card" %>
+    <%= link_to "Ajouter une URL", "", data: { action: "click->url-or-form#show", aim: "url" }, class: "choice-card" %>
   </div>
+  <%= render "manual_recipe_form", recipe: @recipe %>
+
+  <%= simple_form_for :scrap, url: scrap_recipes_path, method: :get, html: { class: "d-none", data: { url_or_form_target: "nextStep", aim: "url" }} do |f| %>
+    <%= f.input :url,
+    required: false,
+    label: 'Renseigner une URL',
+    input_html: { class: "form-input"},
+    placeholder: 'https://www.exemple.com'%>
+    <div class="d-flex align-items-center justify-content-between">
+      <small data-action="click->url-or-form#return" class="me-3">← Précédent</small>
+      <div class="text-center">
+        <%= f.submit "Sauvegarder", class: "save-button" %>
+      </div>
+    </div>
+  <% end %>
 </div>

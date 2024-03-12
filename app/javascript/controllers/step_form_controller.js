@@ -21,4 +21,10 @@ export default class extends Controller {
     this.step += 1;
     this.#refresh();
   }
+
+  previous(event) {
+    event.preventDefault();
+    this.step -= 1;
+    this.#refresh();
+  }
 }
