@@ -14,6 +14,15 @@
 <%# tiny_square %>
 <div class="tiny-square"></div>
 
+<%# white_button %>
+<div class="white-button rounded-circle">
+</div>
+
+<%# orange_button %>
+<div class="white-button rounded-circle">
+</div>
+
+
 <br>
 
 <%# save_button %>
@@ -38,5 +47,37 @@
     <div class="tab on" data-tab-target="tab" data-id="1">1</div>
     <div class="tab" data-tab-target="tab" data-id="2">2</div>
     <div class="tab" data-tab-target="tab" data-id="3">3</div>
+  </div>
+</div>
+
+
+<!-- Badges -->
+  <div class="d-flex justify-content-evenly align-items-center text-center mb-3">
+    <!-- Difficulté -->
+    <div class="badge difficulty rounded-3 fw-normal px-3 py-3 me-3">
+      <span><%= @recipe.difficulty.capitalize %></span>
+    </div>
+    <!-- Temps de préparation -->
+    <div class="badge preparation rounded-3 fw-normal px-3 py-2 me-3">
+      <span><small>Préparation</small> <br> <%= @recipe.preparation_time %>min</span>
+    </div>
+    <!-- Temps de cuisson -->
+    <div class="badge cooking rounded-3 fw-normal px-3 py-2 me-3">
+      <span><small>Cuisson</small> <br> <%= @recipe.cooking_time %>min</span>
+    </div>
+  </div>
+
+<!-- Test sans badge -->
+  <div class="d-flex justify-content-center align-items-center text-center mb-3 mt-0">
+    <!-- Difficulté -->
+    <div class="d-flex px-3 py-3">
+      <small><i class="fa-solid fa-spoon" style="color: #000000;"></i></small>
+      <span class="ms-2"><%= @recipe.difficulty.capitalize %></span>
+    </div>
+    <!-- Temps total -->
+    <div class="d-flex px-3 py-2 me-3">
+      <small><i class="fa-solid fa-clock" style="color: #000000;"></i></small>
+      <span class="ms-2"><%= @recipe.preparation_time + @recipe.cooking_time %>min</span>
+    </div>
   </div>
 </div>

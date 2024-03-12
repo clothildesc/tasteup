@@ -14,12 +14,14 @@ class ScrapMarmiton
     title = html_doc.search(".main-title h1").text.strip
 
     # Extracting the image name
-    image_data_srcset = html_doc.search(".recipe-media-viewer-thumbnail-container img").first&.dig('data-srcset')
-    srcset_urls = image_data_srcset&.split(',')&.map(&:strip)
-    image_name = srcset_urls
-                     &.select { |url| url.include?('w314h314') }
-                     &.first
-                     &.split(' ')&.first
+    # binding.pry
+    image_name = html_doc.search("#recipe-media-viewer-main-picture").first&.attr('data-src')
+    # image_data_srcset = html_doc.search(".recipe-media-viewer-thumbnail-container img").first&.dig('data-srcset')
+    # srcset_urls = image_data_srcset&.split(',')&.map(&:strip)
+    # image_name = srcset_urls
+    #                  &.select { |url| url.include?('w314h314') }
+    #                  &.first
+    #                  &.split(' ')&.first
 
     # Extracting the category name
     category_name = html_doc.search("#af-bread-crumb a")[2]&.text&.strip&.capitalize
@@ -31,15 +33,32 @@ class ScrapMarmiton
     cooking_div = html_doc.search(".time__details div").find do |div|
       div.text.include?("Cuisson :")
     end
-    cooking_time_text = cooking_div.at('div').text.strip if cooking_div
-    cooking_time = cooking_time_text.match(/\d+/)[0]
+
+    # cooking_time_text = cooking_div.at('div').text.strip if cooking_div
+    # cooking_time = cooking_time_text.match(/\d+/)[0]
+
+    if cooking_div
+      cooking_time_text = cooking_div.at('div').text.strip
+      cooking_time = cooking_time_text.match(/\d+/)[0].to_i
+      cooking_time *= 60 if cooking_time_text.include?("h")
+    end
 
     # Extracting the preparation time
+    # preparation_div = html_doc.search(".time__details div").find do |div|
+    #   div.text.include?("Préparation :")
+    # end
+    # preparation_time_text = preparation_div.at('div').text.strip if preparation_div
+    # preparation_time = preparation_time_text.match(/\d+/)[0]
+
     preparation_div = html_doc.search(".time__details div").find do |div|
       div.text.include?("Préparation :")
     end
-    preparation_time_text = preparation_div.at('div').text.strip if preparation_div
-    preparation_time = preparation_time_text.match(/\d+/)[0]
+
+    if preparation_div
+      preparation_time_text = preparation_div.at('div').text.strip
+      preparation_time = preparation_time_text.match(/\d+/)[0].to_i
+      preparation_time *= 60 if preparation_time_text.include?("h")
+    end
 
     # Extracting the number of servings
     number_of_servings = html_doc.at(".mrtn-recette_ingredients-counter").attribute_nodes.second.value

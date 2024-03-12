@@ -1,0 +1,83 @@
+// .save-button {
+//   height: 2.3125em;
+//   width: 7em;
+//   border-radius: 0.5em;
+//   background-color:$orange;
+// }
+
+.save-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: $orange-bts;
+  border: none;
+  border-radius: 50px; /* This creates the pill shape */
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+
+.white-button {
+  width:3em;
+  height: 3em;
+  background-color: $white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.red-button {
+  width:3em;
+  height: 3em;
+  background-color: $red;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+#img-banner {
+  position: relative;
+
+  #back {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+  }
+
+  #edit {
+    position: absolute;
+    top: 2em;
+    right: 5.5em;
+  }
+
+  #delete {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+  }
+
+  #like {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+  }
+}

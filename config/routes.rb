@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "recipes#my_recipes"
+  # root to: "recipes#my_recipes"
+  root to: "pages#home"
+  # get :home, to: "pages#home"
 
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :recipes do
     resources :favorites, only: :create
-    member do
-      post :duplicate
-    end
+    # member do
+    #   post :duplicate
+    # end
     collection do
       get :scrap
     end

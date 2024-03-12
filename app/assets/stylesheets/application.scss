@@ -17,4 +17,23 @@
   max-height: calc(100vh - 96px);
   margin-bottom: 96px;
   overflow: scroll;
+  margin-bottom: 96px;
+}
+
+.content_container_without_navbar {
+  min-height: calc(100vh);
+}
+
+.background-devise {
+  background-image: asset-url('bg-devise.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.background-home {
+  background-image: asset-url('bg-home.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
