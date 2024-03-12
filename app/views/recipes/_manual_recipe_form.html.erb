@@ -5,8 +5,10 @@
       input_html: { class: "form-input"},
       label: 'Titre de la recette',
       placeholder: 'Ex : Cookies maison' %>
-    <button class="form-button"  data-action="click->url-or-form#return">Précédent</button>
-    <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+    <div class="d-flex align-items-center justify-content-between">
+      <small data-action="click->url-or-form#return" class="me-3">← Précédent</small>
+      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+    </div>
   </section>
   <section class="d-none" data-step="1" data-step-form-target="step">
     <p>Nombre de portions</p>
@@ -19,8 +21,10 @@
         wrapper_html: { style: "margin-bottom: 0 !important;" } %>
       <span class="input-text">personnes</span>
     </div>
-    <button class="form-button"  data-action="click->step-form#previous">Précédent</button>
-    <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+    <div class="d-flex align-items-center justify-content-between">
+      <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+    </div>
   </section>
   <section class="d-none" data-step="2" data-step-form-target="step">
     <p>Difficulté</p>
@@ -31,8 +35,10 @@
         collection: ['Très facile', 'Facile', 'Moyenne', 'Difficile'],
         as: :select,
         include_blank: 'choisir' %>
-    <button class="form-button"  data-action="click->step-form#previous">Précédent</button>
-    <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+    <div class="d-flex align-items-center justify-content-between">
+      <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+    </div>
   </section>
   <section class="d-none" data-step="3" data-step-form-target="step">
     <div>
@@ -56,8 +62,10 @@
           <span class="input-text">minutes</span>
         </div>
       </div>
-      <button class="form-button"  data-action="click->step-form#previous">Précédent</button>
-      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      <div class="d-flex align-items-center justify-content-between">
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      </div>
     </section>
     <section class="d-none" data-step="4" data-step-form-target="step">
       <legend>Ingrédients</legend>
@@ -73,8 +81,10 @@
           <p class="ms-2">Ajouter un ingrédient</p>
         <% end %>
       </div>
-      <button class="form-button"  data-action="click->step-form#previous">Précédent</button>
-      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      <div class="d-flex align-items-center justify-content-between">
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      </div>
     </section>
     <section class="d-none" data-step="5" data-step-form-target="step">
       <legend>Étapes</legend>
@@ -90,8 +100,10 @@
           <span class="ms-2">Ajouter une étape</span>
         <% end %>
       </div>
-      <button class="form-button"  data-action="click->step-form#previous">Précédent</button>
-      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      <div class="d-flex align-items-center justify-content-between">
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      </div>
     </section>
     <section class="d-none" data-step="6" data-step-form-target="step">
       <legend class="mt-3">Tags</legend>
@@ -106,15 +118,17 @@
           <%= f.association :categories, as: :check_boxes, label_method: lambda { |item| render "recipes/category_label", item: item } %>
         </div>
       </div>
-      <button class="form-button"  data-action="click->step-form#previous">Précédent</button>
-      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      <div class="d-flex align-items-center justify-content-between">
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      </div>
     </section>
     <section class="d-none" data-step="7" data-step-form-target="step">
       <%= f.input :photo, as: :file, label: 'Ajouter une photo' %>
-      <button class="form-button"  data-action="click->step-form#previous">Précédent</button>
-      <div class="text-center mt-3">
+      <div class="d-flex align-items-center justify-content-between">
+      <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
         <%= f.submit "Sauvegarder",
-    class: "save-button" %>
+    class: "form-button" %>
       </div>
     </section>
-<% end %>
+  <% end %>
