@@ -1,20 +1,22 @@
 <div class="mt-4 pt-1 bg-white rounded-2">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
+    <div>
       <% if @user == current_user %>
         <h3 class="title">Toutes mes recettes 🤩</h3>
       <% else %>
-        <div class="d-flex">
+        <h3 class="title">Toutes les pépites de <%= @user.email %> 🤩</h3>
+        <div class="d-flex justify-content-between align-items-center">
         <%= image_tag "image.png", class: "avatar" %>
         <span class="ms-2"><%= @user.email %></span>
         <% if current_user.favorited?(@user) %>
-          <%= button_to 'Se désabonner', subscribe_user_path(@user), data: { turbo_method: :post } %>
+          <%= button_to 'Se désabonner', follow_user_path(@user), data: { turbo_method: :post } %>
         <% else %>
-          <%= button_to "S'abonner", subscribe_user_path(@user), data: { turbo_method: :post } %>
+          <%= button_to "S'abonner", follow_user_path(@user), data: { turbo_method: :post } %>
         <% end %>
-        <h3 class="title">Toutes les pépites de <%= @user.email %> 🤩</h3>
       <% end %>
     </div>
-    <%= render "recipes/recipes", recipes: @recipes %>
+    <div class= "d-flex">
+     <%= render "recipes/recipes", recipes: @recipes %>
+    </div>
   </div>
 </div>

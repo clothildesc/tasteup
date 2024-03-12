@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:subscribe]
+  before_action :set_user, only: [:follow]
 
   def recipes
     @user = User.find(params[:id])

@@ -4,12 +4,14 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy favorite]
 
   def my_recipes
-    @favorite_recipes = current_user.favorited_by_type('Recipe')
-    # @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
-    @my_recipes = current_user.recipes
-    @recipes_user2 = Recipe.joins(:user).where(users: { email: "alice@gmail.com" })
-    @recipes_user2 = @recipes_user2.where.not(id: @favorite_recipes.map(&:id))
-    # @recipes_user2 à remplacer par les nouvelles recettes qu'on de nos follows
+      @favorite_recipes = current_user.favorited_by_type('Recipe')
+      # @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
+      @my_recipes = current_user.recipes
+      favorited_users = current_user.favorited_by_type('User')
+      @favorited_users_recipes = Recipe.where(user_id: favorited_users.pluck(:id))
+      # @recipes_user2 = Recipe.joins(:user).where(users: { email: "alice@gmail.com" })
+      # @recipes_user2 = @recipes_user2.where.not(id: @favorite_recipes.map(&:id))
+      # @recipes_user2 à remplacer par les nouvelles recettes qu'on de nos follows
 
     if params[:query].present?
       sql_subquery = <<~SQL
@@ -19,10 +21,9 @@ class RecipesController < ApplicationController
       SQL
 
       @favorite_recipes = @favorite_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
-      @my_recipes       = @my_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
-      @recipes_user2    = @recipes_user2.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
-      @recipes_user2 = @recipes_user2.where.not(id: @favorite_recipes.map(&:id))
-      # @recipes_user2 à remplacer par les nouvelles recettes qu'on de nos follows
+      @my_recipes = @my_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @favorited_users_recipes = @favorited_users_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @favorited_users_recipes = @favorited_users_recipes.where.not(id: @favorite_recipes.map(&:id))
 
     end
   end

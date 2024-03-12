@@ -28,7 +28,13 @@
   <div class="container">
     <h3 class="title"> Les recettes de mes amis 🤗</h3>
     <div class= "d-flex overflow-x-auto">
-      <%= render "recipes/recipes", recipes: @recipes_user2 %>
+      <% if @favorited_users_recipes.any? %>
+      <%= render "recipes/recipes", recipes: @favorited_users_recipes %>
+      <% else %>
+      <div class="container">
+        <p>Pas de recettes disponibles.</p>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>
