@@ -1,0 +1,4 @@
+input:not([type*='submit']) {
+  background-color: $white !important;
+  border-color: $gray !important;
+}

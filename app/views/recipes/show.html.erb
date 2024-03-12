@@ -1,29 +1,41 @@
 <!-- Image de la recette -->
 <div class="container-fluid">
   <div class="row">
+    <!-- Background image -->
     <div class="col-12 px-0" id="img-banner" style="
     <% if @recipe.photo.attached? %>
       background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), url('<%= cl_image_path(@recipe.photo.key) %>');
     <% else %>
       background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), url('https://placehold.co/600x400');
     <% end %>">
-      <div class="categories-overlay">
+      <!-- Tags sur l'image -->
+      <div class="categories-overlay mb-2">
         <% @recipe.categories.each do |category|%>
           <span class="category-tag">#<%= category.name %></span>
         <% end %>
       </div>
+      <!-- Bouton retour -->
       <div id="back" class="white-button rounded-circle">
         <!-- Modifier le lien avec javascript:history.back() à la place de my_recipes_path si on veut renvoyer vers la page précédente -->
         <%= link_to my_recipes_path do %>
           <i class="fa-solid fa-arrow-left" style="color: #000000;"></i>
         <% end %>
       </div>
+      <!-- Boutons edit/delete si current_user, sinon bouton like/unlike -->
       <% if user_signed_in? && @recipe.user_id != current_user.id %>
-        <div id="like" class="red-button rounded-circle">
-          <%= link_to edit_recipe_path(@recipe) do %>
+        <% if current_user.favorited?(@recipe) %>
+          <div id="like" class="red-button rounded-circle">
+          <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: :post } do %>
             <i class="fa-solid fa-heart" style="color: #000000;"></i>
           <% end %>
-        </div>
+          </div>
+        <% else %>
+          <div id="like" class="red-button rounded-circle">
+          <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: :post } do %>
+            <i class="fa-solid fa-heart" style="color: #ffffff;"></i>
+          <% end %>
+          </div>
+        <% end %>
       <% else %>
         <div id="edit" class="red-button rounded-circle">
           <%= link_to edit_recipe_path(@recipe) do %>
@@ -43,15 +55,18 @@
 <div class="container">
   <div class="row text-center mt-3">
     <% if user_signed_in? && @recipe.user_id != current_user.id %>
-      <div>
-        <p class="col-3">Pierre</p>
+      <div class="d-flex align-items-center">
+        <%= link_to recipes_user_path(@user), class:"link-custom" do %>
+          <%= image_tag "image.png", class: "avatar-small" %>
+          <span class="ms-2 ">Par Pierre</span>
+        <% end %>
       </div>
     <% end %>
     <div class="col-12">
-      <h3 class="mb-0"><%= @recipe.title %></h3>
+      <h3 class="mb-0 mt-4"><%= @recipe.title %></h3>
     </div>
   </div>
-  <!-- Test sans badge -->
+  <!-- Détails recettes -->
   <div class="d-flex justify-content-center mx-0 align-items-center text-center mb-3 mt-0">
     <!-- Difficulté -->
     <div class="d-flex px-3 py-3">
@@ -70,7 +85,7 @@
   </div>
 </div>
 <div data-controller="tab" class="tabs">
-  <div class="button-container mb-4 px-2">
+  <div class="button-container border mb-4 px-2">
     <ul class="nav nav-pills flex-fill d-flex align-items-center justify-content-evenly px-2">
       <li class="nav-item">
         <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="1" type="button" class="tab-button on px-3 py-1">Ingrédients</button>
