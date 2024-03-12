@@ -8,9 +8,11 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :recipe_categories, dependent: :destroy
   has_many :categories, through: :recipe_categories
-  has_many :favorites, dependent: :destroy
+  # has_many :favorites, dependent: :destroy
   abymize :preparation_steps
   abymize :recipe_ingredients
+
+  acts_as_favoritable
 
   # Validations
   validates :title, presence: true
