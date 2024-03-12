@@ -5,21 +5,28 @@
   }
   h3 {
     font-weight: bold;
+    color: black;
   }
-
+  .bg-index {
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-image: asset-url('bg-index.svg');
+  }
 }
-
   .title {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     padding: 12px;
     margin: 3px;
+    color: black;
+    font-style: bold;
   }
 
   .input-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 1.2rem;
   }
 
 
@@ -30,6 +37,7 @@
   left: 0;
   right: 0;
   // z-index: 100;
+}
 
 .container {
   background-color: F5F7F8;
@@ -37,5 +45,4 @@
 
 .d-flex.overflow-x-auto {
   overflow-x: auto;
-
 }

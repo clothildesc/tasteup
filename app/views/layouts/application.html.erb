@@ -14,6 +14,8 @@
     <%= render 'shared/ios_pwa_links' %>
   </head>
 
+  <body>
+    <div class="content_container <%= 'bg-index' if current_page?(my_recipes_path) %>">
   <body id="<%= controller_name %>_<%= action_name %>">
     <% if controller_name.in?(%w[sessions registrations passwords unlocks]) || action_name == "home" %>
       <% background_class = controller_name.in?(%w[sessions registrations passwords unlocks]) ? 'background-devise' : 'background-home' %>

@@ -7,10 +7,13 @@ User.destroy_all
 user1 = User.create!(email: 'bob@gmail.com', password: '123456')
 user2 = User.create!(email: 'seb@gmail.com', password: '123456')
 user3 = User.create!(email: 'alice@gmail.com', password: '123456')
+user4 = User.create!(email: 'pierre@gmail.com', password: '123456')
+user5 = User.create!(email: 'clo@gmail.com', password: '123456')
 
 categories = ["Entrée", "Plat principal", "Accompagnement", "Dessert", "Apéritif", "Boisson", "Sauce", "Végétarien", "Vegan", "Sans gluten", "Sans lactose", "Français", "Italien", "Chinois", "Africain", "Indien", "Coréen", "Libanais", "Thaï", "Japonais", "Mexicain", "Espagnol", "Thaïlandais", "Américain", "Méditerranéen", "Turc"]
 
-ingredients = ['farine', 'levure', 'sel', 'sucre vanillé', 'sucre', 'beurre', 'oeuf', 'chocolat', 'pâte brisée', 'lardons fumés', 'crème fraîche', 'lait', 'oeufs', 'fromage râpé', 'poivre', 'noix de muscade', 'salade romaine', 'blancs de poulet', 'croûtons', 'parmesan', 'sauce César', "huile d'olive", 'aubergine', 'courgette', 'poivron rouge', 'poivron jaune', 'tomates', 'oignon', 'ail', 'herbes de Provence', 'jaunes d’oeufs', 'crème liquide', 'vanille', 'sucre roux', 'riz arborio', 'champignons de Paris', 'bouillon de légumes', 'vin blanc', 'épinards', 'fromage de chèvre', 'pommes', 'cannelle', 'oignons', 'bouillon de boeuf', 'baguette', 'pomme de terre', 'carotte', 'pois chiches', 'lait de coco', 'pâte de curry', 'huile', 'coriandre fraîche', 'banane', 'orange', 'raisin', 'fraise', 'citron', 'avocat', 'pêche', 'mangue', 'poire', 'cerise', 'ananas', 'melon', 'pastèque', 'kiwi', 'pamplemousse', 'citron vert', 'myrtille', 'papaye', 'framboise', 'nectarine', 'litchi', 'mandarine', 'fruit de la passion', 'grenade', 'figue', 'kaki', 'canneberge', 'carambole', 'jacquier', 'durian', 'tamarin', 'goji', 'açaï', 'coing', 'kumquat', 'prune', 'abricot', 'mûre', 'raisin sec', 'date', 'noix de coco', 'brocoli', 'poivron', 'laitue', 'concombre', 'chou', 'épinard', 'aubergine', 'asperge', 'chou-fleur', 'champignon', 'pois', 'haricot vert', 'maïs', 'betterave', 'chou de bruxelles', 'chou kale', 'endive', 'fenouil', 'gombo', 'navet', 'radis', 'courge', 'blette', 'céleri', 'artichaut', 'chou-rave', 'échalote', 'gingembre', 'ail', 'patate douce', 'taro', 'manioc', 'poireau', 'bambou', 'radis daïkon', 'chou chinois', 'pak choi', 'chou frisé', 'algue', 'piment', 'citrouille', 'persil', 'coriandre', 'menthe', 'basilic', 'poulet', 'bœuf', 'porc', 'agneau', 'saumon', 'crevettes', 'thon', 'moules', 'canard', 'dinde', 'lapin', 'veau', 'cerf', 'sanglier', 'saucisses', 'bacon', 'jambon', 'poulpes', 'calamars', 'homard', 'crabe', 'huîtres', 'sardines', 'maquereaux', 'anguilles', 'salami', 'chorizo', 'bresaola', 'mortadelle', 'foie de poulet', 'foie de veau', 'cœur de poulet', 'coeur de bœuf', 'langue de bœuf', 'joues de porc', 'joues de bœuf', 'bar', 'dorade', 'lotte', 'saint-jacques', 'palourdes', 'langoustines', 'écrevisses', 'truite', 'lait', 'beurre', 'cheddar', 'parmesan', 'mozzarella', 'feta', 'crème fraîche', 'yaourt', 'crème épaisse', 'fromage bleu', 'ricotta', 'mascarpone', 'oeufs de caille', 'gouda', 'edam', 'camembert', 'brie', 'roquefort', 'lait d\'amande', 'lait de soja', 'lait fermenté', 'lait d\'avoine', 'riz', 'pâtes', 'lentilles', 'haricots noirs', 'haricots rouges', 'haricots blancs', 'pois chiches', 'quinoa', 'avoine', 'orge', 'millet', 'épeautre', 'sarrasin', 'farine de coco', 'farine de riz', 'haricots azuki', 'haricots mungo', 'farine de tapioca', 'farine de pois chiche', 'polenta', 'couscous', 'bulgur', 'farro', 'seigle', 'teff', 'coco', 'brésil', 'dattes', 'abricots secs', 'figues sèches', 'pruneaux', 'graines de tournesol', 'graines de nigelle', 'graines de fenouil', 'huile de tournesol', 'huile de coco', 'vinaigre balsamique', 'vinaigre de cidre', 'huile de sésame', 'huile d\'arachide', 'huile d\'avocat', 'huile de lin', 'huile de noix', 'vinaigre de sherry', 'vinaigre de malt', 'sauce hoisin', 'sauce aux prunes', 'sauce chili', 'sucre blanc', 'sucre brun', 'farine de blé', 'levure chimique', 'miel', 'chocolat pépites', 'chocolat en poudre', 'amandes', 'noix', 'noix de pécan', 'noisettes', 'graines de pavot', 'noix de macadamia', 'pistaches', 'noix de coco', 'safran', 'cardamome', 'clou de girofle', 'muscade', 'anis étoilé', 'fenugrec', 'moutarde (graines)', 'wasabi', 'sauce soja', 'sauce Worcestershire', 'vinaigre de riz', 'tahini', 'pesto', 'curry (poudre)', 'curry (pâte)', 'piment (frais)', 'piment (en poudre)', 'piment (flocons)', 'gingembre frais', 'ail en poudre', 'cannelle', 'feuilles de laurier', 'estragon', 'marjolaine', 'poudre de chili', 'sauce teriyaki', 'miso', 'ketchup', 'mayonnaise', 'noix du Brésil', 'graines de lin', 'graines de sésame', 'levure boulanger', 'levure nutritionnelle', 'nutella', 'beurre de cacahuète', 'gelée de fruits', 'sirop d\'érable', 'sirop d\'agave', 'vinaigre balsamique de Modène', 'chapelure', 'poudre de cacao', 'extrait de vanille', 'agar-agar', 'café', 'thé vert', 'thé noir', 'chocolat noir', 'chocolat au lait', 'sucre de coco', 'sucre glace', 'pâte de curry', 'tamarinde', 'pâte de tomate', 'harissa', 'kimchi', 'sauerkraut', 'algues séchées', 'panko (chapelure japonaise)', 'semoule', 'vermicelles de riz', 'nouilles soba', 'nouilles udon']
+ingredients = ['farine', 'levure', 'sel', 'sucre vanillé', 'sucre', 'beurre', 'oeuf', 'chocolat', 'pâte brisée', 'lardons fumés', 'crème fraîche', 'lait', 'oeufs', 'fromage râpé', 'poivre', 'noix de muscade', 'salade romaine', 'blancs de poulet', 'croûtons', 'parmesan', 'sauce César', "huile d'olive", 'aubergine', 'courgette', 'poivron rouge', 'poivron jaune', 'tomates', 'oignon', 'ail', 'herbes de Provence', 'jaunes d’oeufs', 'crème liquide', 'vanille', 'sucre roux', 'riz arborio', 'champignons de Paris', 'bouillon de légumes', 'vin blanc', 'épinards', 'fromage de chèvre', 'pommes', 'cannelle', 'oignons', 'bouillon de boeuf', 'baguette', 'pomme de terre', 'carotte', 'pois chiches', 'lait de coco', 'pâte de curry', 'huile', 'coriandre fraîche', 'banane', 'orange', 'raisin', 'fraise', 'citron', 'avocat', 'pêche', 'mangue', 'poire', 'cerise', 'ananas', 'melon', 'pastèque', 'kiwi', 'pamplemousse', 'citron vert', 'myrtille', 'papaye', 'framboise', 'nectarine', 'litchi', 'mandarine', 'fruit de la passion', 'grenade', 'figue', 'kaki', 'canneberge', 'carambole', 'jacquier', 'durian', 'tamarin', 'goji', 'açaï', 'coing', 'kumquat', 'prune', 'abricot', 'mûre', 'raisin sec', 'date', 'noix de coco', 'brocoli', 'poivron', 'laitue', 'concombre', 'chou', 'épinard', 'aubergine', 'asperge', 'chou-fleur', 'champignon', 'pois', 'haricot vert', 'maïs', 'betterave', 'chou de bruxelles', 'chou kale', 'endive', 'fenouil', 'gombo', 'navet', 'radis', 'courge', 'blette', 'céleri', 'artichaut', 'chou-rave', 'échalote', 'gingembre', 'ail', 'patate douce', 'taro', 'manioc', 'poireau', 'bambou', 'radis daïkon', 'chou chinois', 'pak choi', 'chou frisé', 'algue', 'piment', 'citrouille', 'persil', 'coriandre', 'menthe', 'basilic', 'poulet', 'bœuf', 'porc', 'agneau', 'saumon', 'crevettes', 'thon', 'moules', 'canard', 'dinde', 'lapin', 'veau', 'cerf', 'sanglier', 'saucisses', 'bacon', 'jambon', 'poulpes', 'calamars', 'homard', 'crabe', 'huîtres', 'sardines', 'maquereaux', 'anguilles', 'salami', 'chorizo', 'bresaola', 'mortadelle', 'foie de poulet', 'foie de veau', 'cœur de poulet', 'coeur de bœuf', 'langue de bœuf', 'joues de porc', 'joues de bœuf', 'bar', 'dorade', 'lotte', 'saint-jacques', 'palourdes', 'langoustines', 'écrevisses', 'truite', 'lait', 'beurre', 'cheddar', 'parmesan', 'mozzarella', 'feta', 'crème fraîche', 'yaourt', 'crème épaisse', 'fromage bleu', 'ricotta', 'mascarpone', 'oeufs de caille', 'gouda', 'edam', 'camembert', 'brie', 'roquefort', 'lait d\'amande', 'lait de soja', 'lait fermenté', 'lait d\'avoine', 'riz', 'pâtes', 'lentilles', 'haricots noirs', 'haricots rouges', 'haricots blancs', 'pois chiches', 'quinoa', 'avoine', 'orge', 'millet', 'épeautre', 'sarrasin', 'farine de coco', 'farine de riz', 'haricots azuki', 'haricots mungo', 'farine de tapioca', 'farine de pois chiche', 'polenta', 'couscous', 'bulgur', 'farro', 'seigle', 'teff', 'coco', 'brésil', 'dattes', 'abricots secs', 'figues sèches', 'pruneaux', 'graines de tournesol', 'graines de nigelle', 'graines de fenouil', 'huile de tournesol', 'huile de coco', 'vinaigre balsamique', 'vinaigre de cidre', 'huile de sésame', 'huile d\'arachide', 'huile d\'avocat', 'huile de lin', 'huile de noix', 'vinaigre de sherry', 'vinaigre de malt', 'sauce hoisin', 'sauce aux prunes', 'sauce chili', 'sucre blanc', 'sucre brun', 'farine de blé', 'levure chimique', 'miel', 'chocolat pépites', 'chocolat en poudre', 'amandes', 'noix', 'noix de pécan', 'noisettes', 'graines de pavot', 'noix de macadamia', 'pistaches', 'noix de coco', 'safran', 'cardamome', 'clou de girofle', 'muscade', 'anis étoilé', 'fenugrec', 'moutarde (graines)', 'wasabi', 'sauce soja', 'sauce Worcestershire', 'vinaigre de riz', 'tahini', 'pesto', 'curry (poudre)', 'curry (pâte)', 'piment (frais)', 'piment (en poudre)', 'piment (flocons)', 'gingembre frais', 'ail en poudre', 'cannelle', 'feuilles de laurier', 'estragon', 'marjolaine', 'poudre de chili', 'sauce teriyaki', 'miso', 'ketchup', 'mayonnaise', 'noix du Brésil', 'graines de lin', 'graines de sésame', 'levure boulanger', 'levure nutritionnelle', 'nutella', 'beurre de cacahuète', 'gelée de fruits', 'sirop d\'érable', 'sirop d\'agave', 'vinaigre balsamique de Modène', 'chapelure', 'poudre de cacao', 'extrait de vanille', 'agar-agar', 'café', 'thé vert', 'thé noir', 'chocolat noir', 'chocolat au lait', 'sucre de coco', 'sucre glace', 'pâte de curry', 'tamarinde', 'pâte de tomate', 'harissa', 'kimchi', 'sauerkraut', 'algues séchées', 'panko (chapelure japonaise)', 'semoule', 'vermicelles de riz', 'nouilles soba', 'nouilles udon', 'pignons', 'poisson blanc', 'tortillas de maïs', 'chou blanc', 'jus de citron vert', 'tomates cerises', "flocons d'avoine", 'fromage râpé', 'pain à burger', 'sucre en poudre', 'poivron vert', 'thym', 'betteraves', 'pain' ]
+
 
 puts 'creating categories...'
 categories.each do |category|
@@ -298,7 +301,347 @@ recipes_raw = [
       { step_number: 4, instruction: 'Incorporer les épinards et laisser cuire jusqu’à ce qu’ils soient flétris. Assaisonner avec le sel.' },
       { step_number: 5, instruction: 'Servir chaud, garni de coriandre fraîche hachée.' }
     ]
-  }
+  },
+  {
+    title: "Pâtes au pesto",
+    image_name: "pates_pesto.webp",
+    category_name: "Plat principal",
+    user_email: "seb@gmail.com",
+    difficulty: "Facile",
+    cooking_time: 15,
+    preparation_time: 10,
+    number_of_servings: 4,
+    note: "Un plat italien classique, simple et délicieux.",
+    ingredients: [
+      { name: "pâtes", quantity_value: 400, quantity_unit: "g" },
+      { name: "basilic", quantity_value: 50, quantity_unit: "g" },
+      { name: "ail", quantity_value: 2, quantity_unit: "gousses" },
+      { name: "pignons", quantity_value: 50, quantity_unit: "g" },
+      { name: "parmesan", quantity_value: 50, quantity_unit: "g" },
+      { name: "huile d'olive", quantity_value: 80, quantity_unit: "ml" },
+      { name: "sel", quantity_value: 1, quantity_unit: "pincée" },
+      { name: "poivre", quantity_value: 1, quantity_unit: "pincée" }
+    ],
+    steps: [
+      { step_number: 1, instruction: "Cuire les pâtes dans de l'eau bouillante salée selon les instructions sur l'emballage. Égoutter et réserver." },
+      { step_number: 2, instruction: "Dans un mixeur, ajouter le basilic, l'ail, les pignons de pin, le parmesan, l'huile d'olive, le sel et le poivre. Mixer jusqu'à obtenir une sauce homogène." },
+      { step_number: 3, instruction: "Dans une grande poêle, faire chauffer la sauce pesto à feu doux pendant quelques minutes." },
+      { step_number: 4, instruction: "Ajouter les pâtes cuites à la sauce pesto dans la poêle et mélanger délicatement jusqu'à ce que les pâtes soient bien enrobées de sauce." },
+      { step_number: 5, instruction: "Servir chaud avec un peu de parmesan râpé supplémentaire, si désiré." }
+    ]
+  },
+  {
+    title: "Tacos au poisson",
+    image_name: "tacos_poisson.jpg",
+    category_name: "Plat principal",
+    user_email: "seb@gmail.com",
+    difficulty: "Intermédiaire",
+    cooking_time: 30,
+    preparation_time: 20,
+    number_of_servings: 4,
+    note: "Une option légère et savoureuse pour les amateurs de fruits de mer.",
+    ingredients: [
+      { name: "poisson blanc", quantity_value: 500, quantity_unit: "g" },
+      { name: "tortillas de maïs", quantity_value: 8, quantity_unit: "" },
+      { name: "chou blanc", quantity_value: 1, quantity_unit: "" },
+      { name: "avocat", quantity_value: 2, quantity_unit: "" },
+      { name: "tomates", quantity_value: 2, quantity_unit: "" },
+      { name: "coriandre", quantity_value: 1, quantity_unit: "botte" },
+      { name: "jus de citron vert", quantity_value: 2, quantity_unit: "" },
+      { name: "huile d'olive", quantity_value: 2, quantity_unit: "c. à soupe" }
+  ],
+    steps: [
+      { step_number: 1, instruction: "Préparer les ingrédients : couper le chou blanc en lamelles, trancher les avocats et les tomates, et hacher la coriandre." },
+      { step_number: 2, instruction: "Dans une poêle, chauffer l'huile d'olive. Cuire les filets de poisson assaisonnés de sel et de poivre pendant environ 3-4 minutes de chaque côté, ou jusqu'à ce qu'ils soient bien cuits et dorés." },
+      { step_number: 3, instruction: "Dans un bol, mélanger le chou blanc avec le jus de citron vert. Assaisonner avec du sel et du poivre selon votre goût." },
+      { step_number: 4, instruction: "Réchauffer les tortillas dans une poêle ou au micro-ondes selon les instructions sur l'emballage." },
+      { step_number: 5, instruction: "Assembler les tacos : mettre une portion de chou blanc mariné sur chaque tortilla, suivie d'un morceau de poisson cuit, des tranches d'avocat, des rondelles de tomate et de la coriandre hachée." },
+      { step_number: 6, instruction: "Replier les tortillas et servir chaud avec des quartiers de citron vert, si désiré." }
+  ]
+  },
+  {
+    title: "Salade de quinoa aux légumes rôtis",
+    image_name: "salade_quinoa_legumes.jpg",
+    category_name: "Entrée",
+    user_email: "seb@gmail.com",
+    difficulty: "Intermédiaire",
+    cooking_time: 45,
+    preparation_time: 20,
+    number_of_servings: 4,
+    note: "Une salade nourrissante et colorée, parfaite pour un déjeuner sain et équilibré.",
+    ingredients: [
+      { name: "quinoa", quantity_value: 200, quantity_unit: "g" },
+      { name: "aubergine", quantity_value: 1, quantity_unit: "" },
+      { name: "courgette", quantity_value: 1, quantity_unit: "" },
+      { name: "poivron rouge", quantity_value: 1, quantity_unit: "" },
+      { name: "tomates cerises", quantity_value: 200, quantity_unit: "g" },
+      { name: "huile d'olive", quantity_value: 3, quantity_unit: "c. à soupe" },
+      { name: "vinaigre balsamique", quantity_value: 2, quantity_unit: "c. à soupe" },
+      { name: "miel", quantity_value: 1, quantity_unit: "c. à soupe" },
+      { name: "ail", quantity_value: 2, quantity_unit: "gousses" },
+      { name: "sel", quantity_value: 1, quantity_unit: "pincée" },
+      { name: "poivre", quantity_value: 1, quantity_unit: "pincée" },
+      { name: "basilic", quantity_value: 10, quantity_unit: "" }
+    ],
+    steps: [
+      { step_number: 1, instruction: "Préchauffer le four à 200°C (thermostat 6-7)." },
+      { step_number: 2, instruction: "Rincer le quinoa à l'eau froide. Dans une casserole, porter 400 ml d'eau à ébullition. Ajouter le quinoa et cuire à feu doux pendant environ 15 minutes, ou jusqu'à ce que les graines soient tendres et aient absorbé toute l'eau. Laisser refroidir." },
+      { step_number: 3, instruction: "Couper l'aubergine, la courgette et le poivron rouge en petits dés. Couper les tomates cerises en deux." },
+      { step_number: 4, instruction: "Dans un bol, mélanger l'huile d'olive, le vinaigre balsamique, le miel, l'ail émincé, le sel et le poivre." },
+      { step_number: 5, instruction: "Disposer les légumes coupés sur une plaque de cuisson. Verser la moitié de la vinaigrette sur les légumes et bien mélanger pour les enrober." },
+      { step_number: 6, instruction: "Rôtir les légumes au four préchauffé pendant environ 20-25 minutes, ou jusqu'à ce qu'ils soient dorés et tendres." },
+      { step_number: 7, instruction: "Dans un grand bol, mélanger le quinoa cuit avec les légumes rôtis. Ajouter le reste de la vinaigrette et mélanger délicatement." },
+      { step_number: 8, instruction: "Servir la salade de quinoa aux légumes rôtis garnie de feuilles de basilic frais." }
+    ]
+  },
+  {
+    title: "Burger végétarien aux champignons",
+    image_name: "burger_vegetarien.jpg",
+    category_name: "Plat principal",
+    user_email: "seb@gmail.com",
+    difficulty: "Intermédiaire",
+    cooking_time: 30,
+    preparation_time: 20,
+    number_of_servings: 4,
+    note: "Une alternative délicieuse et saine au burger traditionnel.",
+    ingredients: [
+      { name: "champignons de Paris", quantity_value: 400, quantity_unit: "g" },
+      { name: "oignons", quantity_value: 1, quantity_unit: "" },
+      { name: "ail", quantity_value: 2, quantity_unit: "gousses" },
+      { name: "flocons d'avoine", quantity_value: 100, quantity_unit: "g" },
+      { name: "oeufs", quantity_value: 2, quantity_unit: "" },
+      { name: "fromage râpé", quantity_value: 50, quantity_unit: "g" },
+      { name: "pain à burger", quantity_value: 4, quantity_unit: "" },
+      { name: "laitue", quantity_value: 4, quantity_unit: "" },
+      { name: "tomates", quantity_value: 2, quantity_unit: "" },
+      { name: "sel", quantity_value: 1, quantity_unit: "pincée" },
+      { name: "poivre", quantity_value: 1, quantity_unit: "pincée" },
+      { name: "huile d'olive", quantity_value: 2, quantity_unit: "c. à soupe" }
+    ],
+    steps: [
+      { step_number: 1, instruction: "Nettoyer et hacher finement les champignons, l'oignon et l'ail." },
+      { step_number: 2, instruction: "Dans une poêle, faire chauffer l'huile d'olive à feu moyen. Faire revenir l'oignon et l'ail jusqu'à ce qu'ils soient dorés." },
+      { step_number: 3, instruction: "Ajouter les champignons hachés dans la poêle et faire cuire pendant environ 5-7 minutes, jusqu'à ce qu'ils soient dorés et que toute l'eau soit évaporée. Assaisonner avec du sel et du poivre." },
+      { step_number: 4, instruction: "Dans un grand bol, mélanger les champignons cuits, les flocons d'avoine, les œufs battus et le fromage râpé. Bien mélanger jusqu'à obtenir une pâte homogène." },
+      { step_number: 5, instruction: "Former des galettes à partir du mélange de champignons et les faire cuire dans une poêle chaude avec un peu d'huile d'olive, environ 3-4 minutes de chaque côté, jusqu'à ce qu'elles soient dorées et croustillantes." },
+      { step_number: 6, instruction: "Pendant ce temps, toaster légèrement les pains à burger. Laver et couper les tomates en rondelles." },
+      { step_number: 7, instruction: "Assembler les burgers : placer une feuille de laitue sur la base du pain, ajouter une galette de champignons, quelques rondelles de tomate et une cuillère de sauce barbecue, si désiré. Terminer avec le haut du pain." },
+      { step_number: 8, instruction: "Servir chaud et déguster avec des frites ou une salade verte." }
+    ]
+  },
+  {
+    title: "Ceviche de crevettes",
+    image_name: "ceviche_crevettes.jpg",
+    category_name: "Entrée",
+    user_email: "seb@gmail.com",
+    difficulty: "Facile",
+    cooking_time: 15,
+    preparation_time: 30,
+    number_of_servings: 4,
+    note: "Un plat frais et acidulé, parfait pour une entrée estivale.",
+    ingredients: [
+      { name: "crevettes", quantity_value: 400, quantity_unit: "g" },
+      { name: "citron vert", quantity_value: 4, quantity_unit: "" },
+      { name: "citron", quantity_value: 1, quantity_unit: "" },
+      { name: "tomates", quantity_value: 2, quantity_unit: "" },
+      { name: "oignons", quantity_value: 1, quantity_unit: "" },
+      { name: "coriandre", quantity_value: 1, quantity_unit: "botte" },
+      { name: "sel", quantity_value: 1, quantity_unit: "pincée" },
+      { name: "poivre", quantity_value: 1, quantity_unit: "pincée" }
+    ],
+    steps: [
+      { step_number: 1, instruction: "Décortiquer les crevettes et les couper en morceaux si elles sont trop grosses. Les placer dans un grand bol." },
+      { step_number: 2, instruction: "Presser le jus des citrons verts et du citron jaune sur les crevettes. Mélanger pour bien enrober les crevettes de jus de citron. Laisser mariner au réfrigérateur pendant au moins 20 minutes." },
+      { step_number: 3, instruction: "Pendant ce temps, couper les tomates en petits dés, émincer finement l'oignon rouge et hacher la coriandre. Si vous utilisez du piment rouge, retirez les graines et les membranes internes, puis hachez-le finement." },
+      { step_number: 4, instruction: "Ajouter les tomates, l'oignon rouge, la coriandre et le piment (si utilisé) aux crevettes marinées. Assaisonner avec du sel et du poivre selon votre goût. Mélanger délicatement." },
+      { step_number: 5, instruction: "Répartir le ceviche de crevettes dans des bols individuels et servir immédiatement, accompagné de quartiers de citron vert supplémentaires, si désiré." }
+    ]
+  },
+  {
+    title: "Salade de fruits exotiques",
+    image_name: "salade_fruits_exotiques.jpg",
+    category_name: "Dessert",
+    user_email: "bob@gmail.com",
+    difficulty: "Facile",
+    cooking_time: 15,
+    preparation_time: 20,
+    number_of_servings: 4,
+    note: "Une explosion de saveurs tropicales dans chaque bouchée.",
+    ingredients: [
+      { name: "mangue", quantity_value: 1, quantity_unit: "" },
+      { name: "ananas", quantity_value: 1, quantity_unit: "" },
+      { name: "kiwi", quantity_value: 2, quantity_unit: "" },
+      { name: "fruit de la passion", quantity_value: 2, quantity_unit: "" },
+      { name: "banane", quantity_value: 1, quantity_unit: "" },
+      { name: "jus de citron vert", quantity_value: 1, quantity_unit: "" },
+      { name: "menthe", quantity_value: 1, quantity_unit: "botte" }
+    ],
+    steps: [
+      { step_number: 1, instruction: "Éplucher et couper tous les fruits en morceaux, sauf les fruits de la passion." },
+      { step_number: 2, instruction: "Couper les fruits de la passion en deux et récupérer la pulpe à l'aide d'une cuillère. Ajouter à la salade de fruits." },
+      { step_number: 3, instruction: "Arroser les fruits avec le jus de citron vert pour éviter qu'ils ne s'oxydent." },
+      { step_number: 4, instruction: "Ciseler finement les feuilles de menthe fraîche et les ajouter à la salade de fruits. Mélanger délicatement." },
+      { step_number: 5, instruction: "Réfrigérer la salade de fruits pendant au moins 30 minutes avant de servir pour permettre aux saveurs de se mélanger." },
+      { step_number: 6, instruction: "Juste avant de servir, saupoudrer de noix de coco râpée pour ajouter une touche de croquant, si désiré." }
+    ]
+  },
+  {
+    title: "Gâteau au chocolat fondant",
+    image_name: "gateau_chocolat.jpg",
+    category_name: "Dessert",
+    user_email: "bob@gmail.com",
+    difficulty: "Facile",
+    cooking_time: 40,
+    preparation_time: 20,
+    number_of_servings: 8,
+    note: "Un dessert irrésistible pour les amateurs de chocolat.",
+    ingredients: [
+      { name: "chocolat noir", quantity_value: 200, quantity_unit: "g" },
+      { name: "beurre", quantity_value: 150, quantity_unit: "g" },
+      { name: "sucre en poudre", quantity_value: 150, quantity_unit: "g" },
+      { name: "farine", quantity_value: 50, quantity_unit: "g" },
+      { name: "oeufs", quantity_value: 3, quantity_unit: "" },
+      { name: "vanille", quantity_value: 1, quantity_unit: "c. à café" },
+      { name: "sel", quantity_value: 1, quantity_unit: "" }
+    ],
+    steps: [
+      { step_number: 1, instruction: "Préchauffer le four à 180°C (thermostat 6). Beurrer et fariner un moule à gâteau." },
+      { step_number: 2, instruction: "Faire fondre le chocolat noir et le beurre au bain-marie ou au micro-ondes. Laisser tiédir." },
+      { step_number: 3, instruction: "Dans un saladier, fouetter les œufs avec le sucre en poudre jusqu'à ce que le mélange blanchisse. Ajouter l'extrait de vanille et la pincée de sel." },
+      { step_number: 4, instruction: "Incorporer le mélange chocolat-beurre fondu dans le saladier en mélangeant délicatement." },
+      { step_number: 5, instruction: "Tamiser la farine sur le mélange chocolaté et mélanger jusqu'à ce que la pâte soit homogène." },
+      { step_number: 6, instruction: "Verser la pâte dans le moule préparé et lisser la surface avec une spatule." },
+      { step_number: 7, instruction: "Enfourner et cuire pendant environ 20-25 minutes, ou jusqu'à ce que la surface du gâteau soit légèrement craquelée et qu'un cure-dent inséré au centre en ressorte avec quelques miettes humides." },
+      { step_number: 8, instruction: "Laisser refroidir le gâteau dans le moule pendant quelques minutes avant de le démouler et de le servir tiède ou à température ambiante, accompagné de crème fouettée ou de glace à la vanille." }
+    ]
+  },
+  {
+    title: "Ratatouille provençale",
+    image_name: "ratatouille_provencale.jpg",
+    category_name: "Plat principal",
+    user_email: "bob@gmail.com",
+    difficulty: "Facile",
+    cooking_time: 60,
+    preparation_time: 30,
+    number_of_servings: 6,
+    note: "Un plat traditionnel du sud de la France, plein de saveurs méditerranéennes.",
+    ingredients: [
+      { name: "aubergine", quantity_value: 1, quantity_unit: "" },
+      { name: "courgette", quantity_value: 1, quantity_unit: "" },
+      { name: "poivron rouge", quantity_value: 1, quantity_unit: "" },
+      { name: "poivron vert", quantity_value: 1, quantity_unit: "" },
+      { name: "tomates", quantity_value: 3, quantity_unit: "" },
+      { name: "oignons", quantity_value: 1, quantity_unit: "" },
+      { name: "ail", quantity_value: 2, quantity_unit: "gousses" },
+      { name: "huile d'olive", quantity_value: 3, quantity_unit: "c. à soupe" },
+      { name: "thym", quantity_value: 2, quantity_unit: "branches" },
+      { name: "basilic", quantity_value: 10, quantity_unit: "" },
+      { name: "sel", quantity_value: 1, quantity_unit: "pincée" },
+      { name: "poivre", quantity_value: 1, quantity_unit: "pincée" }
+    ],
+    steps: [
+      { step_number: 1, instruction: "Émincer l'oignon et hacher l'ail. Couper l'aubergine, la courgette, les poivrons et les tomates en dés." },
+      { step_number: 2, instruction: "Dans une grande poêle, faire chauffer l'huile d'olive à feu moyen. Faire revenir l'oignon et l'ail jusqu'à ce qu'ils soient dorés." },
+      { step_number: 3, instruction: "Ajouter les dés de poivrons dans la poêle et faire cuire pendant environ 5 minutes, jusqu'à ce qu'ils soient tendres." },
+      { step_number: 4, instruction: "Incorporer les dés d'aubergine et de courgette dans la poêle. Faire cuire pendant 10 minutes en remuant de temps en temps." },
+      { step_number: 5, instruction: "Ajouter les dés de tomates, le thym frais, le sel et le poivre dans la poêle. Laisser mijoter à feu doux pendant 20-25 minutes, jusqu'à ce que les légumes soient bien cuits et que la ratatouille ait épaissi." },
+      { step_number: 6, instruction: "Servir chaud ou à température ambiante, garni de feuilles de basilic frais." }
+  ]
+},
+{
+  title: "Poulet rôti aux herbes de Provence",
+  image_name: "poulet_roti_herbes_provence.jpg",
+  category_name: "Plat principal",
+  user_email: "bob@gmail.com",
+  difficulty: "Facile",
+  cooking_time: 90,
+  preparation_time: 20,
+  number_of_servings: 4,
+  note: "Un plat traditionnellement savoureux, parfait pour un repas en famille ou entre amis.",
+  ingredients: [
+    { name: "poulet", quantity_value: 1, quantity_unit: "" },
+    { name: "citron", quantity_value: 1, quantity_unit: "" },
+    { name: "ail", quantity_value: 4, quantity_unit: "gousses" },
+    { name: "herbes de Provence", quantity_value: 2, quantity_unit: "c. à soupe" },
+    { name: "huile d'olive", quantity_value: 3, quantity_unit: "c. à soupe" },
+    { name: "sel", quantity_value: 1, quantity_unit: "c. à café" },
+    { name: "poivre", quantity_value: 1, quantity_unit: "c. à café" }
+  ],
+  steps: [
+    { step_number: 1, instruction: "Préchauffer le four à 200°C (thermostat 6-7)." },
+    { step_number: 2, instruction: "Rincer et sécher le poulet entier. Le placer dans un plat allant au four." },
+    { step_number: 3, instruction: "Presser le jus du citron et le mélanger avec l'huile d'olive, les gousses d'ail écrasées, les herbes de Provence, le sel et le poivre dans un bol." },
+    { step_number: 4, instruction: "Badigeonner le poulet avec ce mélange d'huile et d'épices, en veillant à bien enrober toute la surface." },
+    { step_number: 5, instruction: "Placer le citron vidé à l'intérieur de la cavité du poulet." },
+    { step_number: 6, instruction: "Enfourner le poulet et le laisser rôtir pendant environ 1 heure 30 minutes, en l'arrosant régulièrement avec les jus de cuisson, jusqu'à ce qu'il soit bien doré et cuit à cœur. Si la peau dore trop rapidement, la couvrir de papier aluminium." },
+    { step_number: 7, instruction: "Laisser reposer le poulet quelques minutes avant de le découper et de le servir chaud, accompagné de légumes rôtis ou de pommes de terre." }
+]
+},
+{
+  title: "Salade de betteraves rôties et chèvre chaud",
+  image_name: "salade_betteraves_chevre.jpg",
+  category_name: "Entrée",
+  user_email: "bob@gmail.com",
+  difficulty: "Facile",
+  cooking_time: 60,
+  preparation_time: 20,
+  number_of_servings: 4,
+  note: "Une entrée colorée et savoureuse, parfaite pour une touche d'élégance.",
+  ingredients: [
+    { name: "betteraves", quantity_value: 4, quantity_unit: "" },
+    { name: "fromage de chèvre", quantity_value: 150, quantity_unit: "g" },
+    { name: "salade romaine", quantity_value: 150, quantity_unit: "g" },
+    { name: "noix", quantity_value: 50, quantity_unit: "g" },
+    { name: "vinaigre balsamique", quantity_value: 2, quantity_unit: "c. à soupe" },
+    { name: "miel", quantity_value: 1, quantity_unit: "c. à soupe" },
+    { name: "huile d'olive", quantity_value: 2, quantity_unit: "c. à soupe" },
+    { name: "sel", quantity_value: 1, quantity_unit: "pincée" },
+    { name: "poivre", quantity_value: 1, quantity_unit: "pincée" }
+  ],
+  steps: [
+    { step_number: 1, instruction: "Préchauffer le four à 200°C (thermostat 6-7)." },
+    { step_number: 2, instruction: "Laver les betteraves et les couper en tranches épaisses. Les disposer sur une plaque de cuisson et les arroser d'un filet d'huile d'olive. Saler et poivrer. Enfourner et faire rôtir les betteraves pendant environ 40 minutes, jusqu'à ce qu'elles soient tendres." },
+    { step_number: 3, instruction: "Pendant ce temps, préparer la vinaigrette en mélangeant le vinaigre balsamique, le miel et l'huile d'olive dans un bol. Assaisonner avec du sel et du poivre selon votre goût." },
+    { step_number: 4, instruction: "Laver et essorer la salade verte, puis la disposer dans un grand saladier. Ajouter les noix concassées." },
+    { step_number: 5, instruction: "Faire chauffer une poêle à feu moyen. Couper le fromage de chèvre frais en rondelles et les faire dorer quelques minutes de chaque côté dans la poêle chaude." },
+    { step_number: 6, instruction: "Une fois les betteraves rôties, les disposer sur le lit de salade verte. Ajouter les rondelles de chèvre chaud sur le dessus." },
+    { step_number: 7, instruction: "Arroser la salade avec la vinaigrette préparée juste avant de servir." },
+    { step_number: 8, instruction: "Servir chaud et déguster cette délicieuse salade colorée et parfumée." }
+  ]
+},
+{
+  title: "Bruschetta aux tomates cerises et mozzarella",
+  image_name: "bruschetta_tomates_mozzarella.jpg",
+  category_name: "Entrée",
+  user_email: "bob@gmail.com",
+  difficulty: "Facile",
+  cooking_time: 20,
+  preparation_time: 10,
+  number_of_servings: 4,
+  note: "Une entrée estivale pleine de fraîcheur et de saveurs méditerranéennes.",
+  ingredients: [
+    { name: "pain", quantity_value: 1, quantity_unit: "" },
+    { name: "tomates cerises", quantity_value: 250, quantity_unit: "g" },
+    { name: "mozzarella", quantity_value: 150, quantity_unit: "g" },
+    { name: "ail", quantity_value: 2, quantity_unit: "gousses" },
+    { name: "basilic", quantity_value: 1, quantity_unit: "botte" },
+    { name: "huile d'olive", quantity_value: 2, quantity_unit: "c. à soupe" },
+    { name: "vinaigre balsamique", quantity_value: 1, quantity_unit: "c. à soupe" },
+    { name: "sel", quantity_value: 1, quantity_unit: "pincée" },
+    { name: "poivre", quantity_value: 1, quantity_unit: "pincée" }
+  ],
+  steps: [
+    { step_number: 1, instruction: "Préchauffer le four à 180°C (thermostat 6)." },
+    { step_number: 2, instruction: "Couper la baguette en tranches d'environ 1 cm d'épaisseur. Les disposer sur une plaque de cuisson et les faire toaster au four pendant quelques minutes, jusqu'à ce qu'elles soient légèrement dorées." },
+    { step_number: 3, instruction: "Laver les tomates cerises et les couper en deux ou en quartiers selon leur taille. Couper la mozzarella en tranches." },
+    { step_number: 4, instruction: "Peler et émincer finement les gousses d'ail. Ciseler les feuilles de basilic frais." },
+    { step_number: 5, instruction: "Sur chaque tranche de pain grillé, disposer quelques quartiers de tomates cerises et une tranche de mozzarella." },
+    { step_number: 6, instruction: "Saupoudrer d'ail émincé et de basilic ciselé sur le dessus. Arroser d'un filet d'huile d'olive et de vinaigre balsamique." },
+    { step_number: 7, instruction: "Saler et poivrer selon votre goût." },
+    { step_number: 8, instruction: "Enfourner les bruschettas pendant quelques minutes supplémentaires, juste assez pour faire fondre légèrement la mozzarella." },
+    { step_number: 9, instruction: "Servir chaud et déguster ces délicieuses bruschettas à la tomate et à la mozzarella." }
+  ]
+}
 ]
 
 recipes_raw.each do |recipe_raw|

@@ -3,12 +3,19 @@
 }
 
 .card-recipe {
-  width: 153px;
+  width: 190px;
   border: 1px;
-  background-color: #FFF8E6;
+  background-color: rgba(255,255,255,0.8);
   font-size: 14px;
   flex-grow: 0;
   flex-shrink: 0;
+  text-decoration: none;
+  color: black;
+  border-color: black;
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.1);
+}
+
+.card-recipe-link {
   text-decoration: none;
   color: black;
 }
@@ -18,11 +25,9 @@
 }
 
 .square {
-  // width: 153px;
   height: 153px;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-  background-color: #D1D1D1;
+
 }
 
 .recipe-name {
@@ -37,4 +42,8 @@
 .time-recipe {
   font-size: 11px;
   font-weight: bold;
+}
+
+#fav-recipes-container .card-recipe {
+  margin-right: 1rem;
 }
