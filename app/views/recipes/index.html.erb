@@ -8,7 +8,7 @@
   <div class="container">
     <h3 class="title">Les recettes populaires 💫</h3>
     <div class= "d-flex overflow-x-auto">
-      <%= render "recipes/recipes", recipes: @recipes.first(3) %>
+      <%= render "recipes/cards", recipes: @recipes.first(3) %>
     </div>
   </div>
 </div>
@@ -19,6 +19,6 @@
       <h3 class="title">Toutes les pépites 🤩</h3>
       <span class="see-all"><small>Voir tout</small></span>
     </div>
-    <%= render "recipes/recipes", recipes: @recipes %>
+    <%= render "recipes/cards", recipes: @recipes %>
   </div>
 </div>

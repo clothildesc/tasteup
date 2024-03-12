@@ -1,0 +1,31 @@
+.login-container {
+  margin: 0 auto;
+  width: 75%; /* Ajustez la largeur selon vos préférences */
+  border: 2px solid #FF4051; /* Couleur et épaisseur de la bordure */
+  padding: 20px; /* Espacement à l'intérieur de la bordure */
+  border-radius: 30px;
+  background-color: white;
+  margin-top: 75px !important;
+}
+
+.login-button{
+  background-color: #FF4051 !important;
+  border-radius: 30px;
+  width: 50%;
+  align-items: center;
+}
+.title-typo {
+  font-family: 'Quicksand';
+  font-size: 55px;
+  padding-top: 95px;
+}
+.text-typo {
+  font-family: 'Open Sans';
+}
+
+.brand-link {
+    text-decoration: none !important;
+    font: #000;
+    color: black;
+    font-size: 10px;
+}
