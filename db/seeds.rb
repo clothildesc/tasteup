@@ -4,11 +4,41 @@ Category.destroy_all
 Ingredient.destroy_all
 User.destroy_all
 
-user1 = User.create!(email: 'bob@gmail.com', password: '123456')
-user2 = User.create!(email: 'seb@gmail.com', password: '123456')
-user3 = User.create!(email: 'alice@gmail.com', password: '123456')
-user4 = User.create!(email: 'pierre@gmail.com', password: '123456')
-user5 = User.create!(email: 'clo@gmail.com', password: '123456')
+user1 = User.create!(email: 'julia@gmail.com', password: '123456', first_name: 'Julia', last_name: 'Moreau')
+user2 = User.create!(email: 'isaiah@gmail.com', password: '123456', first_name: 'Isaiah', last_name: 'Zalc')
+user3 = User.create!(email: 'zena@gmail.com', password: '123456', first_name: 'Zena', last_name: 'El Kurdi')
+user4 = User.create!(email: 'pierre@gmail.com', password: '123456', first_name: 'Pierre', last_name: 'Urban')
+user5 = User.create!(email: 'clothilde@gmail.com', password: '123456', first_name: 'Clothilde', last_name: 'Scache')
+
+user1.photo.attach(
+  io: File.open("public/images/julia.png"),
+  filename: "julia.png", # use the extension of the attached file here
+  content_type: 'image/jpg' # use the mime type of the attached file here
+)
+
+user2.photo.attach(
+  io: File.open("public/images/isaiah.png"),
+  filename: "isaiah.png", # use the extension of the attached file here
+  content_type: 'image/jpg' # use the mime type of the attached file here
+)
+
+user3.photo.attach(
+  io: File.open("public/images/zena.png"),
+  filename: "zena.png", # use the extension of the attached file here
+  content_type: 'image/jpg' # use the mime type of the attached file here
+)
+
+user4.photo.attach(
+  io: File.open("public/images/pierre.png"),
+  filename: "pierre.png", # use the extension of the attached file here
+  content_type: 'image/jpg' # use the mime type of the attached file here
+)
+
+user5.photo.attach(
+  io: File.open("public/images/clothilde.png"),
+  filename: "clothilde.png", # use the extension of the attached file here
+  content_type: 'image/jpg' # use the mime type of the attached file here
+)
 
 categories = ["Entrée", "Plat principal", "Accompagnement", "Dessert", "Apéritif", "Boisson", "Sauce", "Végétarien", "Vegan", "Sans gluten", "Sans lactose", "Français", "Italien", "Chinois", "Africain", "Indien", "Coréen", "Libanais", "Thaï", "Japonais", "Mexicain", "Espagnol", "Thaïlandais", "Américain", "Méditerranéen", "Turc"]
 
@@ -30,7 +60,7 @@ recipes_raw = [
     title: 'Cookies maison',
     image_name: 'cookies_maison.webp',
     category_name: 'Dessert',
-    user_email: 'bob@gmail.com',
+    user_email: 'julia@gmail.com',
     difficulty: 'Facile',
     cooking_time: 15,
     preparation_time: 10,
@@ -58,7 +88,7 @@ recipes_raw = [
     title: 'Quiche lorraine',
     image_name: 'quiche_lorraine.jpg',
     category_name: 'Plat principal',
-    user_email: 'bob@gmail.com',
+    user_email: 'julia@gmail.com',
     difficulty: 'Moyen',
     cooking_time: 35,
     preparation_time: 20,
@@ -86,7 +116,7 @@ recipes_raw = [
     title: 'Salade César',
     image_name: 'salade_cesar.jpeg',
     category_name: 'Entrée',
-    user_email: 'bob@gmail.com',
+    user_email: 'julia@gmail.com',
     difficulty: 'Facile',
     cooking_time: 0,
     preparation_time: 15,
@@ -112,7 +142,7 @@ recipes_raw = [
     title: 'Ratatouille',
     image_name: 'ratatouille.jpg',
     category_name: 'Accompagnement',
-    user_email: 'seb@gmail.com',
+    user_email: 'pierre@gmail.com',
     difficulty: 'Facile',
     cooking_time: 40,
     preparation_time: 20,
@@ -142,7 +172,7 @@ recipes_raw = [
     title: 'Crème brûlée',
     image_name: 'creme_brulee.webp',
     category_name: 'Dessert',
-    user_email: 'seb@gmail.com',
+    user_email: 'pierre@gmail.com',
     difficulty: 'Difficile',
     cooking_time: 45,
     preparation_time: 15,
@@ -167,7 +197,7 @@ recipes_raw = [
     title: 'Risotto aux champignons',
     image_name: 'risotto_champignons.jpg',
     category_name: 'Plat principal',
-    user_email: 'seb@gmail.com',
+    user_email: 'pierre@gmail.com',
     difficulty: 'Moyen',
     cooking_time: 25,
     preparation_time: 10,
@@ -196,7 +226,7 @@ recipes_raw = [
     title: 'Tarte aux épinards et chèvre',
     image_name: 'tarte_aux_epinards_et_chevre.webp',
     category_name: ['Plat principal', 'Végétarien'],
-    user_email: 'alice@gmail.com',
+    user_email: 'pierre@gmail.com',
     difficulty: 'Facile',
     cooking_time: 30,
     preparation_time: 15,
@@ -224,7 +254,7 @@ recipes_raw = [
     title: 'Tarte aux pommes',
     image_name: 'tarte_aux_pommes.avif',
     category_name: 'Dessert',
-    user_email: 'alice@gmail.com',
+    user_email: 'zena@gmail.com',
     difficulty: 'facile',
     cooking_time: 30,
     preparation_time: 20,
@@ -248,7 +278,7 @@ recipes_raw = [
     title: 'Soupe à l’oignon',
     image_name: 'soupe_a_lognon.jpg',
     category_name: 'Entrée',
-    user_email: 'alice@gmail.com',
+    user_email: 'zena@gmail.com',
     difficulty: 'Facile',
     cooking_time: 45,
     preparation_time: 15,
@@ -275,7 +305,7 @@ recipes_raw = [
     title: 'Curry de légumes',
     image_name: 'curry_de_legumes.jpg',
     category_name: ['Plat principal', 'Vegan', 'Sans gluten', 'Sans lactose'],
-    user_email: 'alice@gmail.com',
+    user_email: 'zena@gmail.com',
     difficulty: 'Facile',
     cooking_time: 30,
     preparation_time: 15,
@@ -306,7 +336,7 @@ recipes_raw = [
     title: "Pâtes au pesto",
     image_name: "pates_pesto.webp",
     category_name: "Plat principal",
-    user_email: "seb@gmail.com",
+    user_email: "clothilde@gmail.com",
     difficulty: "Facile",
     cooking_time: 15,
     preparation_time: 10,
@@ -334,7 +364,7 @@ recipes_raw = [
     title: "Tacos au poisson",
     image_name: "tacos_poisson.jpg",
     category_name: "Plat principal",
-    user_email: "seb@gmail.com",
+    user_email: "clothilde@gmail.com",
     difficulty: "Intermédiaire",
     cooking_time: 30,
     preparation_time: 20,
@@ -363,7 +393,7 @@ recipes_raw = [
     title: "Salade de quinoa aux légumes rôtis",
     image_name: "salade_quinoa_legumes.jpg",
     category_name: "Entrée",
-    user_email: "seb@gmail.com",
+    user_email: "isaiah@gmail.com",
     difficulty: "Intermédiaire",
     cooking_time: 45,
     preparation_time: 20,
@@ -398,7 +428,7 @@ recipes_raw = [
     title: "Burger végétarien aux champignons",
     image_name: "burger_vegetarien.jpg",
     category_name: "Plat principal",
-    user_email: "seb@gmail.com",
+    user_email: "isaiah@gmail.com",
     difficulty: "Intermédiaire",
     cooking_time: 30,
     preparation_time: 20,
@@ -433,7 +463,7 @@ recipes_raw = [
     title: "Ceviche de crevettes",
     image_name: "ceviche_crevettes.jpg",
     category_name: "Entrée",
-    user_email: "seb@gmail.com",
+    user_email: "isaiah@gmail.com",
     difficulty: "Facile",
     cooking_time: 15,
     preparation_time: 30,
@@ -461,7 +491,7 @@ recipes_raw = [
     title: "Salade de fruits exotiques",
     image_name: "salade_fruits_exotiques.jpg",
     category_name: "Dessert",
-    user_email: "bob@gmail.com",
+    user_email: "clothilde@gmail.com",
     difficulty: "Facile",
     cooking_time: 15,
     preparation_time: 20,
@@ -489,7 +519,7 @@ recipes_raw = [
     title: "Gâteau au chocolat fondant",
     image_name: "gateau_chocolat.jpg",
     category_name: "Dessert",
-    user_email: "bob@gmail.com",
+    user_email: "isaiah@gmail.com",
     difficulty: "Facile",
     cooking_time: 40,
     preparation_time: 20,
@@ -519,7 +549,7 @@ recipes_raw = [
     title: "Ratatouille provençale",
     image_name: "ratatouille_provencale.jpg",
     category_name: "Plat principal",
-    user_email: "bob@gmail.com",
+    user_email: "clothilde@gmail.com",
     difficulty: "Facile",
     cooking_time: 60,
     preparation_time: 30,
@@ -552,7 +582,7 @@ recipes_raw = [
   title: "Poulet rôti aux herbes de Provence",
   image_name: "poulet_roti_herbes_provence.jpg",
   category_name: "Plat principal",
-  user_email: "bob@gmail.com",
+  user_email: "julia@gmail.com",
   difficulty: "Facile",
   cooking_time: 90,
   preparation_time: 20,
@@ -581,7 +611,7 @@ recipes_raw = [
   title: "Salade de betteraves rôties et chèvre chaud",
   image_name: "salade_betteraves_chevre.jpg",
   category_name: "Entrée",
-  user_email: "bob@gmail.com",
+  user_email: "pierre@gmail.com",
   difficulty: "Facile",
   cooking_time: 60,
   preparation_time: 20,
@@ -613,7 +643,7 @@ recipes_raw = [
   title: "Bruschetta aux tomates cerises et mozzarella",
   image_name: "bruschetta_tomates_mozzarella.jpg",
   category_name: "Entrée",
-  user_email: "bob@gmail.com",
+  user_email: "zena@gmail.com",
   difficulty: "Facile",
   cooking_time: 20,
   preparation_time: 10,

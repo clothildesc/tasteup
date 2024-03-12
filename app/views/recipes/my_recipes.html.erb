@@ -1,7 +1,7 @@
 <div class="container landing-header px-4 pt-5 pb-3">
   <div class="d-flex">
-    <h3 class="flex-grow-1"> Bonjour Julia !</h3>
-    <%= image_tag "image.png", class: "avatar" %>
+    <h3 class="flex-grow-1"> Bonjour <%= @user.first_name %> !</h3>
+    <%= image_tag @user.photo, class: "avatar" %>
   </div>
   <h3 class="mb-4"> On cuisine quoi aujourd'hui ?</h3>
   <%= form_with url: my_recipes_path, method: :get, class: "d-flex"  do %>

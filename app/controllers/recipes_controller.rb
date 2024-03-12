@@ -5,13 +5,10 @@ class RecipesController < ApplicationController
 
   def my_recipes
       @favorite_recipes = current_user.favorited_by_type('Recipe')
-      # @following_recipes = Recipe.where(user: current_user.follows).order(created_at: :desc)
       @my_recipes = current_user.recipes
+      @user = current_user
       favorited_users = current_user.favorited_by_type('User')
       @favorited_users_recipes = Recipe.where(user_id: favorited_users.pluck(:id))
-      # @recipes_user2 = Recipe.joins(:user).where(users: { email: "alice@gmail.com" })
-      # @recipes_user2 = @recipes_user2.where.not(id: @favorite_recipes.map(&:id))
-      # @recipes_user2 à remplacer par les nouvelles recettes qu'on de nos follows
 
     if params[:query].present?
       sql_subquery = <<~SQL
@@ -47,7 +44,6 @@ class RecipesController < ApplicationController
     end
   end
 
-
   def scrap
     url = params[:scrap][:url]
     recipe_data = ScrapMarmiton.new(url).call
@@ -75,7 +71,6 @@ class RecipesController < ApplicationController
     if params[:recipe_url].present?
       @recipe_data = ScrapWithOpenai.new(params[:recipe_url]).call
       @recipe = CreateRecipeFromScrappingData.new(@recipe_data).call
-    else
     end
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user

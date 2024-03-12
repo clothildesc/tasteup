@@ -2,21 +2,21 @@
   <div class="container">
     <div>
       <% if @user == current_user %>
-        <h3 class="title">Toutes mes recettes 🤩</h3>
+        <h3 class="title">Mon carnet de recettes 🧑‍🍳</h3>
       <% else %>
-        <h3 class="title">Toutes les pépites de <%= @user.email %> 🤩</h3>
-        <div class="d-flex justify-content-between align-items-center">
-        <%= image_tag "image.png", class: "avatar" %>
-        <span class="ms-2"><%= @user.email %></span>
+        <div class="d-flex align-items-center">
+        <%= image_tag @user.photo, class: "avatar" %>
+        <h3 class="title ms-2">Les recettes de <%= @user.first_name %> 🧑‍🍳</h3>
+      </div>
         <% if current_user.favorited?(@user) %>
-          <%= button_to 'Se désabonner', follow_user_path(@user), data: { turbo_method: :post } %>
+          <%= button_to 'Suivi(e)', follow_user_path(@user), data: { turbo_method: :post } %>
         <% else %>
-          <%= button_to "S'abonner", follow_user_path(@user), data: { turbo_method: :post } %>
+          <%= button_to "Suivre", follow_user_path(@user), data: { turbo_method: :post } %>
         <% end %>
       <% end %>
-    </div>
-    <div class= "d-flex">
-     <%= render "recipes/card", recipes: @recipes %>
+      <div class= "d-flex">
+      <%= render "recipes/card", recipes: @recipes %>
+      </div>
     </div>
   </div>
 </div>
