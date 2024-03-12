@@ -3,6 +3,7 @@
     <%= f.input :title,
       required: false,
       input_html: { class: "form-input"},
+      label_html: { style: "font-size:1.5em;" },
       label: 'Titre de la recette',
       placeholder: 'Ex : Cookies maison' %>
     <div class="d-flex align-items-center justify-content-between">
@@ -11,7 +12,7 @@
     </div>
   </section>
   <section class="d-none" data-step="1" data-step-form-target="step">
-    <p>Nombre de portions</p>
+    <p style="font-size:1.5em;">Nombre de portions</p>
     <div class="input-with-text">
       <%= f.input :number_of_servings,
         required: false,
@@ -27,7 +28,7 @@
     </div>
   </section>
   <section class="d-none" data-step="2" data-step-form-target="step">
-    <p>Difficulté</p>
+    <p style="font-size:1.5em;">Difficulté</p>
     <%= f.input :difficulty,
         required: false,
         label: false,
@@ -42,7 +43,7 @@
   </section>
   <section class="d-none" data-step="3" data-step-form-target="step">
     <div>
-      <p>Temps de préparation</p>
+      <p style="font-size:1.5em;">Temps de préparation</p>
       <div class="input-with-text">
         <%= f.input :preparation_time,
         required: false,
@@ -52,7 +53,7 @@
         <span class="input-text">minutes</span>
       </div>
       <div>
-        <p>Temps de cuisson</p>
+        <p style="font-size:1.5em;">Temps de cuisson</p>
         <div class="input-with-text">
           <%= f.input :cooking_time,
         required: false,
@@ -68,7 +69,7 @@
       </div>
     </section>
     <section class="d-none" data-step="4" data-step-form-target="step">
-      <legend>Ingrédients</legend>
+      <legend style="font-size:1.5em;">Ingrédients</legend>
       <%= f.abyme_for(:recipe_ingredients) do |abyme| %>
         <%= abyme.records %>
         <%= abyme.new_records %>
@@ -78,7 +79,7 @@
               <i class="fa-solid fa-circle-plus"></i>
             </div>
           <% end %>
-          <p class="ms-2">Ajouter un ingrédient</p>
+          <p>Ajouter un ingrédient</p>
         <% end %>
       </div>
       <div class="d-flex align-items-center justify-content-between">
@@ -87,7 +88,7 @@
       </div>
     </section>
     <section class="d-none" data-step="5" data-step-form-target="step">
-      <legend>Étapes</legend>
+      <legend style="font-size:1.5em;">Étapes</legend>
       <%= f.abyme_for(:preparation_steps) do |abyme| %>
         <%= abyme.records %>
         <%= abyme.new_records %>
@@ -106,13 +107,13 @@
       </div>
     </section>
     <section class="d-none" data-step="6" data-step-form-target="step">
-      <legend class="mt-3">Tags</legend>
+      <legend style="font-size:1.5em;">Tags</legend>
       <div data-controller="toggle-form">
         <div class="d-flex">
           <div class="tiny-square" data-toggle-form-target="button" data-action="click->toggle-form#fire">
             <i class="fa-solid fa-circle-plus" ></i>
           </div>
-          <p class="ms-2">Ajouter un tag</p>
+          <p>Ajouter un tag</p>
         </div>
         <div class="d-none" data-toggle-form-target="category">
           <%= f.association :categories, as: :check_boxes, label_method: lambda { |item| render "recipes/category_label", item: item } %>
@@ -126,7 +127,7 @@
     <section class="d-none" data-step="7" data-step-form-target="step">
       <%= f.input :photo, as: :file, label: 'Ajouter une photo' %>
       <div class="d-flex align-items-center justify-content-between">
-      <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
         <%= f.submit "Sauvegarder",
     class: "form-button" %>
       </div>
