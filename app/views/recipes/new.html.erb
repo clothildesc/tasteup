@@ -1,1 +1,22 @@
-<%= render "form", recipe: @recipe %>
+<div class="container form-container" data-controller="url-or-form">
+  <div data-url-or-form-target="choices">
+    <h2 class="mb-5 text-center" >Ajouter une recette</h2>
+    <%= link_to "Ajouter manuellement", "", data: { action: "click->url-or-form#show", aim: "form" }, class: "choice-card" %>
+    <%= link_to "Ajouter une URL", "", data: { action: "click->url-or-form#show", aim: "url" }, class: "choice-card" %>
+  </div>
+  <%= render "manual_recipe_form", recipe: @recipe %>
+
+  <%= simple_form_for :scrap, url: scrap_recipes_path, method: :get, html: { class: "d-none", data: { url_or_form_target: "nextStep", aim: "url" }} do |f| %>
+    <%= f.input :url,
+    required: false,
+    label: 'Renseigner une URL',
+    input_html: { class: "form-input"},
+    placeholder: 'https://www.exemple.com'%>
+    <div class="d-flex align-items-center justify-content-between">
+      <small data-action="click->url-or-form#return" class="me-3">← Précédent</small>
+      <div class="text-center">
+        <%= f.submit "Sauvegarder", class: "save-button" %>
+      </div>
+    </div>
+  <% end %>
+</div>

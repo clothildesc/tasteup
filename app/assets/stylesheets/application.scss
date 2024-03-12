@@ -18,6 +18,9 @@
   max-height: calc(100vh - 96px);
   margin-bottom: 96px;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .content_container_without_navbar {
