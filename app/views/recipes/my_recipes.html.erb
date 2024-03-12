@@ -19,7 +19,13 @@
   <div class="container">
     <h3 class="title"> Mes recettes préférées 😍</h3>
     <div class= "d-flex overflow-x-auto p-2" id="fav-recipes-container">
-       <%= render "recipes/card", recipes: @favorite_recipes %>
+      <% if @favorite_recipes.any? %>
+      <%= render "recipes/card", recipes: @favorite_recipes %>
+      <% else %>
+      <div class="container">
+        <p>Pas de recettes disponibles.</p>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -27,7 +33,7 @@
 <div class="mt-2 rounded-2 py-3">
   <div class="container">
     <h3 class="title"> Les recettes de mes amis 🤗</h3>
-    <div class= "d-flex overflow-x-auto">
+    <div class= "d-flex overflow-x-auto" id="fav-recipes-container">
       <% if @favorited_users_recipes.any? %>
       <%= render "recipes/card", recipes: @favorited_users_recipes %>
       <% else %>
@@ -46,7 +52,9 @@
       <%= link_to "Voir tout", recipes_user_path(current_user.id), class:"see-all" %>
     </div>
     <div class= "d-flex overflow-x-auto p-2">
-      <%= render "recipes/card", recipes: @my_recipes %>
+      <div class="input-grid">
+        <%= render "recipes/card", recipes: @my_recipes %>
+      </div>
     </div>
   </div>
 </div>

@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
   end
 
   def inspiration
-    @popular_recipes = Recipe.all.sample(3)
+    @popular_recipes = Recipe.joins(:favorited).group(:id).order('count(favorites.id) DESC').limit(5)
     @preview_recipes = Recipe.all.sample(10)
   end
 
