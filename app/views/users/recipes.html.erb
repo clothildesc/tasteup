@@ -14,9 +14,10 @@
           <%= button_to "S'abonner", follow_user_path(@user), data: { turbo_method: :post } %>
         <% end %>
       <% end %>
-    </div>
-    <div class= "d-flex">
-     <%= render "recipes/card", recipes: @recipes %>
+      </div>
+      <div class= "d-flex">
+      <%= render "recipes/card", recipes: @recipes %>
+      </div>
     </div>
   </div>
 </div>
