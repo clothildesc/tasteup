@@ -15,35 +15,29 @@
   <% end %>
 </div>
 
-<div class="mt-2 rounded-2 py-3">
-  <div class="container">
-    <h3 class="title"> Mes recettes préférées 😍</h3>
-    <div class= "d-flex overflow-x-auto p-2" id="fav-recipes-container">
-      <% if @favorite_recipes.any? %>
-      <%= render "recipes/card", recipes: @favorite_recipes %>
-      <% else %>
-      <div class="container">
-        <p>Pas de recettes disponibles.</p>
+<% if @favorite_recipes.any? %>
+  <div class="mt-2 rounded-2 py-3">
+    <div class="container">
+      <h3 class="title"> Mes recettes préférées 😍</h3>
+      <div class= "d-flex overflow-x-auto p-2" id="fav-recipes-container">
+        <%= render "recipes/card", recipes: @favorite_recipes %>
       </div>
-      <% end %>
     </div>
   </div>
-</div>
+<% end %>
 
-<div class="mt-2 rounded-2 py-3">
-  <div class="container">
-    <h3 class="title"> Les recettes de mes amis 🤗</h3>
-    <div class= "d-flex overflow-x-auto" id="fav-recipes-container">
-      <% if @favorited_users_recipes.any? %>
-      <%= render "recipes/card", recipes: @favorited_users_recipes %>
-      <% else %>
-      <div class="container">
-        <p>Pas de recettes disponibles.</p>
+<% unless params[:query].present? %>
+  <div class="mt-2 rounded-2 py-3">
+    <div class="container">
+      <h3 class="title"> Les recettes de mes amis 🤗</h3>
+      <div class= "d-flex overflow-x-auto" id="fav-recipes-container">
+        <% @favorited_users.each do |user| %>
+          <%= render "recipes/card_cookbook", user: user %>
+        <% end %>
       </div>
-      <% end %>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class="mt-4 rounded-2">
   <div class="container">

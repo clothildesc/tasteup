@@ -1,4 +1,5 @@
 # require_relative '../models/recipe' # Add this line
+require "open-uri"
 
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy favorite]
@@ -7,8 +8,8 @@ class RecipesController < ApplicationController
       @favorite_recipes = current_user.favorited_by_type('Recipe')
       @my_recipes = current_user.recipes
       @user = current_user
-      favorited_users = current_user.favorited_by_type('User')
-      @favorited_users_recipes = Recipe.where(user_id: favorited_users.pluck(:id))
+      @favorited_users = current_user.favorited_by_type('User')
+      @favorited_users_recipes = Recipe.where(user_id: @favorited_users.pluck(:id))
 
     if params[:query].present?
       sql_subquery = <<~SQL
@@ -21,7 +22,6 @@ class RecipesController < ApplicationController
       @my_recipes = @my_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
       @favorited_users_recipes = @favorited_users_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
       @favorited_users_recipes = @favorited_users_recipes.where.not(id: @favorite_recipes.map(&:id))
-
     end
   end
 
@@ -92,6 +92,31 @@ class RecipesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def duplicate
+    @recipe = Recipe.find(params[:id])
+    @new_recipe = @recipe.dup
+    @new_recipe.user = current_user
+    @new_recipe.save
+    @recipe.recipe_ingredients.each do |recipe_ingredient|
+      new_recipe_ingredient = recipe_ingredient.dup
+      new_recipe_ingredient.recipe = @new_recipe
+      # new_recipe_ingredient.recipe_id = @new_recipe.id
+      new_recipe_ingredient.save
+    end
+    @recipe.preparation_steps.each do |preparation_step|
+      new_preparation_step = preparation_step.dup
+      new_preparation_step.recipe = @new_recipe
+      new_preparation_step.save
+    end
+    @new_recipe.categories = @recipe.categories
+    url = @recipe.photo.url
+    file = URI.open(url)
+    @new_recipe.photo.attach(io: file, filename: @recipe.photo.filename.to_s, content_type: "image/png")
+    @new_recipe.save
+
+    redirect_to recipe_path(@new_recipe), notice: "Votre recette a été dupliquée."
   end
 
   def destroy
