@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
     @ingredients = Ingredient.all
     @categories = Category.all
     @preparation_step = PreparationStep.new
-    render :new
+    render :edit
   end
 
   def show

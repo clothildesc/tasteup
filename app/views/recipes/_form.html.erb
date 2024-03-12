@@ -20,7 +20,7 @@
             input_html: { class: "form-input"},
             placeholder: 'https://www.exemple.com'%>
           <h3 class="mt-4 mb-3">Ou ajouter manuellement</h3>
-          <section class="step" id="step3">
+          <section class="step" id="step3" data-step-target="step">
             <%= f.input :title,
               required: false,
               input_html: { class: "form-input"},
@@ -29,7 +29,7 @@
             <button class="btn btn-success" data-next-id="step4" data-action="click->form#next">Next</button>
           </section>
 
-          <section class="step d-none" id="step4">
+          <section class="step d-none" id="step4" data-step-target="step">
             <p>Nombre de portions</p>
             <div class="input-with-text">
               <%= f.input :number_of_servings,
@@ -40,6 +40,7 @@
                 wrapper_html: { style: "margin-bottom: 0 !important;" } %>
               <span class="input-text">personnes</span>
             </div>
+            <button class="btn btn-success" data-next-id="step5" data-action="click->form#next">Next</button>
           </section>
 
           <section class="step d-none">
