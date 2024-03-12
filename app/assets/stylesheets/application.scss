@@ -13,6 +13,8 @@
 
 
 .content_container {
-  // min-height: calc(100vh - 103px);
-  margin-bottom: 103px;
+  min-height: calc(100vh - 96px);
+  max-height: calc(100vh - 96px);
+  margin-bottom: 96px;
+  overflow: scroll;
 }

@@ -15,61 +15,34 @@
   <% end %>
 </div>
 
-  <div class="mt-2 bg-white rounded-2 py-3">
+  <div class="mt-2 rounded-2 py-3">
   <div class="container">
-    <h3 class="title"> Mes recettes préférées 😍 </h3>
-    <div class= "d-flex overflow-x-auto">
+    <h3 class="title"> Mes recettes préférées</h3>
+    <div class= "d-flex overflow-x-auto p-2" id="fav-recipes-container">
       <% @favorite_recipes.each do |recipe| %>
-        <div class="card-recipe m-3">
-          <%= link_to recipe_path(recipe), class:"card-recipe" do %>
-            <div class="square">
-              <%= image_tag (cl_image_path(recipe.photo.key)), class: "rounded", style: "width: 100%; height: 100%; object-fit: cover;" %>
-            </div>
-            <h2 class="recipe-name mt-2"><%= recipe.title %></h2>
-            <i class="fa-regular fa-clock"></i>
-            <span class="time-recipe"><%= recipe.cooking_time %> min</span>
-          <% end %>
-        </div>
+        <%= render "recipes/card", recipe: recipe %>
       <% end %>
     </div>
   </div>
 </div>
 
-<div class="mt-4 bg-white rounded-2">
+<div class="mt-4 rounded-2">
   <div class="container">
-    <h3 class="title"> ... et celles qui me font de l'oeil 👀 </h3>
-    <div class= "d-flex overflow-x-auto">
+    <h3 class="title"> ... et celles qui me font de l'oeil </h3>
+    <div class= "d-flex overflow-x-auto p-2">
       <% @recipes_user2.each do |recipe| %>
-        <div class="card-recipe m-3">
-          <%= link_to recipe_path(recipe), class:"card-recipe" do %>
-            <div class="square">
-              <%= image_tag (cl_image_path(recipe.photo.key)), class: "rounded", style: "width: 100%; height: 100%; object-fit: cover;" %>
-            </div>
-            <h2 class="recipe-name mt-2"><%= recipe.title %></h2>
-            <i class="fa-regular fa-clock"></i>
-            <span class="time-recipe"><%= recipe.cooking_time %> min</span>
-          <% end %>
-        </div>
+         <%= render "recipes/card", recipe: recipe %>
       <% end %>
     </div>
   </div>
 </div>
 
-<div class="mt-4 bg-white rounded-2">
+<div class="mt-4 rounded-2">
   <div class="container">
-    <h3 class="title">Toutes mes oeuvres d'art 🎨 </h3>
-    <div class= "input-grid">
+    <h3 class="title">Toutes mes oeuvres d'art </h3>
+    <div class= "input-grid p-2">
       <% @my_recipes.each do |recipe| %>
-        <div class="card-recipe m-3">
-          <%= link_to recipe_path(recipe), class:"card-recipe" do %>
-            <div class="square">
-              <%= image_tag (cl_image_path(recipe.photo.key)), class: "rounded", style: "width: 100%; height: 100%; object-fit: cover;" %>
-            </div>
-            <h2 class="recipe-name mt-2"><%=recipe.title%></h2>
-            <i class="fa-regular fa-clock"></i>
-            <span class="time-recipe"><%=recipe.cooking_time%> min</span>
-          <% end %>
-        </div>
+         <%= render "recipes/card", recipe: recipe %>
       <% end %>
     </div>
   </div>

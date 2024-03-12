@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <div class="content_container">
+    <div class="content_container <%= 'bg-index' if current_page?(my_recipes_path) %>">
       <%= yield %>
     </div>
     <%= render "shared/navbar" %>
