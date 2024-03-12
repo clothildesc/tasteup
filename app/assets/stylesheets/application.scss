@@ -10,6 +10,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "recipes/index";
 
 
 .content_container {
@@ -17,7 +18,6 @@
   max-height: calc(100vh - 96px);
   margin-bottom: 96px;
   overflow: scroll;
-  margin-bottom: 96px;
 }
 
 .content_container_without_navbar {

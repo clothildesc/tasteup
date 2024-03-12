@@ -5,7 +5,7 @@
   border-bottom: 2.5px solid $black;
   border-left: 2.5px solid $black;
   border-right: none;
-  border-style: 4px solid black;
+  background-color: rgba(226, 246, 148, 0.57);
 }
 
 #btn_search {
@@ -14,10 +14,9 @@
   border-bottom: 2.5px solid $black;
   border-right: 2.5px solid $black;
   border-left: none;
-
 }
 
 .form-control-sm {
   background-color: rgba(226, 246, 148, 0.57);
-  border-style: 4px solid black;;
+  border-style: 4px solid black;
 }
