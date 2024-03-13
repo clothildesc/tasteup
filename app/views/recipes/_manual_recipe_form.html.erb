@@ -1,0 +1,135 @@
+<%= simple_form_for recipe, html: { class: action_name == "scrap" ? "" : "d-none", data: { url_or_form_target: "nextStep", aim: "form", controller: "step-form" }} do |f| %>
+  <section class="d-none" data-step="0" data-step-form-target="step">
+    <%= f.input :title,
+      required: false,
+      input_html: { class: "form-input"},
+      label_html: { style: "font-size:1.5em;" },
+      label: 'Titre de la recette',
+      placeholder: 'Ex : Cookies maison' %>
+    <div class="d-flex align-items-center justify-content-between">
+      <small data-action="click->url-or-form#return" class="me-3">← Précédent</small>
+      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+    </div>
+  </section>
+  <section class="d-none" data-step="1" data-step-form-target="step">
+    <p style="font-size:1.5em;">Nombre de portions</p>
+    <div class="input-with-text">
+      <%= f.input :number_of_servings,
+        required: false,
+        label: false,
+        input_html: { class: "form-input", style: "margin-bottom: 0 !important;" },
+        style: "margin-bottom: 0 !important;",
+        wrapper_html: { style: "margin-bottom: 0 !important;" } %>
+      <span class="input-text">personnes</span>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+    </div>
+  </section>
+  <section class="d-none" data-step="2" data-step-form-target="step">
+    <p style="font-size:1.5em;">Difficulté</p>
+    <%= f.input :difficulty,
+        required: false,
+        label: false,
+        input_html: { class: "form-input"},
+        collection: ['Très facile', 'Facile', 'Moyenne', 'Difficile'],
+        as: :select,
+        include_blank: 'choisir' %>
+    <div class="d-flex align-items-center justify-content-between">
+      <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+      <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+    </div>
+  </section>
+  <section class="d-none" data-step="3" data-step-form-target="step">
+    <div>
+      <p style="font-size:1.5em;">Temps de préparation</p>
+      <div class="input-with-text">
+        <%= f.input :preparation_time,
+        required: false,
+        label: false,
+        input_html: { class: "form-input-square", style: "margin-bottom: 0 !important;" },
+        wrapper_html: { style: "margin-bottom: 0 !important;" } %>
+        <span class="input-text">minutes</span>
+      </div>
+      <div>
+        <p style="font-size:1.5em;">Temps de cuisson</p>
+        <div class="input-with-text">
+          <%= f.input :cooking_time,
+        required: false,
+        label: false,
+        input_html: { class: "form-input-square", style: "margin-bottom: 0 !important;" },
+        wrapper_html: { style: "margin-bottom: 0 !important;" } %>
+          <span class="input-text">minutes</span>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      </div>
+    </section>
+    <section class="d-none" data-step="4" data-step-form-target="step">
+      <legend style="font-size:1.5em;">Ingrédients</legend>
+      <%= f.abyme_for(:recipe_ingredients) do |abyme| %>
+        <%= abyme.records %>
+        <%= abyme.new_records %>
+        <div class="d-flex">
+          <%= add_associated_record(tag: :div, html: { class: "flex" }) do %>
+            <div class="tiny-square">
+              <i class="fa-solid fa-circle-plus"></i>
+            </div>
+          <% end %>
+          <p>Ajouter un ingrédient</p>
+        <% end %>
+      </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      </div>
+    </section>
+    <section class="d-none" data-step="5" data-step-form-target="step">
+      <legend style="font-size:1.5em;">Étapes</legend>
+      <%= f.abyme_for(:preparation_steps) do |abyme| %>
+        <%= abyme.records %>
+        <%= abyme.new_records %>
+        <div class="d-flex">
+          <%= add_associated_record(tag: :div, html: { class: "flex" }) do %>
+            <div class="tiny-square">
+              <i class="fa-solid fa-circle-plus"></i>
+            </div>
+          <% end %>
+          <span class="ms-2">Ajouter une étape</span>
+        <% end %>
+      </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      </div>
+    </section>
+    <section class="d-none" data-step="6" data-step-form-target="step">
+      <legend style="font-size:1.5em;">Tags</legend>
+      <div data-controller="toggle-form">
+        <div class="d-flex">
+          <div class="tiny-square" data-toggle-form-target="button" data-action="click->toggle-form#fire">
+            <i class="fa-solid fa-circle-plus" ></i>
+          </div>
+          <p>Ajouter un tag</p>
+        </div>
+        <div class="d-none" data-toggle-form-target="category">
+          <%= f.association :categories, as: :check_boxes, label_method: lambda { |item| render "recipes/category_label", item: item } %>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <button class="form-button"  data-action="click->step-form#next">Suivant</button>
+      </div>
+    </section>
+    <section class="d-none" data-step="7" data-step-form-target="step">
+      <%= f.input :photo, as: :file, label: 'Ajouter une photo' %>
+      <div class="d-flex align-items-center justify-content-between">
+        <small data-action="click->step-form#previous" class="me-3">← Précédent</small>
+        <%= f.submit "Sauvegarder",
+    class: "form-button" %>
+      </div>
+    </section>
+  <% end %>

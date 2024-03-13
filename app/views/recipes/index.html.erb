@@ -1,24 +1,13 @@
 <div class="container landing-header px-4 pt-4">
   <div class="d-flex justify-content-center text-center">
-    <h3 class="flex-grow-1"> Inspiration</h3>
+    <h3 class="flex-grow-1"> Toutes les recettes</h3>
   </div>
 </div>
 
 <div class="mt-4 pt-1 bg-white rounded-2">
   <div class="container">
-    <h3 class="title">Les recettes populaires 💫</h3>
-    <div class= "d-flex overflow-x-auto">
-      <%= render "recipes/cards", recipes: @recipes.first(3) %>
+    <div class="input-grid">
+      <%= render "recipes/card", recipes: @recipes %>
     </div>
-  </div>
-</div>
-
-<div class="mt-4 pt-1 bg-white rounded-2">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
-      <h3 class="title">Toutes les pépites 🤩</h3>
-      <span class="see-all"><small>Voir tout</small></span>
-    </div>
-    <%= render "recipes/cards", recipes: @recipes %>
   </div>
 </div>
