@@ -14,8 +14,10 @@
           <%= button_to "Suivre", follow_user_path(@user), data: { turbo_method: :post } %>
         <% end %>
       <% end %>
-      <div class= "d-flex">
-      <%= render "recipes/card", recipes: @recipes %>
+      <div class= "d-flex overflow-x-auto p-2">
+        <div class="input-grid">
+          <%= render "recipes/card", recipes: @recipes %>
+        </div>
       </div>
     </div>
   </div>
