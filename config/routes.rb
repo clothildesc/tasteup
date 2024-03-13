@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     member do
       post 'favorite'
     end
-    # member do
-    #   post :duplicate
-    # end
+    member do
+      post :duplicate
+    end
     collection do
       get :inspiration
       get :scrap
