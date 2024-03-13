@@ -12,3 +12,4 @@ eagerLoadControllersFrom("controllers", application)
 
 import { AbymeController } from 'abyme';
 application.register('abyme', AbymeController);
+
