@@ -4,10 +4,13 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["nextStep", "choices"];
 
+  connect() {
+    this.nextStepTargets.forEach((step) => step.classList.add("d-none"));
+  }
+
   show(event) {
     event.preventDefault();
     const aim = event.currentTarget.dataset.aim;
-    this.nextStepTargets.forEach((step) => step.classList.add("d-none"));
     this.nextStepTargets
       .find((step) => step.dataset.aim === aim)
       .classList.remove("d-none");
