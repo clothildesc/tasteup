@@ -1,11 +1,11 @@
 #input_field {
   border-radius: 50px 0 0 50px;
   outline: none;
-  border-top: 2.5px solid $black;
-  border-bottom: 2.5px solid $black;
-  border-left: 2.5px solid $black;
+  border-top: 2.5px solid $black !important;
+  border-bottom: 2.5px solid $black !important;
+  border-left: 2.5px solid $black !important;
   border-right: none;
-  background-color: rgba(226, 246, 148, 0.57);
+  background-color: rgba(226, 246, 148, 0.57) !important;
 }
 
 #btn_search {
