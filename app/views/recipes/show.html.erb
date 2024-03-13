@@ -99,16 +99,19 @@
   </div>
   <div>
     <!-- Onglet ingrédients -->
-    <div class="tab on" data-tab-target="tab" data-id="1">
+    <div class="tab on" data-tab-target="tab" data-id="1" data-controller="servings" data-servings-nb-servings-value="<%= @recipe.number_of_servings %>">
       <div class="d-flex justify-content-around text-center mt-3">
-        <span>-</span>
-        <span>Nombre de personnes : <strong><%= @recipe.number_of_servings %></strong></span>
-        <span>+</span>
+        <span data-action="click->servings#decrement" >-</span>
+        <span >Nombre de personnes : <strong data-servings-target="nbServings"><%= @recipe.number_of_servings %></strong></span>
+        <span data-action="click->servings#increment">+</span>
       </div>
       <% @recipe.recipe_ingredients.each do |recipe_ingredient|%>
         <div class="list-ingredients d-flex justify-content-between py-2 px-3 mt-3">
           <%= recipe_ingredient.ingredient.name.capitalize %>
-          <strong><%= recipe_ingredient.quantity_value.to_s.chomp('.0') %> <%= recipe_ingredient.quantity_unit %></strong>
+          <strong data-servings-target="quantity">
+            <span class="js_quantity_value"><%= recipe_ingredient.quantity_value.to_s.chomp('.0') %></span>
+            <span class="js_quantity_unit"><%= recipe_ingredient.quantity_unit %></span>
+          </strong>
         </div>
       <% end %>
     </div>
