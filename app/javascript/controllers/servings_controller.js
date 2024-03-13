@@ -12,12 +12,18 @@ export default class extends Controller {
   }
 
   increment() {
-    const currentNbServings = this.nbServingsValue;
+    const currentNbServings = parseInt(this.nbServingsValue);
     this.nbServingsValue += 1;
-    
+
     this.quantityTargets.forEach(target => {
+      console.log(target)
+      console.log(this.nbServingsValue);
       const quantityElement = target.querySelector('.js_quantity_value');
-      let newValue = Math.round((this.nbServingsValue * (parseFloat(quantityElement.innerText) / currentNbServings))*2)/2;
+      // let newValue = Math.round((this.nbServingsValue * (parseFloat(quantityElement.innerText) / currentNbServings))*2)/2;
+      let newValue = Math.round((this.nbServingsValue * (parseFloat(quantityElement.innerText) / currentNbServings))*10)/10;
+      console.log(parseFloat(quantityElement.innerText));
+      console.log(currentNbServings);
+      console.log(newValue)
       const unitElement = target.querySelector('.js_quantity_unit');
       if (unitElement.innerText == "sachet" && newValue > 1) {
         unitElement.innerText = "sachets";
@@ -37,7 +43,8 @@ export default class extends Controller {
 
       this.quantityTargets.forEach(target => {
         const quantityElement = target.querySelector('.js_quantity_value');
-        let newValue = Math.round((this.nbServingsValue * (parseFloat(quantityElement.innerText) / currentNbServings))*2)/2;
+        // let newValue = Math.round((this.nbServingsValue * (parseFloat(quantityElement.innerText) / currentNbServings))*2)/2;
+        let newValue = Math.round((this.nbServingsValue * (parseFloat(quantityElement.innerText) / currentNbServings))*10)/10;
         newValue = newValue < 0 ? 0 : newValue;
         const unitElement = target.querySelector('.js_quantity_unit');
         if (unitElement.innerText == "sachets" && newValue <= 1) {

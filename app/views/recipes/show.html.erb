@@ -16,7 +16,7 @@
       </div>
       <!-- Bouton retour -->
       <div id="back" class="white-button rounded-circle">
-        <%= link_to request.referer do %>
+        <%= link_to session[:history].reverse.find { |el| el.include?('my_') || el.include?('inspi') } || root_path do %>
           <i class="fa-solid fa-arrow-left" style="color: #000000;"></i>
         <% end %>
       </div>
