@@ -21,7 +21,7 @@
       <!-- Bouton retour -->
       <div id="back" class="white-button rounded-circle">
         <%= link_to session[:history].reverse.find { |el| el.include?('my_') || el.include?('inspi') } || root_path do %>
-          <i class="fa-solid fa-arrow-left" style="color: #000000;"></i>
+          <i class="fa-solid fa-arrow-left" style="color: #000000; "></i>
         <% end %>
       </div>
       <!-- Boutons edit/delete si current_user, sinon bouton like/unlike -->
@@ -29,12 +29,12 @@
         <% if current_user.favorited?(@recipe) %>
           <div id="like" class="red-button rounded-circle">
           <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: :post } do %>
-            <i class="fa-solid fa-heart" style="color: #000000;"></i>
+            <i class="fa-solid fa-heart" style="color: #000000; "></i>
           <% end %>
           </div>
           <div id="duplicate" class="white-button rounded-circle">
           <%= link_to duplicate_recipe_path(@recipe), data: { turbo_method: :post } do %>
-            <i class="fa-solid fa-copy" style="color: #000000;"></i>
+            <i class="fa-solid fa-copy" style="color: #000000; "></i>
           <% end %>
           </div>
         <% else %>
@@ -45,19 +45,19 @@
           </div>
           <div id="duplicate" class="white-button rounded-circle">
           <%= link_to duplicate_recipe_path(@recipe), data: { turbo_method: :post } do %>
-            <i class="fa-solid fa-copy" style="color: #000000;"></i>
+            <i class="fa-solid fa-copy" style="color: #000000; "></i>
           <% end %>
           </div>
         <% end %>
       <% else %>
         <div id="edit" class="red-button rounded-circle">
           <%= link_to edit_recipe_path(@recipe) do %>
-            <i class="fa-solid fa-pen" style="color: #000000;"></i>
+            <i class="fa-solid fa-pen" style="color: #000000; "></i>
           <% end %>
         </div>
         <div id="delete" class="white-button rounded-circle">
           <%= link_to recipe_path(@recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-            <i class="fa-solid fa-trash" style="color: #000000;"></i>
+            <i class="fa-solid fa-trash" style="color: #000000; "></i>
           <% end %>
         </div>
       <% end %>
@@ -88,12 +88,12 @@
     </div>
     <!-- Temps preparation -->
     <div class="d-flex px-3 py-2">
-      <small><i class="fa-solid fa-spoon" style="color: #FF4051;"></i></small>
+      <small><i class="fa-solid fa-spoon" style="color: #FF4051;  "></i></small>
       <span class="ms-1"><%= @recipe.preparation_time %>min</span>
     </div>
     <!-- Temps cuisson -->
     <div class="d-flex px-3 py-2">
-      <small><i class="fa-solid fa-fire" style="color: #FF4051;"></i></i></small>
+      <small><i class="fa-solid fa-fire" style="color: #FF4051;  "></i></i></small>
     <span class="ms-1"><%= @recipe.cooking_time %>min</span>
   </div>
 </div>
