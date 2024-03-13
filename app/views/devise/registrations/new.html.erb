@@ -1,5 +1,5 @@
-<h2>Inscription</h2>
-
+<h1 class="title-register text-center" >Inscription</h1>
+<div class="text-typo container-register">
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
@@ -26,9 +26,11 @@
                 input_html: { autocomplete: "new-password" } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  <div class="form-actions button-register">
+    <%= f.button :submit, "Se créer un compte" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+  <div class="link-register  align-itme-center">
+    <%= render "devise/shared/links"%>
+  </div>
+</div>

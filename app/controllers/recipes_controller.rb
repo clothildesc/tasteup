@@ -51,7 +51,7 @@ class RecipesController < ApplicationController
     @ingredients = Ingredient.all
     @categories = Category.all
     @preparation_step = PreparationStep.new
-    render :edit
+    redirect_to recipe_path(@recipe)
   end
 
   def show
