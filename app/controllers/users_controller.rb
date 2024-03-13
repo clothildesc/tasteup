@@ -4,6 +4,14 @@ class UsersController < ApplicationController
   def recipes
     @user = User.find(params[:id])
     @recipes = @user.recipes
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        recipes.title ILIKE :query
+        OR ingredients.name ILIKE :query
+        OR categories.name ILIKE :query
+      SQL
+      @recipes = @recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def follow
