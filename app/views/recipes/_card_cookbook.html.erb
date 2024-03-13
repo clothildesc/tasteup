@@ -5,11 +5,13 @@
         <%= image_tag (recipe.photo.attached? ? cl_image_path(recipe.photo.key) : "https://placehold.co/600x400"), alt: recipe.title %>
       </div>
     <% end %>
+    <div id="avatar-cookbook">
+          <%= link_to recipes_user_path(user) do %>
+           <%= image_tag user.photo, class: "avatar-small me-2" %>
+          <% end %>
+    </div>
   </div>
   <div class="d-flex align-items-center">
-    <%= link_to recipes_user_path(user), class:"link-custom" do %>
-      <%= image_tag user.photo, class: "avatar-small" %>
-      <h2 class="recipe-name mt-2 mb-0">Recettes de <%= user.first_name %></h2>
-    <% end %>
+    <h2 class="recipe-name mt-2">Recettes de <%= user.first_name %></h2>
   </div>
 </div>
