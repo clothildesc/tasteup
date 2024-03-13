@@ -1,0 +1,21 @@
+.title-register {
+  font-family: 'Quicksand';
+  font-size: 40px;
+  padding-top: 26px;
+}
+.container-register {
+  margin: 0 auto;
+  width: 75%; /* Ajustez la largeur selon vos préférences */
+  border: 2px solid #FF4051; /* Couleur et épaisseur de la bordure */
+  padding: 20px; /* Espacement à l'intérieur de la bordure */
+  border-radius: 30px;
+  background-color: white;
+  margin-top: 20px !important;
+}
+.link-register {
+  a {
+    text-decoration: none !important;
+    color: black;
+    font-size: 10px;
+  }
+}
