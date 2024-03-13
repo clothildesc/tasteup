@@ -20,8 +20,10 @@ class CreateRecipeFromScrapData
       @recipe.preparation_steps.create(step_data)
     end
 
-    category = Category.find_or_create_by(name: @scrap_data[:category_name])
-    @recipe.recipe_categories.create(category: category)
+    if @scrap_data[:category_name]
+      category = Category.find_or_create_by(name: @scrap_data[:category_name])
+      @recipe.recipe_categories.create(category: category)
+    end
 
     @recipe.photo.attach(
       io: URI.open(@scrap_data[:image_name]),

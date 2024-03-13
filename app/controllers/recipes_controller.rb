@@ -37,10 +37,10 @@ class RecipesController < ApplicationController
   def favorite
     if current_user.favorited?(@recipe)
       current_user.unfavorite(@recipe)
-      redirect_to recipe_path(@recipe), notice: "Recette retirée des favoris."
+      redirect_to recipe_path(@recipe), notice: "Recette retirée des favoris." and return
     else
       current_user.favorite(@recipe)
-      redirect_to recipe_path(@recipe), notice: "Recette ajoutée aux favoris."
+      redirect_to recipe_path(@recipe), notice: "Recette ajoutée aux favoris." and return
     end
   end
 
@@ -51,11 +51,10 @@ class RecipesController < ApplicationController
     @ingredients = Ingredient.all
     @categories = Category.all
     @preparation_step = PreparationStep.new
-    render :new
+    render :edit
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
     @user = @recipe.user
     @recipe_ingredients = @recipe.recipe_ingredients.includes(:ingredient)
   end
@@ -65,6 +64,7 @@ class RecipesController < ApplicationController
     @ingredients = Ingredient.all
     @categories = Category.all
     @preparation_step = PreparationStep.new
+    @step = params[:step]
   end
 
   def create
@@ -82,11 +82,9 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe), notice: "Votre recette a été modifiée."
     else
@@ -120,7 +118,6 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_to my_recipes_path, notice: "Votre recette a été supprimée."
   end
