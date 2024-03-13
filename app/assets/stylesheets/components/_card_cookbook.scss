@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0px;
+  position: relative;
 
   .recipe-image {
     border-radius: 5px;
@@ -13,5 +14,11 @@
       height: 100%;
       object-fit: cover;
     }
+  }
+
+  #avatar-cookbook {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
   }
 }
