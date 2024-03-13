@@ -4,46 +4,32 @@
     <%= image_tag @user.photo, class: "avatar" %>
   </div>
   <h3 class="mb-4"> On cuisine quoi aujourd'hui ?</h3>
-  <%= form_with url: my_recipes_path, method: :get, class: "d-flex"  do %>
-    <%= text_field_tag :query,
-              params[:query],
-              class: "form-control form-control-sm", id: "input_field",
-              placeholder: "Envie de... ?" %>
-    <button type="submit" class="btn form-control-sm", id="btn_search">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-  <% end %>
+  <%= render "recipes/search_bar", path: my_recipes_path %>
 </div>
 
-<div class="mt-2 rounded-2 py-3">
-  <div class="container">
-    <h3 class="title"> Mes recettes préférées 😍</h3>
-    <div class= "d-flex overflow-x-auto p-2" id="fav-recipes-container">
-      <% if @favorite_recipes.any? %>
-      <%= render "recipes/card", recipes: @favorite_recipes %>
-      <% else %>
-      <div class="container">
-        <p>Pas de recettes disponibles.</p>
+<% if @favorite_recipes.any? %>
+  <div class="mt-2 rounded-2 py-3">
+    <div class="container">
+      <h3 class="title"> Mes recettes préférées 😍</h3>
+      <div class= "d-flex overflow-x-auto p-2" id="fav-recipes-container">
+        <%= render "recipes/card", recipes: @favorite_recipes %>
       </div>
-      <% end %>
     </div>
   </div>
-</div>
+<% end %>
 
-<div class="mt-2 rounded-2 py-3">
-  <div class="container">
-    <h3 class="title"> Les recettes de mes amis 🤗</h3>
-    <div class= "d-flex overflow-x-auto" id="fav-recipes-container">
-      <% if @favorited_users_recipes.any? %>
-      <%= render "recipes/card", recipes: @favorited_users_recipes %>
-      <% else %>
-      <div class="container">
-        <p>Pas de recettes disponibles.</p>
+<% unless params[:query].present? %>
+  <div class="mt-2 rounded-2 py-3">
+    <div class="container">
+      <h3 class="title"> Les recettes de mes amis 🤗</h3>
+      <div class= "d-flex overflow-x-auto" id="fav-recipes-container">
+        <% @favorited_users.each do |user| %>
+          <%= render "recipes/card_cookbook", user: user %>
+        <% end %>
       </div>
-      <% end %>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class="mt-4 rounded-2">
   <div class="container">

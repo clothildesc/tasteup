@@ -1,4 +1,4 @@
-<%= simple_form_for recipe, html: { class: action_name == "scrap" ? "" : "d-none", data: { url_or_form_target: "nextStep", aim: "form", controller: "step-form" }} do |f| %>
+<%= simple_form_for recipe, html: { data: { url_or_form_target: "nextStep", aim: "form", controller: "step-form" }} do |f| %>
   <section class="d-none" data-step="0" data-step-form-target="step">
     <%= f.input :title,
       required: false,

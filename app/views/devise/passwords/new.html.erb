@@ -1,5 +1,5 @@
-<h2>Forgot your password?</h2>
-
+<h2 class="title-typo-password text-center">Mot de pass oublié ?</h2>
+<div class="container-password">
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= f.error_notification %>
 
@@ -10,9 +10,11 @@
                 input_html: { autocomplete: "email" } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
+  <div class="form-actions d-flex justify-content-center text-password">
+   <%= f.button :submit, "Envoyez", class: "" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <% end %>
+  <div class="link-password link">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

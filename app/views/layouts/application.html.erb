@@ -36,12 +36,13 @@
     <% if controller_name.in?(%w[sessions registrations passwords unlocks]) || action_name == "home" %>
       <% background_class = controller_name.in?(%w[sessions registrations passwords unlocks]) ? 'background-devise' : 'background-home' %>
       <div class="content_container_without_navbar <%= background_class %>">
-      <% else %>
-        <div class="content_container <%= 'bg-index' if current_page?(my_recipes_path) %>">
-        <% end %>
-        <%= yield %>
-      </div>
-      <%= render "shared/navbar" unless controller_name.in?(%w[sessions registrations passwords unlocks]) || action_name == "home" %>
-      <%#= render "shared/flashes" %>
-    </body>
-  </html>
+    <% else %>
+      <div class="content_container <%= 'bg-index' if current_page?(my_recipes_path) %>">
+    <% end %>
+      <%= yield %>
+    </div>
+    <%= render "shared/navbar" unless controller_name.in?(%w[sessions registrations passwords unlocks]) || action_name == "home" %>
+    <%= render "shared/flashes" %>
+
+  </body>
+</html>
