@@ -27,6 +27,14 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        recipes.title ILIKE :query
+        OR ingredients.name ILIKE :query
+        OR categories.name ILIKE :query
+      SQL
+      @recipes = @recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def inspiration

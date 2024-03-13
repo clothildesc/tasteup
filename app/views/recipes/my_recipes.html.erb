@@ -4,7 +4,7 @@
     <%= image_tag @user.photo, class: "avatar" %>
   </div>
   <h3 class="mb-4"> On cuisine quoi aujourd'hui ?</h3>
-  <%= render "recipes/search_bar" %>
+  <%= render "recipes/search_bar", path: my_recipes_path %>
 </div>
 
 <% if @favorite_recipes.any? %>
