@@ -46,10 +46,10 @@ class RecipesController < ApplicationController
   def favorite
     if current_user.favorited?(@recipe)
       current_user.unfavorite(@recipe)
-      redirect_to recipe_path(@recipe), notice: "Recette retirée des favoris." and return
+      redirect_to recipe_path(@recipe), notice: "Recette retirée des favoris" and return
     else
       current_user.favorite(@recipe)
-      redirect_to recipe_path(@recipe), notice: "Recette ajoutée aux favoris." and return
+      redirect_to recipe_path(@recipe), notice: "Recette ajoutée aux favoris" and return
     end
   end
 
