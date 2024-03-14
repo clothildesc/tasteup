@@ -3,7 +3,7 @@
   <div class="recipe-preview">
     <% user.recipes.limit(4).each do |recipe| %>
       <div class="recipe-image">
-        <%= image_tag (recipe.photo.attached? ? cl_image_path(recipe.photo.key) : "https://placehold.co/600x400"), alt: recipe.title %>
+        <%= image_tag (recipe.photo.attached? ? cl_image_path(recipe.photo.key) : image_path("placeholder-image.png")), alt: recipe.title %>
       </div>
     <% end %>
     <div id="avatar-cookbook">

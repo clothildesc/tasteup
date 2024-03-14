@@ -161,6 +161,7 @@ input[type="number"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 30px;
 }
 
 .upload-photo {
@@ -170,4 +171,8 @@ input[type="number"] {
   font-weight: 500;
   background: white;
   border-radius: 2px;
+}
+
+.ts-control {
+  border: none !important;
 }
