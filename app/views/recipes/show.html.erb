@@ -1,6 +1,6 @@
  <!-- app/views/offers/show.html.erb -->
  <% content_for :meta_title, "#{@recipe.title} is on #{DEFAULT_META["meta_product_name"]}" %>
- <% content_for :meta_image, cl_image_path(@recipe.photo.key) %>
+ <% content_for :meta_image, cl_image_path(@recipe.photo.key) if @recipe.photo.attached? %>
 
 <!-- Image de la recette -->
 <div class="container-fluid">
@@ -10,7 +10,7 @@
     <% if @recipe.photo.attached? %>
       background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), url('<%= cl_image_path(@recipe.photo.key) %>');
     <% else %>
-      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), url('https://placehold.co/600x400');
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), url('<%= asset_path("placeholder-image.png") %>');
     <% end %>">
       <!-- Tags sur l'image -->
       <div class="categories-overlay mb-2">
