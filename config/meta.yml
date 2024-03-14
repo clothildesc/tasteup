@@ -1,6 +1,5 @@
  # config/meta.yml
  meta_product_name: "Taste Up"
  meta_title: "Taste Up - Enregistrez vos recettes et partagez-les avec le monde entier"
- meta_description: "Taste Up est une application web qui vous permet d'enregistrer vos recettes et de les partager avec le monde entier. Créez votre compte et commencez à partager vos recettes dès aujourd'hui !"
- meta_image: "cover.png" # should exist in `app/assets/images/`
- 
+ meta_description: "Taste Up - est une application web qui vous permet d'enregistrer vos recettes et de les partager avec le monde entier. Créez votre compte et commencez à partager vos recettes dès aujourd'hui !"
+ meta_image: "cover.png" # should exist in `app/assets/images/
