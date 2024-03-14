@@ -9,9 +9,11 @@
 // Define fonts for body and headers
 // $body-font: "Open Sans", "Helvetica", "sans-serif";
 $body-font: "Sarala";
-$headers-font: "Asap", "cursive";
-// $body-font: "Work Sans", "Helvetica", "sans-serif";
-// $headers-font: "Nunito", "Helvetica", "sans-serif";
+$headers-font: "Nunito", "Helvetica", "sans-serif";
+
+h3 {
+  font-family: "Indie Flower", cursive !important;
+}
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

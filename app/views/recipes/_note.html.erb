@@ -1,8 +1,14 @@
 <div data-controller="note">
   <div class="note-container">
-    <p data-note-target="content" class="m-4">
-      <%= recipe.note %>
-    </p>
+    <% if @recipe.note.empty? %>
+      <p data-note-target="content" class="m-4">
+        Ajouter un commentaire à propos de la recette...
+      </p>
+    <% else %>
+      <p data-note-target="content" class="m-4">
+        <%= recipe.note %>
+      </p>
+    <% end %>
     <span data-note-target="infos" data-action="click->note#displayForm" class="edit-btn">
       <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
     </span>
