@@ -40,7 +40,7 @@
     <% end %>
       <%= yield %>
     </div>
-    <%= render "shared/navbar" unless controller_name.in?(%w[sessions registrations passwords unlocks]) || action_name == "home" %>
+    <%= render "shared/navbar", user: current_user unless controller_name.in?(%w[sessions registrations passwords unlocks]) || action_name == "home" %>
     <%= render "shared/flashes" %>
 
   </body>
