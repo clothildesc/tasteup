@@ -19,4 +19,9 @@
 .form-control-sm {
   background-color: rgba(226, 246, 148, 0.57);
   border-style: 4px solid black;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
 }

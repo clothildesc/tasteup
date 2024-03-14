@@ -9,7 +9,7 @@
     <%= link_to new_recipe_path, class: "navbar-brand navbar-add" do %>
       <%= image_tag "add.png" %>
     <% end %>
-    <%= link_to recipes_path, class: "navbar-brand #{"button-on-navbar" if controller_name == "recipes" && action_name == "index"}" do %>
+    <%= link_to recipes_user_path(user), class: "navbar-brand #{"button-on-navbar" if controller_name == "users" && action_name == "recipes"}" do %>
       <%= image_tag "book.png", class: "book-icon" %>
     <% end %>
     <%= link_to destroy_user_session_path, class: "navbar-brand", data: { turbo_method: :delete } do %>

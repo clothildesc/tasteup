@@ -19,23 +19,25 @@
 <% end %>
 
 <% unless params[:query].present? %>
-  <div class="mt-2 rounded-2 py-3">
-    <div class="container">
-      <h3 class="title"> Les recettes de mes amis 🤗</h3>
-      <div class= "d-flex overflow-x-auto" id="fav-recipes-container">
-        <% @favorited_users.each do |user| %>
-          <%= render "recipes/card_cookbook", user: user %>
-        <% end %>
+  <% if @favorited_users.any? %>
+    <div class="mt-2 rounded-2 py-3">
+      <div class="container">
+        <h3 class="title"> Les recettes de mes amis 🤗</h3>
+        <div class= "d-flex overflow-x-auto" id="fav-recipes-container">
+          <% @favorited_users.each do |user| %>
+            <%= render "recipes/card_cookbook", user: user %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <div class="mt-4 rounded-2">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
       <h3 class="title">Toutes mes recettes 🧑‍🍳</h3>
-      <%= link_to "Voir tout", recipes_user_path(current_user.id), class:"see-all" %>
+      <span class="me-2"><%= link_to "Voir tout", recipes_user_path(current_user.id), class:"see-all" %></span>
     </div>
     <div class= "d-flex overflow-x-auto p-2">
       <div class="input-grid">
