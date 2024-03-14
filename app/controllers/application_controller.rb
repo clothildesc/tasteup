@@ -24,9 +24,6 @@ class ApplicationController < ActionController::Base
     session[:history] ||= []
     session[:history] << request.fullpath
     session[:history].delete_at 0 if session[:history].size == 6
-    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    puts "History:"
-    p session[:history]
-    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    session[:history]
   end
 end
