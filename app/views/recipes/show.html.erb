@@ -27,9 +27,9 @@
       <!-- Boutons edit/delete si current_user, sinon bouton like/unlike -->
       <% if user_signed_in? && @recipe.user_id != current_user.id %>
         <% if current_user.favorited?(@recipe) %>
-          <div id="like" class="red-button rounded-circle">
+          <div id="like" class="white-button rounded-circle">
           <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: :post } do %>
-            <i class="fa-solid fa-heart" style="color: #000000; "></i>
+            <i class="fa-solid fa-heart" style="color: #FF4051; "></i>
           <% end %>
           </div>
           <div id="duplicate" class="white-button rounded-circle">
@@ -38,9 +38,9 @@
           <% end %>
           </div>
         <% else %>
-          <div id="like" class="red-button rounded-circle">
+          <div id="like" class="white-button rounded-circle">
           <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: :post } do %>
-            <i class="fa-solid fa-heart" style="color: #ffffff;"></i>
+            <i class="fa-regular fa-heart" style="color: #000000;"></i>
           <% end %>
           </div>
           <div id="duplicate" class="white-button rounded-circle">
