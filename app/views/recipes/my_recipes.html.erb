@@ -37,7 +37,7 @@
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
       <h3 class="title">Toutes mes recettes 🧑‍🍳</h3>
-      <%= link_to "Voir tout", recipes_user_path(current_user.id), class:"see-all" %>
+      <span class="me-2"><%= link_to "Voir tout", recipes_user_path(current_user.id), class:"see-all" %></span>
     </div>
     <div class= "d-flex overflow-x-auto p-2">
       <div class="input-grid">
