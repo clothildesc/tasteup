@@ -5,18 +5,25 @@
     <%= link_to "Ajouter une URL", "", data: { action: "click->url-or-form#show", aim: "url" }, class: "choice-card" %>
   </div>
   <%= render "manual_recipe_form", recipe: @recipe %>
-
-  <%= simple_form_for :scrap, url: scrap_recipes_path, method: :get, html: { class: "d-none", data: { url_or_form_target: "nextStep", aim: "url" }} do |f| %>
-    <%= f.input :url,
-    required: false,
-    label: 'Renseigner une URL',
-    input_html: { class: "form-input"},
-    placeholder: 'https://www.exemple.com'%>
-    <div class="d-flex align-items-center justify-content-between">
+  <div data-controller="delay" data-url-or-form-target="nextStep" data-aim="url" class="d-none">
+    <%= simple_form_for :scrap, url: scrap_recipes_path, method: :get, html: { data: { delay_target:"form" }} do |f| %>
+      <%= f.input :url,
+        required: false,
+        label: 'Renseigner une URL',
+        input_html: { class: "form-input", data: { delay_target: "input" }},
+        placeholder: 'https://www.exemple.com'%>
+      <%= f.submit "Sauvegarder", class: "form-button d-none", data: { delay_target: "realButton"} %>
+    <% end %>
+    <div class="d-flex align-items-center justify-content-between" data-delay-target="fakeButton">
       <small data-action="click->url-or-form#return" class="me-3">← Précédent</small>
-      <div class="text-center">
-        <%= f.submit "Sauvegarder", class: "form-button" %>
+      <button class="form-button" data-action="click->delay#show" >Sauvegarder</button>
+    </div>
+    <div class="loader-container d-none d-flex flex-column align-items-center" data-delay-target="spinner">
+      <div class="spinner-grow text-danger mb-4" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div data-delay-target="typedContainer">
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
