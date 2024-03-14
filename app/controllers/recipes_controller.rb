@@ -39,7 +39,8 @@ class RecipesController < ApplicationController
 
   def inspiration
     @popular_recipes = Recipe.joins(:favorited).group(:id).order('count(favorites.id) DESC').limit(5)
-    @preview_recipes = Recipe.where.not(user_id: current_user.id).order(created_at: :desc).limit(10)
+    popular_recipe_ids = @popular_recipes.pluck(:id)
+    @preview_recipes = Recipe.where.not(id: popular_recipe_ids).where.not(user_id: current_user.id).order(created_at: :desc).limit(10)
   end
 
   def favorite
