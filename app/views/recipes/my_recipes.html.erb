@@ -1,7 +1,7 @@
 <div class="container landing-header px-4 pt-5 pb-3">
   <div class="d-flex">
     <h3 class="flex-grow-1"> Bonjour <%= @user.first_name %> !</h3>
-    <%= image_tag @user.photo, class: "avatar" %>
+    <%= cl_image_tag @user.photo.key, class: "avatar" %>
   </div>
   <h3 class="mb-4"> On cuisine quoi aujourd'hui ?</h3>
   <%= render "recipes/search_bar", path: my_recipes_path %>
