@@ -5,12 +5,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @recipes = @user.recipes.order(created_at: :desc)
     if params[:query].present?
+      cleaned_query = params[:query].strip
       sql_subquery = <<~SQL
         recipes.title ILIKE :query
         OR ingredients.name ILIKE :query
         OR categories.name ILIKE :query
       SQL
-      @recipes = @recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @recipes = @recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{cleaned_query}%")
     end
   end
 

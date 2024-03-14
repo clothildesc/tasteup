@@ -6,7 +6,7 @@
     </div>
     <h2 class="recipe-name mt-2"><%= recipe.title %></h2>
     <i class="fa-regular fa-clock" style="color: #7EB030;"></i>
-    <span class="time-recipe"><%= recipe.cooking_time %> min</span>
+    <span class="time-recipe"><%= recipe.cooking_time + recipe.preparation_time %> min</span>
   <% end %>
 </div>
 <% end %>

@@ -12,15 +12,16 @@ class RecipesController < ApplicationController
       @favorited_users_recipes = Recipe.where(user_id: @favorited_users.pluck(:id))
 
     if params[:query].present?
+      cleaned_query = params[:query].strip
       sql_subquery = <<~SQL
         recipes.title ILIKE :query
         OR ingredients.name ILIKE :query
         OR categories.name ILIKE :query
       SQL
 
-      @favorite_recipes = @favorite_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
-      @my_recipes = @my_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
-      @favorited_users_recipes = @favorited_users_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @favorite_recipes = @favorite_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{cleaned_query}%")
+      @my_recipes = @my_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{cleaned_query}%")
+      @favorited_users_recipes = @favorited_users_recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{cleaned_query}%")
       @favorited_users_recipes = @favorited_users_recipes.where.not(id: @favorite_recipes.map(&:id))
     end
   end
@@ -28,12 +29,13 @@ class RecipesController < ApplicationController
   def index
     @recipes = Recipe.order(created_at: :desc)
     if params[:query].present?
+      p cleaned_query = params[:query].strip
       sql_subquery = <<~SQL
         recipes.title ILIKE :query
         OR ingredients.name ILIKE :query
         OR categories.name ILIKE :query
       SQL
-      @recipes = @recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{params[:query]}%")
+      @recipes = @recipes.select("distinct recipes.*").joins(:ingredients, :categories).where(sql_subquery, query: "%#{cleaned_query}%")
     end
   end
 
