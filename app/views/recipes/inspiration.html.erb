@@ -4,14 +4,16 @@
   </div>
 </div>
 
-<div class="mt-4 pt-1 bg-white rounded-2">
-  <div class="container">
-    <h3 class="title">Les recettes populaires 💫</h3>
-    <div class= "d-flex overflow-x-auto p-2" id="fav-recipes-container">
-      <%= render "recipes/card", recipes: @popular_recipes %>
+<% if @popular_recipes.any? %>
+  <div class="mt-4 pt-1 bg-white rounded-2">
+    <div class="container">
+      <h3 class="title">Les recettes populaires 💫</h3>
+      <div class= "d-flex overflow-x-auto p-2" id="fav-recipes-container">
+        <%= render "recipes/card", recipes: @popular_recipes %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class="mt-4 pt-1 bg-white rounded-2">
   <div class="container">
