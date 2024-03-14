@@ -12,15 +12,17 @@
 @import "pages/index";
 @import "recipes/index";
 
+body {
+  font-size: 16px;
+}
 
 .content_container {
   min-height: calc(100vh - 96px);
   max-height: calc(100vh - 96px);
   margin-bottom: 96px;
-  overflow: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
-
 }
 
 .content_container_without_navbar {
