@@ -1,156 +1,158 @@
  <!-- app/views/offers/show.html.erb -->
- <% content_for :meta_title, "#{@recipe.title} is on #{DEFAULT_META["meta_product_name"]}" %>
- <% content_for :meta_image, cl_image_path(@recipe.photo.key) if @recipe.photo.attached? %>
-
-<!-- Image de la recette -->
-<div class="container-fluid">
-  <div class="row">
-    <!-- Background image -->
-    <div class="col-12 px-0" id="img-banner" style="
+<% content_for :meta_title, "#{@recipe.title} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_image, cl_image_path(@recipe.photo.key) if @recipe.photo.attached? %>
+<div data-controller="delay">
+  <!-- Image de la recette -->
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Background image -->
+      <div class="col-12 px-0" id="img-banner" style="
     <% if @recipe.photo.attached? %>
       background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), url('<%= cl_image_path(@recipe.photo.key) %>');
     <% else %>
       background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%), url('<%= asset_path("placeholder-image.png") %>');
     <% end %>">
-      <!-- Tags sur l'image -->
-      <div class="categories-overlay mb-2">
-        <% @recipe.categories.each do |category|%>
-          <span class="category-tag">#<%= category.name %></span>
-        <% end %>
-      </div>
-      <!-- Bouton retour -->
-      <div id="back" class="white-button rounded-circle">
-        <%= link_to session[:history].reverse.find { |el| el.include?('my_') || el.include?('inspi') } || root_path do %>
-          <i class="fa-solid fa-arrow-left" style="color: #000000; "></i>
-        <% end %>
-      </div>
-      <!-- Boutons edit/delete si current_user, sinon bouton like/unlike -->
-      <% if user_signed_in? && @recipe.user_id != current_user.id %>
-        <% if current_user.favorited?(@recipe) %>
-          <div id="like" class="white-button rounded-circle">
-          <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: :post } do %>
-            <i class="fa-solid fa-heart" style="color: #FF4051; "></i>
-          <% end %>
-          </div>
-          <div id="duplicate" class="white-button rounded-circle">
-          <%= link_to duplicate_recipe_path(@recipe), data: { turbo_method: :post } do %>
-            <i class="fa-solid fa-copy" style="color: #000000; "></i>
-          <% end %>
-          </div>
-        <% else %>
-          <div id="like" class="white-button rounded-circle">
-          <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: :post } do %>
-            <i class="fa-regular fa-heart" style="color: #000000;"></i>
-          <% end %>
-          </div>
-          <div id="duplicate" class="white-button rounded-circle">
-          <%= link_to duplicate_recipe_path(@recipe), data: { turbo_method: :post } do %>
-            <i class="fa-solid fa-copy" style="color: #000000; "></i>
-          <% end %>
-          </div>
-        <% end %>
-      <% else %>
-        <div id="edit" class="red-button rounded-circle">
-          <%= link_to edit_recipe_path(@recipe) do %>
-            <i class="fa-solid fa-pen" style="color: #000000; "></i>
+        <!-- Tags sur l'image -->
+        <div class="categories-overlay mb-2">
+          <% @recipe.categories.each do |category|%>
+            <span class="category-tag">#<%= category.name %></span>
           <% end %>
         </div>
-        <div id="delete" class="white-button rounded-circle">
-          <%= link_to recipe_path(@recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
-            <i class="fa-solid fa-trash" style="color: #000000; "></i>
+        <!-- Bouton retour -->
+        <div id="back" class="white-button rounded-circle">
+          <%= link_to session[:history].reverse.find { |el| el.include?('my_') || el.include?('inspi') } || root_path do %>
+            <i class="fa-solid fa-arrow-left" style="color: #000000; "></i>
           <% end %>
         </div>
-      <% end %>
-    </div>
-  </div>
-</div>
-<!-- Contenu de la recette -->
-<div class="container">
-  <div class="row text-center mt-3">
-    <% if user_signed_in? && @recipe.user_id != current_user.id %>
-      <div class="d-flex align-items-center">
-        <%= link_to recipes_user_path(@user), class:"link-custom" do %>
-          <%= image_tag @user.photo, class: "avatar-small" %>
-          <span class="ms-2 ">Par <%= @user.first_name %></span>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="col-12">
-      <h3 class="mb-0 mt-4"><%= @recipe.title %></h3>
-    </div>
-  </div>
-  <!-- Détails recettes -->
-  <div class="d-flex justify-content-center mx-0 align-items-center text-center mb-3 mt-0">
-    <!-- Difficulté -->
-    <div class="d-flex px-3 py-3">
-      <small><i class="fa-solid fa-cookie-bite" style="color: #FF4051; "></i></small>
-      <span class="ms-1"><%= @recipe.difficulty.capitalize %></span>
-    </div>
-    <!-- Temps preparation -->
-    <div class="d-flex px-3 py-2">
-      <small><i class="fa-solid fa-spoon" style="color: #FF4051;  "></i></small>
-      <span class="ms-1"><%= @recipe.preparation_time %>min</span>
-    </div>
-    <!-- Temps cuisson -->
-    <div class="d-flex px-3 py-2">
-      <small><i class="fa-solid fa-fire" style="color: #FF4051;  "></i></i></small>
-    <span class="ms-1"><%= @recipe.cooking_time %>min</span>
-  </div>
-</div>
-<div data-controller="tab" class="tabs">
-  <div class="button-container border mb-4 px-2">
-    <ul class="nav nav-pills flex-fill d-flex align-items-center justify-content-evenly px-2">
-      <li class="nav-item">
-        <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="1" type="button" class="tab-button on px-3 py-1">Ingrédients</button>
-      </li>
-      <li class="nav-item">
-        <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="2" type="button" class="tab-button px-3 py-1">Préparation</button>
-      </li>
-      <li class="nav-item">
-        <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="3" type="button" class="tab-button px-3 py-1">Notes</button>
-      </li>
-    </ul>
-  </div>
-  <div>
-    <!-- Onglet ingrédients -->
-    <div class="tab on" data-tab-target="tab" data-id="1" data-controller="servings" data-servings-nb-servings-value="<%= @recipe.number_of_servings %>">
-      <div class="d-flex justify-content-center text-center mt-3">
-        <%# <span data-action="click->servings#decrement" >-</span> %>
-        <div class="button-circle me-3" data-action="click->servings#decrement">
-          <i class="fas fa-minus"></i>
-        </div>
-        <span>Personnes : <strong data-servings-target="nbServings"><%= @recipe.number_of_servings %></strong></span>
-        <%# <span data-action="click->servings#increment">+</span> %>
-        <div class="button-circle ms-3" data-action="click->servings#increment">
-          <i class="fas fa-plus"></i>
-        </div>
-      </div>
-      <% @recipe.recipe_ingredients.each do |recipe_ingredient|%>
-        <div class="list-ingredients d-flex justify-content-between py-2 px-3 mt-3">
-          <%= recipe_ingredient.ingredient.name.capitalize %>
-          <strong data-servings-target="quantity">
-            <span class="js_quantity_value"><%= recipe_ingredient.quantity_value.to_s.chomp('.0') %></span>
-            <span class="js_quantity_unit"><%= recipe_ingredient.quantity_unit %></span>
-          </strong>
-        </div>
-      <% end %>
-    </div>
-    <!-- Onglet préparation -->
-    <div class="tab" data-tab-target="tab" data-id="2">
-      <div class="container-fluid">
-        <div class="row">
-          <% @recipe.preparation_steps.each do |preparation_step|%>
-            <div class="list-instructions col-12 pb-2 mt-3">
-              <p><strong>Étape <%= preparation_step.step_number %></strong></p>
-              <p><%= preparation_step.instruction %>
-                <p>
-                </div>
+        <!-- Boutons edit/delete si current_user, sinon bouton like/unlike -->
+        <% if user_signed_in? && @recipe.user_id != current_user.id %>
+          <% if current_user.favorited?(@recipe) %>
+            <div id="like" class="white-button rounded-circle">
+              <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: :post } do %>
+                <i class="fa-solid fa-heart" style="color: #FF4051; "></i>
               <% end %>
             </div>
+            <div id="duplicate" class="white-button rounded-circle">
+              <%= link_to duplicate_recipe_path(@recipe), data: { turbo_method: :post } do %>
+                <i class="fa-solid fa-copy" style="color: #000000; "></i>
+              <% end %>
+            </div>
+          <% else %>
+            <div id="like" class="white-button rounded-circle">
+              <%= link_to favorite_recipe_path(@recipe), data: { turbo_method: :post } do %>
+                <i class="fa-regular fa-heart" style="color: #000000;"></i>
+              <% end %>
+            </div>
+            <div id="duplicate" class="white-button rounded-circle">
+              <%= link_to duplicate_recipe_path(@recipe), data: { turbo_method: :post } do %>
+                <i class="fa-solid fa-copy" style="color: #000000; "></i>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <div id="edit" class="red-button rounded-circle">
+            <%= link_to edit_recipe_path(@recipe) do %>
+              <i class="fa-solid fa-pen" style="color: #000000; "></i>
+            <% end %>
+          </div>
+          <div id="delete" class="white-button rounded-circle">
+            <%= link_to recipe_path(@recipe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+              <i class="fa-solid fa-trash" style="color: #000000; "></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- Contenu de la recette -->
+  <div class="container">
+    <div class="row text-center mt-3">
+      <% if user_signed_in? && @recipe.user_id != current_user.id %>
+        <div class="d-flex align-items-center">
+          <%= link_to recipes_user_path(@user), class:"link-custom" do %>
+            <%= image_tag @user.photo, class: "avatar-small" %>
+            <span class="ms-2 ">Par <%= @user.first_name %></span>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="col-12">
+        <h3 class="mb-0 mt-4"><%= @recipe.title %></h3>
+      </div>
+    </div>
+    <!-- Détails recettes -->
+    <div class="d-flex justify-content-center mx-0 align-items-center text-center mb-3 mt-0">
+      <!-- Difficulté -->
+      <div class="d-flex px-3 py-3">
+        <small><i class="fa-solid fa-cookie-bite" style="color: #FF4051; "></i></small>
+        <span class="ms-1"><%= @recipe.difficulty.capitalize %></span>
+      </div>
+      <!-- Temps preparation -->
+      <div class="d-flex px-3 py-2">
+        <small><i class="fa-solid fa-spoon" style="color: #FF4051;  "></i></small>
+        <span class="ms-1"><%= @recipe.preparation_time %>min</span>
+      </div>
+      <!-- Temps cuisson -->
+      <div class="d-flex px-3 py-2">
+        <small><i class="fa-solid fa-fire" style="color: #FF4051;  "></i></i></small>
+      <span class="ms-1"><%= @recipe.cooking_time %>min</span>
+    </div>
+  </div>
+  <div data-controller="tab" class="tabs">
+    <div class="button-container border mb-4 px-2">
+      <ul class="nav nav-pills flex-fill d-flex align-items-center justify-content-evenly px-2">
+        <li class="nav-item">
+          <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="1" type="button" class="tab-button on px-3 py-1">Ingrédients</button>
+        </li>
+        <li class="nav-item">
+          <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="2" type="button" class="tab-button px-3 py-1">Préparation</button>
+        </li>
+        <li class="nav-item">
+          <button data-action="click->tab#show" data-tab-target="button" data-tab-id-param="3" type="button" class="tab-button px-3 py-1">Notes</button>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <!-- Onglet ingrédients -->
+      <div class="tab on" data-tab-target="tab" data-id="1" data-controller="servings" data-servings-nb-servings-value="<%= @recipe.number_of_servings %>">
+        <div class="d-flex justify-content-center text-center mt-3">
+          <%# <span data-action="click->servings#decrement" >-</span> %>
+          <div class="button-circle me-3" data-action="click->servings#decrement">
+            <i class="fas fa-minus"></i>
+          </div>
+          <span>Personnes : <strong data-servings-target="nbServings"><%= @recipe.number_of_servings %></strong></span>
+          <%# <span data-action="click->servings#increment">+</span> %>
+          <div class="button-circle ms-3" data-action="click->servings#increment">
+            <i class="fas fa-plus"></i>
           </div>
         </div>
-        <!-- Onglet note -->
-        <div class="tab" data-tab-target="tab" data-id="3">
+        <% @recipe.recipe_ingredients.each do |recipe_ingredient|%>
+          <div class="list-ingredients d-flex justify-content-between py-2 px-3 mt-3">
+            <%= recipe_ingredient.ingredient.name.capitalize %>
+            <strong data-servings-target="quantity">
+              <span class="js_quantity_value"><%= recipe_ingredient.quantity_value.to_s.chomp('.0') %></span>
+              <span class="js_quantity_unit"><%= recipe_ingredient.quantity_unit %></span>
+            </strong>
+          </div>
+        <% end %>
+      </div>
+      <!-- Onglet préparation -->
+      <div class="tab" data-tab-target="tab" data-id="2">
+        <div class="container-fluid">
+          <div class="row">
+            <% @recipe.preparation_steps.each do |preparation_step|%>
+              <div class="list-instructions col-12 pb-2 mt-3">
+                <p><strong>Étape <%= preparation_step.step_number %></strong></p>
+                <p><%= preparation_step.instruction %>
+                  <p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <!-- Onglet note -->
+          <div class="tab" data-tab-target="tab" data-id="3">
+            <%= render "note", recipe: @recipe %>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,26 @@
+<div data-controller="note">
+  <div class="note-container">
+    <p data-note-target="content" class="m-4">
+      <%= recipe.note %>
+    </p>
+    <span data-note-target="infos" data-action="click->note#displayForm" class="edit-btn">
+      <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
+    </span>
+    <%= simple_form_for recipe,
+    url: update_note_recipe_path(recipe),
+    html: {
+      class: "d-none",
+      data: {
+      note_target: "form",
+      action: "submit->note#update"
+      }
+    } do |f| %>
+      <div class="field">
+        <%= f.text_area :note, rows: 4, placeholder:"Ajouter un commentaire à propos de la recette...", class:"note-container w-100 p-4", style: "box-shadow: none !important; border: none !important; outline: none;" %>
+      </div>
+      <div class="d-flex justify-content-end w-100">
+        <%= f.submit "Sauvegarder", class: 'form-button me-4 mb-4' %>
+      </div>
+    <% end %>
+  </div>
+  </div>
