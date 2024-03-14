@@ -4,15 +4,13 @@
       <% if @user == current_user %>
         <h3 class="title text-center">Mon carnet de recettes 🧑‍🍳</h3>
       <% else %>
-        <div class="d-flex align-items-center">
-          <%= image_tag @user.photo, class: "avatar" %>
-          <h3 class="title ms-2">Les recettes de <%= @user.first_name %> 🧑‍🍳</h3>
+        <div class="profile-header d-flex align-items-center gap-2">
+          <%= image_tag @user.photo, class: "avatar-large" %>
+          <div>
+            <h3 class="title">Recettes <%= @user.first_name %> 🧑‍🍳</h3>
+            <%= link_to current_user.favorited?(@user) ? "Suivi(e)" : "Suivre", follow_user_path(@user), class: "", data: { turbo_method: :post } %>
+          </div>
         </div>
-        <% if current_user.favorited?(@user) %>
-          <%= button_to 'Suivi(e)', follow_user_path(@user), data: { turbo_method: :post } %>
-        <% else %>
-          <%= button_to "Suivre", follow_user_path(@user), data: { turbo_method: :post } %>
-        <% end %>
       <% end %>
       <div class="container my-3">
         <%= render "recipes/search_bar", path: recipes_user_path(@user)%>

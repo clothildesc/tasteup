@@ -2,7 +2,6 @@
   width: 100vw;
   height: 6em;
   background-color: white;
-  border-top: 2px solid $black;
 
   a {
     width: 1%;
@@ -16,6 +15,7 @@
 
 .navbar .navbar-brand img {
   width: 25px;
+  opacity: 0.5
 }
 
 .navbar-add {
@@ -31,4 +31,12 @@
   flex-grow: 0 !important;
   margin-left: 1rem !important;
   margin-right: 1rem !important;
+}
+
+.button-on-navbar img {
+  opacity: 1 !important;
+}
+
+.book-icon {
+  width: 29px !important;
 }
