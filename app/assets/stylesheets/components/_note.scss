@@ -1,0 +1,16 @@
+.note-container {
+  position: relative;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Indie Flower', cursive;
+  color: $gray-bts;
+  border: 1px solid $gray;
+
+  .edit-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+}

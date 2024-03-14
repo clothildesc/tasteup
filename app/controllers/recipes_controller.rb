@@ -2,7 +2,7 @@
 require "open-uri"
 
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show edit update destroy favorite]
+  before_action :set_recipe, only: %i[show edit update destroy favorite duplicate edit_note update_note]
 
   def my_recipes
       @favorite_recipes = current_user.favorited_by_type('Recipe')
@@ -90,6 +90,20 @@ class RecipesController < ApplicationController
     end
   end
 
+  def edit_note
+  end
+
+  def update_note
+    if @recipe.update(note_params)
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe), notice: 'La note a été mise à jour.' }
+        format.text { render partial: "recipes/note", locals: {recipe: @recipe}, formats: [:html] }
+      end
+    else
+      render :edit_note
+    end
+  end
+
   def edit
   end
 
@@ -102,7 +116,6 @@ class RecipesController < ApplicationController
   end
 
   def duplicate
-    @recipe = Recipe.find(params[:id])
     @new_recipe = @recipe.dup
     @new_recipe.user = current_user
     @new_recipe.save
@@ -138,6 +151,10 @@ class RecipesController < ApplicationController
       :preparation_time, :number_of_servings, :note, category_ids: [],
       :preparation_steps_attributes => [:id, :instruction, :_destroy],
       :recipe_ingredients_attributes => [:id, :quantity_unit, :quantity_value, :ingredient_id, :_destroy])
+  end
+
+  def note_params
+    params.require(:recipe).permit(:note)
   end
 
   def set_recipe

@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     member do
       post :duplicate
     end
+    member do
+      get :edit_note
+      patch :update_note
+    end
     collection do
       get :inspiration
       get :scrap
