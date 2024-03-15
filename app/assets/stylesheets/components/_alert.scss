@@ -1,22 +1,27 @@
 .alert {
-  width: 275px;
-  height: 25px;
+  min-width: auto; /* Set minimum width to fit content */
+  max-width: 80%; /* Limit maximum width to 80% of the viewport width */
+  height: auto; /* Allow height to adjust based on content */
   position: fixed;
   top: 0px;
   right: 0px;
   z-index: 1000;
-  padding: 10px;
+  padding: 3px;
   color: black;
   background-color: rgba(255, 255, 255, 0.8);
   border: none !important;
   border-radius: 5px;
-  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); */
   animation: fadeIn 0.5s ease-out, fadeOut 1s ease-in 1s forwards;
 
-  display: flex; /* Ajout */
-  align-items: center; /* Ajout */
-  justify-content: center; /* Ajout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap; /* Ensure text stays on one line */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show ellipsis for overflow text */
 }
+
 .fade-in {
   opacity: 1;
 }
