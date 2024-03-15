@@ -516,33 +516,30 @@ recipes_raw = [
     ]
   },
   {
-    title: "Gâteau au chocolat fondant",
-    image_name: "gateau_chocolat.jpg",
+    title: "Panna cotta à la vanille avec coulis de fruits rouges",
+    image_name: "panna-cotta.jpg",
     category_name: "Dessert",
     user_email: "isaiah@gmail.com",
     difficulty: "Facile",
-    cooking_time: 40,
-    preparation_time: 20,
-    number_of_servings: 8,
-    note: "Un dessert irrésistible pour les amateurs de chocolat.",
+    cooking_time: 5,
+    preparation_time: 15,
+    number_of_servings: 4,
+    note: "Un dessert italien léger et rafraîchissant, idéal pour conclure un repas sur une note douce.",
     ingredients: [
-      { name: "chocolat noir", quantity_value: 200, quantity_unit: "g" },
-      { name: "beurre", quantity_value: 150, quantity_unit: "g" },
-      { name: "sucre en poudre", quantity_value: 150, quantity_unit: "g" },
-      { name: "farine", quantity_value: 50, quantity_unit: "g" },
-      { name: "oeufs", quantity_value: 3, quantity_unit: "" },
-      { name: "vanille", quantity_value: 1, quantity_unit: "c. à café" },
-      { name: "sel", quantity_value: 1, quantity_unit: "" }
+      { name: "feuilles de gélatine", quantity_value: 3, quantity_unit: "pièces" },
+      { name: "crème liquide", quantity_value: 500, quantity_unit: "ml" },
+      { name: "sucre", quantity_value: 100, quantity_unit: "g" },
+      { name: "gousse de vanille", quantity_value: 1, quantity_unit: "pièce" },
+      { name: "fruits rouges", quantity_value: 300, quantity_unit: "g" },
+      { name: "eau", quantity_value: 50, quantity_unit: "ml" },
     ],
     steps: [
-      { step_number: 1, instruction: "Préchauffer le four à 180°C (thermostat 6). Beurrer et fariner un moule à gâteau." },
-      { step_number: 2, instruction: "Faire fondre le chocolat noir et le beurre au bain-marie ou au micro-ondes. Laisser tiédir." },
-      { step_number: 3, instruction: "Dans un saladier, fouetter les œufs avec le sucre en poudre jusqu'à ce que le mélange blanchisse. Ajouter l'extrait de vanille et la pincée de sel." },
-      { step_number: 4, instruction: "Incorporer le mélange chocolat-beurre fondu dans le saladier en mélangeant délicatement." },
-      { step_number: 5, instruction: "Tamiser la farine sur le mélange chocolaté et mélanger jusqu'à ce que la pâte soit homogène." },
-      { step_number: 6, instruction: "Verser la pâte dans le moule préparé et lisser la surface avec une spatule." },
-      { step_number: 7, instruction: "Enfourner et cuire pendant environ 20-25 minutes, ou jusqu'à ce que la surface du gâteau soit légèrement craquelée et qu'un cure-dent inséré au centre en ressorte avec quelques miettes humides." },
-      { step_number: 8, instruction: "Laisser refroidir le gâteau dans le moule pendant quelques minutes avant de le démouler et de le servir tiède ou à température ambiante, accompagné de crème fouettée ou de glace à la vanille." }
+      { step_number: 1, instruction: "Faire tremper les feuilles de gélatine dans de l'eau froide pour les ramollir." },
+      { step_number: 2, instruction: "Dans une casserole, faire chauffer la crème liquide avec le sucre et la gousse de vanille fendue en deux, sans laisser bouillir." },
+      { step_number: 3, instruction: "Retirer la casserole du feu et ajouter les feuilles de gélatine essorées. Bien mélanger jusqu'à leur complète dissolution." },
+      { step_number: 4, instruction: "Verser la préparation dans des verrines ou des moules, puis laisser refroidir à température ambiante avant de placer au réfrigérateur pendant au moins 4 heures." },
+      { step_number: 5, instruction: "Pour le coulis, mixer les fruits rouges avec l'eau et le sucre jusqu'à l'obtention d'une sauce lisse. Filtrer pour retirer les pépins si nécessaire." },
+      { step_number: 6, instruction: "Démouler la panna cotta sur des assiettes et napper de coulis de fruits rouges juste avant de servir." }
     ]
   },
   {
