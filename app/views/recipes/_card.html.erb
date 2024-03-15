@@ -6,7 +6,13 @@
     </div>
     <h2 class="recipe-name mt-2"><%= recipe.title %></h2>
     <i class="fa-regular fa-clock" style="color: #7EB030;"></i>
-    <span class="time-recipe"><%= recipe.cooking_time + recipe.preparation_time %> min</span>
+    <span class="time-recipe">
+      <% total_time = recipe.cooking_time + recipe.preparation_time %>
+      <% hours = total_time / 60 %>
+      <% minutes = total_time % 60 %>
+      <% formatted_minutes = minutes > 0 ? minutes.to_s.rjust(2, '0') : "" %>
+      <%= "#{hours}h" if hours > 0 %><%= formatted_minutes %><%= " min" if hours == 0 && minutes > 0 %>
+    </span>
   <% end %>
 </div>
 <% end %>

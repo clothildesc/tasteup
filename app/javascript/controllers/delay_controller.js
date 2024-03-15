@@ -15,7 +15,7 @@ export default class extends Controller {
     this.spinnerTarget.classList.remove("d-none");
 
     const typed = new Typed(this.typedContainerTarget, {
-      strings: ["J'ajoute les ingrédients...", "J'ajoute les étapes...", "Bonne appétit !"],
+      strings: ["J'ajoute les ingrédients...", "J'ajoute les étapes...", "Bon appétit !"],
       typeSpeed: 50,
       showCursor: false,
     });

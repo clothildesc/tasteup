@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def recipes
     @user = User.find(params[:id])
-    @recipes = @user.recipes.order(created_at: :desc)
+    @recipes = @user.recipes.order(created_at: :asc)
     if params[:query].present?
       cleaned_query = params[:query].strip
       sql_subquery = <<~SQL

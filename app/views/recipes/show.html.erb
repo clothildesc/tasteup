@@ -88,8 +88,12 @@
       </div>
       <!-- Temps preparation -->
       <div class="d-flex px-3 py-2">
-        <small><i class="fa-solid fa-spoon" style="color: #FF4051;  "></i></small>
-        <span class="ms-1"><%= @recipe.preparation_time %>min</span>
+        <small><i class="fa-solid fa-spoon" style="color: #FF4051;"></i></small>
+        <span class="ms-1">
+          <% hours = @recipe.preparation_time / 60 %>
+          <% minutes = @recipe.preparation_time % 60 %>
+          <%= "#{hours}h" if hours > 0 %><%= "#{minutes}min" if minutes > 0 %>
+        </span>
       </div>
       <!-- Temps cuisson -->
       <div class="d-flex px-3 py-2">
