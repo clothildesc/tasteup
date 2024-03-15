@@ -1,6 +1,6 @@
 <div data-controller="note">
   <div class="note-container">
-    <% if @recipe.note.empty? %>
+    <% if @recipe.note.nil? %>
       <p data-note-target="content" class="m-4">
         Ajouter un commentaire à propos de la recette...
       </p>
