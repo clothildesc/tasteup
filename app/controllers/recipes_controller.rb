@@ -5,11 +5,11 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy favorite duplicate edit_note update_note]
 
   def my_recipes
-      @favorite_recipes = current_user.favorited_by_type('Recipe')
-      @my_recipes = current_user.recipes
-      @user = current_user
-      @favorited_users = current_user.favorited_by_type('User')
-      @favorited_users_recipes = Recipe.where(user_id: @favorited_users.pluck(:id))
+    @favorite_recipes = current_user.favorited_by_type('Recipe')
+    @my_recipes = current_user.recipes
+    @user = current_user
+    @favorited_users = current_user.favorited_by_type('User')
+    @favorited_users_recipes = Recipe.where(user_id: @favorited_users.pluck(:id))
 
     if params[:query].present?
       cleaned_query = params[:query].strip

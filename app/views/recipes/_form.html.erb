@@ -14,11 +14,6 @@
 
       <% if @step == "1" %>
         <%= simple_form_for recipe, html: {data: {controller: "form"}} do |f| %>
-          <%#= f.input :url,
-            required: false,
-            label: 'Renseigner une URL',
-            input_html: { class: "form-input"},
-            placeholder: 'https://www.exemple.com'%>
           <h3 class="mt-4 mb-3">Ou ajouter manuellement</h3>
           <section class="step" id="step3" data-step-target="step">
             <%= f.input :title,
