@@ -6,9 +6,9 @@ Your personal online recipe book. Save, organize, and share your favorite recipe
 
 **TasteUp** is a web application developed during Le Wagon bootcamp that allows users to build and manage their own digital recipe collection. Whether you're importing recipes from popular cooking websites like Marmiton or creating your own from scratch, TasteUp makes it easy to keep all your culinary creations in one place.
 
-**👥 This project was developed as a team project during Le Wagon bootcamp.**
+**This project was developed as a team project during Le Wagon bootcamp.**
 
-**📦 Original repository: [ZenaGiulia/tasteup](https://github.com/ZenaGiulia/tasteup)**
+**Original repository: [ZenaGiulia/tasteup](https://github.com/ZenaGiulia/tasteup)**
 
 ## ✨ Features
 
