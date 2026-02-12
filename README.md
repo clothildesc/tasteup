@@ -12,7 +12,6 @@ Your personal online recipe book. Save, organize, and share your favorite recipe
 
 ## ✨ Features
 
-### Recipe Management
 - **Import recipes** from Marmiton or create custom recipes manually
 - **Edit and organize** your recipe collection
 - **Share recipes** with friends and family
@@ -91,22 +90,6 @@ Simply paste the recipe URL from Marmiton, and TasteUp will automatically extrac
 - **Search** by name, ingredient, or tag
 - **Edit** or **delete** recipes anytime
 - **Browse** the community feed for inspiration
-
-## 🧪 Testing
-
-Run the test suite:
-```bash
-rails test
-rails test:system
-```
-
-## 🐳 Docker
-
-The project includes Docker support for easy deployment:
-
-```bash
-docker-compose up
-```
 
 ## 👥 Team
 
