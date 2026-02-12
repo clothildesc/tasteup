@@ -10,6 +10,8 @@ Your personal online recipe book. Save, organize, and share your favorite recipe
 
 **Original repository: [ZenaGiulia/tasteup](https://github.com/ZenaGiulia/tasteup)**
 
+<img width="2161" height="1156" alt="tasteup" src="https://github.com/user-attachments/assets/202087ff-2043-4284-9e01-701291d81dac" />
+
 ## ✨ Features
 
 - **Import recipes** from Marmiton or create custom recipes manually
